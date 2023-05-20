@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import SignUpModal from './components/SignUpModal';
 import SignInModal from './components/SignInModal';
 import DistrictsMap from './components/DistrictsMap';
+import BasicCalculator from './components/BasicCalculator';
 
 import AdminForm from './components/AdminForm';
 
@@ -38,6 +39,9 @@ function App() {
           <button className="btn btn-primary m-3" onClick={() => setShowSignUpModal(true)}>Sign Up</button>
           <button className="btn btn-primary m-3" onClick={() => setShowSignInModal(true)}>Sign In</button>
           <DistrictsMap />
+
+          <BasicCalculator />
+
           <Footer />
         </div>
       } />
@@ -47,4 +51,3 @@ function App() {
 }
 
 export default App;
-    // "start": "PORT=80 react-scripts start",

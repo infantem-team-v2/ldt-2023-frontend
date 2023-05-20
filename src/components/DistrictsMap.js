@@ -1,6 +1,6 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import { YMaps, Map, Polygon, ListBox, ListBoxItem, withYMaps } from '@pbe/react-yandex-maps';
+import { useState, useEffect, useMemo } from 'react';
+import { YMaps, Map, Polygon, ListBox, ListBoxItem } from '@pbe/react-yandex-maps';
 import data from '../asserts/ao.json';
 import { nanoid } from 'nanoid';
 
@@ -58,24 +58,50 @@ const DistrictsMap = () => {
     const district = Object.keys(districtsColors).find(key => districtsColors[key] === fillCoor);
     // change color of clicked district
     handleMapColorChange({ district });
-    const coordinates = e.get('coords');
-    setClickedCoords(coordinates);
-    console.log('Clicked coordinates:', clickedCoords);
+    const RNcoordinates = e.get('coords');
+    setClickedCoords(RNcoordinates);
+
   };
 
   const handleMapColorChange = (e) => {
-    console.log(e)
     if (e.district && e.district in districtsColors) {
       setDistrictsColorsState({ ...districtsColors, [e.district]: '#F24900' });
       setChoosenDistrict(e.district);
-    } else if (e.target) {
-      console.log(e.target)
+    } else if (e.originalEvent.target.data['_data']['content']) {
+      const districtName = e.originalEvent.target.data['_data']['content'];
+      setDistrictsColorsState({ ...districtsColors, [districtName]: '#F24900' });
+      setChoosenDistrict(districtName);
     }
   }
 
+  const _getPolygons = () => {
+    return coordinates.map((coord) =>
+      <Polygon
+        onClick={handleMapClick}
+        key={nanoid()}
+        geometry={coord.polygons}
+        openBalloonOnClick={true}
+        openEmptyBalloon={true}
+        openHintOnHover={true}
+        options={{
+          strokeColor: '#0000FF',
+          opacity: coord.name === choosenDistrict ? 0.7 : 0.4,
+          fillColor: districtsColorsState[coord.name],
+          strokeOpacity: 0.5,
+          strokeWidth: 2,
+          cursor: 'pointer',
+        }}
+      />
+
+
+
+    )
+  }
+  const getPolygons = useMemo(() => _getPolygons(), [choosenDistrict, districtsColorsState]);
+
 
   return (
-    <>
+    <div className='container'>
       <YMaps
         query={{
           lang: 'ru_RU', apikey: 'd3821b8c-9c4f-4885-9c54-6feda085a943'
@@ -88,51 +114,26 @@ const DistrictsMap = () => {
           height="500px"
 
         >
-          <ListBox data={{ content: "Выбрать AO " }}>
+          {/* <ListBox data={{ content: "Выбрать AO " }}>
             {names.map((name) => (
               <ListBoxItem
+                key={nanoid()}
+                onClick={handleMapColorChange}
                 data={{ content: name }}
                 options={{
                   float: 'left',
                   contentLayout: 'my#itemLayout',
-                  onClick: handleMapColorChange,
 
                 }}
-                key={nanoid()}
+
               />
             ))}
-          </ListBox>
-          {
-            coordinates.map((coord, index) => {
-              return (
-                <>
-                  <Polygon
-                    onClick={handleMapClick}
-                    key={nanoid()}
-                    geometry={coord.polygons}
-                    openBalloonOnClick={true}
-                    openEmptyBalloon={true}
+          </ListBox> */}
 
-                    openHintOnHover={true}
-                    options={{
-                      strokeColor: '#0000FF',
-                      opacity: coord.name === choosenDistrict ? 0.7 : 0.4,
-                      fillColor: districtsColorsState[coord.name],
-                      strokeOpacity: 0.5,
-                      strokeWidth: 2,
-                      cursor: 'pointer',
-
-                    }}
-
-                  />
-                </>
-
-              );
-            })
-          }
+          {getPolygons}
         </Map>
       </YMaps>
-    </>
+    </div>
   );
 };
 
