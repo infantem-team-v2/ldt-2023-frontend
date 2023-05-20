@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  react-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    env_file:
+      - .env
+    
+    restart: unless-stopped
+    container_name: landing-frontend
+
+    ports:
+      - ${EXIT_PORT}:3000
+
+    
