@@ -18,6 +18,8 @@ const MainPage = () => {
         <h1 className="h1-main">Рассчитай вложения <HeaderThing /></h1>
 
         <ProgressBar range={10} current={1} />
+        <DistrictsMap />
+
       </div>
     </>
   )
