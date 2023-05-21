@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
+import api from '../services/api';
+
 const SignUpModal = ({ show, onHide }) => {
   const [step, setStep] = useState(1);
   const [name, setName] = useState('');
@@ -13,16 +15,39 @@ const SignUpModal = ({ show, onHide }) => {
   const [country, setCountry] = useState('');
   const [city, setCity] = useState('');
   const [position, setPosition] = useState('');
+  const [password, setPassword] = useState('');
+  const [repitedPassword, setRepitedPassword] = useState('');
 
   const handleInputError = (field) => {
     return field ? '' : 'is-invalid';
   }
+  const inputClass = (field) => {
+    return handleInputError(field) ? 'is-invalid' : '';
+  };
+
+  const renderInputError = (field) => {
+    if (handleInputError(field)) {
+      return (
+        <div className="invalid-feedback">
+          Пожалуйста, введите корректное {field}.
+        </div>
+      );
+    }
+    return null;
+  };
 
   const validateEmail = (email) => {
     console.log(email);
     const re = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    console.log(re.test(email));
     return re.test(email);
+  }
+
+  const validatePassword = (password) => {
+    const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+    return re.test(password);
+  }
+  const validateRepitedPassword = (repitedPassword) => {
+    return repitedPassword === password;
   }
 
   const handleNext = () => {
@@ -30,11 +55,11 @@ const SignUpModal = ({ show, onHide }) => {
       alert('Please fill in all required fields.');
       return;
     }
-    if (step === 2 && !validateEmail(email)) {
+    if (step === 2 && (!validateEmail(email) || !validatePassword(password) || !validateRepitedPassword(repitedPassword))) {
       alert('Please enter your email.');
       return;
     }
-    if (step === 3 && (!inn)) {
+    if (step === 3 && (!inn || !(inn.length === 10 || inn.length === 12))) {
       alert('Please fill in all required fields.');
       return;
     }
@@ -73,7 +98,9 @@ const SignUpModal = ({ show, onHide }) => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
+                className={inputClass(name)}
               />
+              {renderInputError(name)}
             </Form.Group>
             <Form.Group controlId="surname">
               <Form.Label>Фамилия {required}</Form.Label>
@@ -106,6 +133,29 @@ const SignUpModal = ({ show, onHide }) => {
                 placeholder="Введите ваш email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
+                className={inputClass(email)}
+              />
+              {renderInputError('email')}
+            </Form.Group>
+            <Form.Group controlId="password">
+              <Form.Label>Пароль {required}</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Введите ваш пароль"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="repitedPassword">
+              <Form.Label>Повторите пароль {required}</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Повторите ваш пароль"
+                value={repitedPassword}
+                onChange={(e) => setRepitedPassword(e.target.value)}
+                required
               />
             </Form.Group>
           </Form>
