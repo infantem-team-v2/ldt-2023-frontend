@@ -9,7 +9,7 @@ const SignInModal = ({ show, onHide }) => {
   return (
     <Modal show={show} onHide={onHide}>
       <Modal.Header closeButton>
-        <Modal.Title>Sign In</Modal.Title>
+        <Modal.Title>Авторизация</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>

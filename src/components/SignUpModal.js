@@ -17,27 +17,14 @@ const SignUpModal = ({ show, onHide }) => {
   const [position, setPosition] = useState('');
   const [password, setPassword] = useState('');
   const [repitedPassword, setRepitedPassword] = useState('');
+  const [economicActivity, setEconomicActivity] = useState('');
 
-  const handleInputError = (field) => {
-    return field ? '' : 'is-invalid';
-  }
-  const inputClass = (field) => {
-    return handleInputError(field) ? 'is-invalid' : '';
-  };
+  const [formErrors, setFormErrors] = useState({});
 
-  const renderInputError = (field) => {
-    if (handleInputError(field)) {
-      return (
-        <div className="invalid-feedback">
-          Пожалуйста, введите корректное {field}.
-        </div>
-      );
-    }
-    return null;
-  };
+  // Validation
+  // -----------------------------
 
   const validateEmail = (email) => {
-    console.log(email);
     const re = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     return re.test(email);
   }
@@ -50,17 +37,30 @@ const SignUpModal = ({ show, onHide }) => {
     return repitedPassword === password;
   }
 
+  // -----------------------------
+
   const handleNext = () => {
+    setFormErrors({});
     if (step === 1 && (!name || !surname)) {
-      alert('Please fill in all required fields.');
+      if (!name) {
+        setFormErrors({ ...formErrors, name: 'Пожалуйста, введите имя' });
+      } else if (!surname) {
+        setFormErrors({ ...formErrors, surname: 'Пожалуйста, введите фамилию' });
+      }
       return;
     }
     if (step === 2 && (!validateEmail(email) || !validatePassword(password) || !validateRepitedPassword(repitedPassword))) {
-      alert('Please enter your email.');
+      if (!validateEmail(email)) {
+        setFormErrors({ ...formErrors, email: 'Пожалуйста, введите корректный email' });
+      } else if (!validatePassword(password)) {
+        setFormErrors({ ...formErrors, password: 'Пароль должен содержать не менее 8 символов, включая цифры, заглавные и строчные буквы' });
+      } else if (!validateRepitedPassword(repitedPassword)) {
+        setFormErrors({ ...formErrors, repitedPassword: 'Пароли не совпадают' });
+      }
       return;
     }
     if (step === 3 && (!inn || !(inn.length === 10 || inn.length === 12))) {
-      alert('Please fill in all required fields.');
+      setFormErrors({ ...formErrors, inn: 'Пожалуйста, введите корректный ИНН' });
       return;
     }
     setStep(step + 1);
@@ -70,14 +70,49 @@ const SignUpModal = ({ show, onHide }) => {
     setStep(step - 1);
   };
 
-  // const handleSkip = () => {
-  //   setStep(step + 1);
-  // };
+
+  // Error handling
+  // -----------------------------
+
+  const renderInputErrorClass = (field) => {
+    return formErrors[field] ? 'is-invalid' : '';
+  }
+
+  const renderInputError = (field) => {
+    return formErrors[field] ? <div className="invalid-feedback">{formErrors[field]}</div> : null;
+  }
+
+  // -----------------------------
+
+
 
   const handleSubmit = () => {
-    // Perform submission logic here
-    alert('Form submitted successfully!');
-    onHide();
+    api.post('/auth/sign/up',
+      {
+        "auth_data": {
+          email,
+          password,
+          "repeated_password": repitedPassword
+        },
+        "business_data": {
+          "economic_activity": economicActivity,
+          inn,
+          "name": organization,
+          "website": siteLink
+        },
+        "personal_data": {
+          "full_name": name + ' ' + surname + ' ' + fathername,
+          "geographic": {
+            city,
+            country
+          },
+          position
+        }
+      }
+    ).then((response) => {
+      console.log(response);
+      onHide();
+    }).catch((error) => { });
   };
 
   const required = <span className="text-danger">*</span>;
@@ -98,9 +133,10 @@ const SignUpModal = ({ show, onHide }) => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                className={inputClass(name)}
+                className={renderInputErrorClass('name')}
+                onBlur={() => setFormErrors({ ...formErrors, name: '' })}
               />
-              {renderInputError(name)}
+              {renderInputError('name')}
             </Form.Group>
             <Form.Group controlId="surname">
               <Form.Label>Фамилия {required}</Form.Label>
@@ -110,7 +146,10 @@ const SignUpModal = ({ show, onHide }) => {
                 value={surname}
                 onChange={(e) => setSurname(e.target.value)}
                 required
+                className={renderInputErrorClass('surname')}
+                onBlur={() => setFormErrors({ ...formErrors, surname: '' })}
               />
+              {renderInputError('surname')}
             </Form.Group>
             <Form.Group controlId="fathername">
               <Form.Label>Отчество </Form.Label>
@@ -134,7 +173,8 @@ const SignUpModal = ({ show, onHide }) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className={inputClass(email)}
+                className={renderInputErrorClass('email')}
+                onBlur={() => setFormErrors({ ...formErrors, email: '' })}
               />
               {renderInputError('email')}
             </Form.Group>
@@ -146,7 +186,11 @@ const SignUpModal = ({ show, onHide }) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                className={renderInputErrorClass('password')}
+                onBlur={() => setFormErrors({ ...formErrors, password: '' })}
+
               />
+              {renderInputError('password')}
             </Form.Group>
             <Form.Group controlId="repitedPassword">
               <Form.Label>Повторите пароль {required}</Form.Label>
@@ -156,7 +200,10 @@ const SignUpModal = ({ show, onHide }) => {
                 value={repitedPassword}
                 onChange={(e) => setRepitedPassword(e.target.value)}
                 required
+                className={renderInputErrorClass('repitedPassword')}
+                onBlur={() => setFormErrors({ ...formErrors, repitedPassword: '' })}
               />
+              {renderInputError('repitedPassword')}
             </Form.Group>
           </Form>
         )}
@@ -180,6 +227,19 @@ const SignUpModal = ({ show, onHide }) => {
                 placeholder="Введите ваш ИНН"
                 value={inn}
                 onChange={(e) => setInn(e.target.value)}
+                required
+                className={renderInputErrorClass('inn')}
+                onBlur={() => setFormErrors({ ...formErrors, inn: '' })}
+              />
+              {renderInputError('inn')}
+            </Form.Group>
+            <Form.Group controlId="economicActivity">
+              <Form.Label>Вид экономической деятельности</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Введите вид экономической деятельности"
+                value={economicActivity}
+                onChange={(e) => setEconomicActivity(e.target.value)}
               />
             </Form.Group>
             <Form.Group controlId="siteLink">
@@ -255,7 +315,3 @@ const SignUpModal = ({ show, onHide }) => {
 };
 
 export default SignUpModal;
-
-
-
-

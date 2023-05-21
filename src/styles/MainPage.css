@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+
+.main-div {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
+
+.h1-main {
+  font-size: 10rem;
+  line-height: 144px;
+  color: #3B3043 !important;
+  margin-bottom: 5% !important;
+}
+
+.p-logo {
+  font-size: 1rem;
+  line-height: 24px;
+  color: #3B3043 !important;
+}
+
+/*right side of the screen */
+.p-logo-div {
+  margin-left: 1rem;
+}

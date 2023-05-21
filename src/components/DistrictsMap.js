@@ -20,6 +20,7 @@ const DistrictsMap = () => {
     'Троицкий': '#800000',
     'Новомосковский': '#808000',
   }
+
   const [districtsColorsState, setDistrictsColorsState] = useState(districtsColors);
   const [clickedCoords, setClickedCoords] = useState(null);
   const [choosenDistrict, setChoosenDistrict] = useState(null);
