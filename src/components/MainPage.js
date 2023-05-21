@@ -12,8 +12,8 @@ const MainPage = () => {
     <>
       <div className="m-5 mt-4 main-div">
         <div className="d-flex justify-content-between ">
-          <p className="p-logo">Калькулятор для предпренимателей </p>
-          <div className="p-logo p-logo-span">Быстрый и удобный инструмент для<br /> московских предпринемателей,<br /> расчитайте инвестиции в два клика!</div>
+          <div className="p-logo ">Калькулятор для предпренимателей </div>
+          <div className="p-logo">Быстрый и удобный инструмент для<br /> московских предпринемателей,<br /> расчитайте инвестиции в два клика!</div>
         </div>
         <h1 className="h1-main">Рассчитай вложения <HeaderThing /></h1>
 
