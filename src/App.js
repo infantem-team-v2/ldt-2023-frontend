@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import SignUpModal from './components/SignUpModal';
 import SignInModal from './components/SignInModal';
+import PasportResetModal from './components/PasportResetModal';
 
 import MainPage from './components/MainPage';
 import AdminForm from './components/AdminForm';
@@ -19,6 +20,15 @@ import F404Page from './components/F404Page';
 function App() {
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [showSignInModal, setShowSignInModal] = useState(false);
+  const [showPasportResetModal, setShowPasportResetModal] = useState(false);
+
+  const showPasportResetModalHandler = () => {
+    setShowPasportResetModal(true);
+  }
+
+  const onHidePasportResetModal = () => {
+    setShowPasportResetModal(false);
+  }
 
   const onHideSignUpModal = () => {
     setShowSignUpModal(false);
@@ -40,7 +50,8 @@ function App() {
     <>
       <SignUpModal show={showSignUpModal} onHide={onHideSignUpModal} />
       <SignInModal show={showSignInModal} onHide={onHideSignInModal} />
-      <Header showSignInModal={showSignInModalHandler} showSignUpModal={showSignUpModalHandler} />
+      <PasportResetModal show={showPasportResetModal} onHide={onHidePasportResetModal} />
+      <Header showSignInModal={showPasportResetModalHandler} showSignUpModal={showSignUpModalHandler} />
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/admin' element={<AdminForm />} />
