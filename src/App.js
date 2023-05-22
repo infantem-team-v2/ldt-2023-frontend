@@ -7,11 +7,14 @@ import Footer from './components/Footer';
 import SignUpModal from './components/SignUpModal';
 import SignInModal from './components/SignInModal';
 import PasportResetModal from './components/PasportResetModal';
+import PostEmailCodeModal from './components/PostEmailCodeModal';
+import EnterEmailToResetModal from './components/EnterEmailToResetModal';
 
 import MainPage from './components/MainPage';
 import AdminForm from './components/AdminForm';
 import ReportPage from './components/ReportPage';
 import F404Page from './components/F404Page';
+import AccountPage from './components/AccountPage';
 
 
 
@@ -21,41 +24,38 @@ function App() {
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [showSignInModal, setShowSignInModal] = useState(false);
   const [showPasportResetModal, setShowPasportResetModal] = useState(false);
+  const [showPostEmailCodeModal, setShowPostEmailCodeModal] = useState(false);
+  const [showEnterEmailToResetModal, setShowEnterEmailToResetModal] = useState(false);
 
-  const showPasportResetModalHandler = () => {
-    setShowPasportResetModal(true);
+  const showModal = {
+    'signUpModal': () => { setShowSignUpModal(true) },
+    'signInModal': () => { setShowSignInModal(true) },
+    'pasportResetModal': () => { setShowPasportResetModal(true) },
+    'postEmailCodeModal': () => { setShowPostEmailCodeModal(true) },
+    'enterEmailToResetModal': () => { setShowEnterEmailToResetModal(true) },
   }
-
-  const onHidePasportResetModal = () => {
-    setShowPasportResetModal(false);
+  const hideModal = {
+    'signUpModal': () => { setShowSignUpModal(false) },
+    'signInModal': () => { setShowSignInModal(false) },
+    'pasportResetModal': () => { setShowPasportResetModal(false) },
+    'postEmailCodeModal': () => { setShowPostEmailCodeModal(false) },
+    'enterEmailToResetModal': () => { setShowEnterEmailToResetModal(false) },
   }
-
-  const onHideSignUpModal = () => {
-    setShowSignUpModal(false);
-  }
-
-  const onHideSignInModal = () => {
-    setShowSignInModal(false);
-  }
-
-  const showSignUpModalHandler = () => {
-    setShowSignUpModal(true);
-  }
-  const showSignInModalHandler = () => {
-    setShowSignInModal(true);
-  }
-
 
   return (
     <>
-      <SignUpModal show={showSignUpModal} onHide={onHideSignUpModal} />
-      <SignInModal show={showSignInModal} onHide={onHideSignInModal} />
-      <PasportResetModal show={showPasportResetModal} onHide={onHidePasportResetModal} />
-      <Header showSignInModal={showPasportResetModalHandler} showSignUpModal={showSignUpModalHandler} />
+      <SignUpModal show={showSignUpModal} onHide={hideModal['signUpModal']} />
+      <SignInModal show={showSignInModal} onHide={hideModal['signInModal']} />
+      <EnterEmailToResetModal show={showEnterEmailToResetModal} onHide={hideModal['enterEmailToResetModal']} nextStep={showModal["postEmailCodeModal"]} />
+      <PostEmailCodeModal show={showPostEmailCodeModal} onHide={hideModal['postEmailCodeModal']} nextStep={showModal["pasportResetModal"]} />
+      <PasportResetModal show={showPasportResetModal} onHide={hideModal['pasportResetModal']} />
+
+      <Header showSignInModal={showModal['enterEmailToResetModal']} showSignUpModal={showModal['signUpModal']} />
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/admin' element={<AdminForm />} />
         <Route path='/report/:id' element={<ReportPage />} />
+        <Route path='/account' element={<AccountPage />} />
         <Route path='*' element={<F404Page />} />
       </Routes>
       <Footer />
