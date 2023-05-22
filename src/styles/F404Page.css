@@ -1,0 +1,10 @@
+.h1-404 {
+  font-family: 'Montserrat', 'SF Pro Display', sans-serif;
+  font-size: calc(var(--index)*2.5);
+}
+
+.p-404 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: calc(var(--index)*0.7);
+  margin-top: calc(var(--index)*1.2);
+}

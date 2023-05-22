@@ -14,7 +14,7 @@ const Header = (props) => {
 
   return (
     <Navbar bg="white" expand="lg" className='sticky-top mt-3' expanded={expanded}>
-      <a href="https://vk.com/prettydelivery" className='nav-link'><HeartLogo className='me-1 ms-5' />документы</a>
+      <a href="#" className='nav-link'><HeartLogo className='me-1 ms-5' />документы</a>
       <Navbar.Toggle aria-controls="basic-navbar-nav" className='me-3' onClick={handleSelect} />
       <Navbar.Collapse id="basic-navbar-nav " className='text-center me-5'>
         <Navbar.Brand href="#home" className='ms-auto me-auto'>
