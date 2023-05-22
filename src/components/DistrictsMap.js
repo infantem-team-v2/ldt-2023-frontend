@@ -55,12 +55,18 @@ const DistrictsMap = () => {
 
   const handleMapClick = (e) => {
     const fillCoor = e.get('target')['options']['_options']['fillColor']
-    // find district by color
-    const district = Object.keys(districtsColors).find(key => districtsColors[key] === fillCoor);
-    // change color of clicked district
-    handleMapColorChange({ district });
-    const RNcoordinates = e.get('coords');
-    setClickedCoords(RNcoordinates);
+    if (fillCoor !== '#F24900') {
+      // find district by color
+      const district = Object.keys(districtsColors).find(key => districtsColors[key] === fillCoor);
+      // change color of clicked district
+      handleMapColorChange({ district });
+      const RNcoordinates = e.get('coords');
+      setClickedCoords(RNcoordinates);
+    } else {
+      setClickedCoords(null);
+      setChoosenDistrict(null);
+      setDistrictsColorsState(districtsColors);
+    }
 
   };
 

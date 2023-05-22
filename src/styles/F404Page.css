@@ -8,3 +8,10 @@
   font-size: calc(var(--index)*0.7);
   margin-top: calc(var(--index)*1.2);
 }
+
+.img-404 {
+  width: 57%;
+  height: auto;
+  mix-blend-mode: multiply;
+  filter: brightness(1.2);
+}
