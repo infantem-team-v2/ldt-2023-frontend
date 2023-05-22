@@ -9,6 +9,7 @@ import SignInModal from './components/SignInModal';
 
 import MainPage from './components/MainPage';
 import AdminForm from './components/AdminForm';
+import ReportPage from './components/ReportPage';
 
 
 
@@ -42,6 +43,7 @@ function App() {
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/admin' element={<AdminForm />} />
+        <Route path='/report/:id' element={<ReportPage />} />
       </Routes>
       <Footer />
     </>

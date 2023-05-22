@@ -4,7 +4,7 @@ const ProgressBar = ({ range, current }) => {
   const progress = (current / range) * 100;
 
   return (
-    <div>
+    <div className='mb-4'>
       <h2 className="h2-main mb-3">{`${current} из ${range} пунктов`}</h2>
       <div className="progress pbar-main">
         <div

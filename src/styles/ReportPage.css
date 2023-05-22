@@ -1,0 +1,10 @@
+.h1-report {
+  font-family: 'Montserrat', sans-serif;
+  font-size: calc(var(--index)*3.5);
+  line-height: calc(var(--index)*4.5) !important;
+}
+
+.main-footer-section {
+  width: 20%;
+  text-align: right !important;
+}
