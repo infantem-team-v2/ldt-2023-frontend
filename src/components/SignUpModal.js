@@ -90,23 +90,23 @@ const SignUpModal = ({ show, onHide }) => {
     api.post('/auth/sign/up',
       {
         "auth_data": {
-          email,
-          password,
+          email: email,
+          password: password,
           "repeated_password": repitedPassword
         },
         "business_data": {
           "economic_activity": economicActivity,
-          inn,
+          inn: inn,
           "name": organization,
           "website": siteLink
         },
         "personal_data": {
           "full_name": name + ' ' + surname + ' ' + fathername,
           "geographic": {
-            city,
-            country
+            city: city,
+            country: country
           },
-          position
+          position: position
         }
       }
     ).then((response) => {

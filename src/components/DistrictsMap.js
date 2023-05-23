@@ -62,6 +62,7 @@ const DistrictsMap = () => {
       handleMapColorChange({ district });
       const RNcoordinates = e.get('coords');
       setClickedCoords(RNcoordinates);
+      console.log(coordinates)
     } else {
       setClickedCoords(null);
       setChoosenDistrict(null);
@@ -91,7 +92,7 @@ const DistrictsMap = () => {
         openEmptyBalloon={true}
         openHintOnHover={true}
         options={{
-          strokeColor: '#0000FF',
+          strokeColor: '#ffffff',
           opacity: coord.name === choosenDistrict ? 0.7 : 0.4,
           fillColor: districtsColorsState[coord.name],
           strokeOpacity: 0.5,

@@ -1,0 +1,42 @@
+.main-account-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.account-control-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 80%;
+  margin-bottom: 3vh;
+}
+
+.account-control-block p {
+  margin-right: 1vw;
+  cursor: pointer;
+}
+
+.account-control-block .active {
+  color: #fff;
+  background-color: #353535;
+  border-radius: 15px;
+  padding: 0.5vh 1vw;
+}
+
+.div-account {
+  height: 75vh;
+  background-color: #353535;
+  width: 80%;
+  border-radius: 28px;
+  margin-bottom: 3vh;
+}
+
+.div-account .account-header {
+  margin-left: calc(var(--index)*1.5);
+  margin-top: calc(var(--index)*1.2);
+  font-family: 'Montserrat', sans-serif;
+  font-size: calc(var(--index)*1.7);
+
+}

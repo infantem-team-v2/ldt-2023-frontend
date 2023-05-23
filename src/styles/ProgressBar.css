@@ -1,10 +1,10 @@
 .pbar-main {
   height: 1px !important;
-  background-color: #D9D9D9 !important;
+  background-color: var(--secondary-gray-2) !important;
 }
 
 .pbar-main * {
-  background-color: black !important;
+  background-color: var(--main-success) !important;
 }
 
 .h2-main {
@@ -12,5 +12,4 @@
   font-size: 1rem;
   font-weight: 500;
   line-height: 24px;
-  color: #3B3043 !important;
 }
