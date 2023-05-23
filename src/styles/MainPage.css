@@ -15,7 +15,7 @@
 }
 
 .p-logo {
-  font-size: 2vh;
+  font-size: calc(var(--index)*0.8);
   line-height: 24px;
 }
 

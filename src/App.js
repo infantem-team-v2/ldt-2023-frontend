@@ -17,6 +17,7 @@ import F404Page from './components/F404Page';
 import AccountPage from './components/AccountPage';
 
 import api from './services/api';
+import Swal from 'sweetalert2';
 
 
 
@@ -60,6 +61,26 @@ function App() {
     'enterEmailToResetModal': () => { setShowEnterEmailToResetModal(false) },
   }
 
+  const logOut = (e) => {
+    e.preventDefault();
+    api.delete('/auth/sign/out').then((res) => {
+      if (res && res.status >= 200 < 300) {
+        setIsLogedIn(false)
+        Swal.fire({
+          icon: 'success',
+          title: 'Вы вышли из аккаунта',
+        })
+      }
+    }).catch((err) => {
+      if (err) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Что-то пошло не так',
+        })
+      }
+    })
+  }
+
 
   return (
     <>
@@ -69,7 +90,7 @@ function App() {
       <PostEmailCodeModal show={showPostEmailCodeModal} onHide={hideModal['postEmailCodeModal']} nextStep={showModal["pasportResetModal"]} />
       <PasportResetModal show={showPasportResetModal} onHide={hideModal['pasportResetModal']} />
 
-      <Header showSignInModal={showModal['signInModal']} isLogedIn={isLogedIn} showSignUpModal={showModal['signUpModal']} />
+      <Header showSignInModal={showModal['signInModal']} isLogedIn={isLogedIn} logOut={logOut} showSignUpModal={showModal['signUpModal']} />
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/admin' element={<AdminForm />} />

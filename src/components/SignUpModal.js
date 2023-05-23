@@ -304,10 +304,10 @@ const SignUpModal = ({ show, onHide, setIsLogedIn }) => {
                 renderInputError={renderInputError('inn')}
               />
               <RegularModalFormControl
-                label={"Вид экономической деятельности"}
+                label={"Вид деятельности"}
                 controlId={"economicActivity"}
                 type={"text"}
-                placeholder={"Введите вид экономической деятельности"}
+                placeholder={"Введите вид деятельности"}
                 value={economicActivity}
                 onChange={(e) => setEconomicActivity(e.target.value)}
               />
@@ -315,7 +315,7 @@ const SignUpModal = ({ show, onHide, setIsLogedIn }) => {
                 label={"Ccылка на веб-сайт организации"}
                 controlId={"siteLink"}
                 type={"text"}
-                placeholder={"Введите ссылку на веб-сайт организации"}
+                placeholder={"Введите ссылку на веб-сайт"}
                 value={siteLink}
                 onChange={(e) => setSiteLink(e.target.value)}
               />

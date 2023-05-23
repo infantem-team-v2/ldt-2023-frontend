@@ -18,7 +18,7 @@ const Header = (props) => {
     if (props.isLogedIn) {
       return (
         <>
-          <Nav.Link onClick={props.showSignInModal}><LogOut className='me-1' />Выйти</Nav.Link>
+          <Nav.Link onClick={props.logOut}><LogOut className='me-1' />Выйти</Nav.Link>
         </>
       )
     } else {
