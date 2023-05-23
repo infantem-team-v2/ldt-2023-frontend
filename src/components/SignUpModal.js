@@ -3,7 +3,9 @@ import { Modal, Button, Form } from 'react-bootstrap';
 
 import api from '../services/api';
 
-const SignUpModal = ({ show, onHide }) => {
+import Swal from 'sweetalert2';
+
+const SignUpModal = ({ show, onHide, setIsLogedIn }) => {
   const [step, setStep] = useState(1);
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
@@ -109,10 +111,26 @@ const SignUpModal = ({ show, onHide }) => {
           position: position
         }
       }
+    ).catch((err) => {
+      console.log(err)
+      if (err) {
+        Swal.fire({
+          icon: 'error',
+          text: 'Что-то пошло не так, попробуйте еще раз',
+        })
+      }
+    }
     ).then((response) => {
-      console.log(response);
+      if (response) {
+        Swal.fire({
+          icon: 'success',
+          text: 'Вы успешно зарегистрировались!',
+        })
+        setIsLogedIn();
+      }
+
       onHide();
-    }).catch((error) => { });
+    });
   };
 
   const required = <span className="text-danger">*</span>;

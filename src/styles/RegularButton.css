@@ -1,0 +1,29 @@
+.regular-button {
+  background-color: var(--main-acsent);
+  color: var(--main-white);
+  border-radius: 12px;
+  border: none;
+  padding: 0.5rem 1rem;
+}
+
+;
+
+.regular-button:hover {
+  background-color: var(--secondary-accent);
+  color: var(--main-white);
+}
+
+;
+
+.regular-button:checked {
+  box-shadow: 2px 4px rgba(94, 85, 223, 0.19);
+}
+
+;
+
+.regular-button:disabled {
+  background-color: var(--secondary-gray-2);
+  color: var(--main-black);
+}
+
+;

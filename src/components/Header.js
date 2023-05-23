@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
-import logo from '../asserts/logo.jpg'
-import { ReactComponent as HeartLogo } from '../asserts/heart_logo.svg';
+import { ReactComponent as LogIn } from '../asserts/in.svg';
+import { ReactComponent as LogOut } from '../asserts/out.svg';
+import { ReactComponent as Documents } from '../asserts/documents.svg';
 
+import RegularButton from "./RegularButton";
 import '../styles/Header.css';
 
 const Header = (props) => {
@@ -12,9 +14,26 @@ const Header = (props) => {
     setExpanded(!expanded);
   };
 
+  const buttonBlock = () => {
+    if (props.isLogedIn) {
+      return (
+        <>
+          <Nav.Link onClick={props.showSignInModal}><LogOut className='me-1' />Выйти</Nav.Link>
+        </>
+      )
+    } else {
+      return (
+        <>
+          <Nav.Link onClick={props.showSignInModal}><LogIn className='me-1' />Войти</Nav.Link>
+          <RegularButton onClick={props.showSignUpModal} text={<>Зарегистрироваться</>} />
+        </>
+      )
+    }
+  }
+
   return (
-    <Navbar bg="white" expand="lg" className='sticky-top mt-3' expanded={expanded}>
-      <a href="#" className='nav-link'><HeartLogo className='me-1 ms-5' />документы</a>
+    <Navbar bg="white" expand="lg" className='sticky-top mt-0' expanded={expanded}>
+      <a href="#" className='nav-link'><Documents className='me-1 ms-5' />Документы</a>
       <Navbar.Toggle aria-controls="basic-navbar-nav" className='me-3' onClick={handleSelect} />
       <Navbar.Collapse id="basic-navbar-nav " className='text-center me-5'>
         <Navbar.Brand href="#home" className='ms-auto me-auto'>
@@ -22,8 +41,9 @@ const Header = (props) => {
           <span className='d-inline-block align-middle header-logo'>LOGO</span>
         </Navbar.Brand>
         <Nav onSelect={handleSelect} >
-          <Nav.Link onClick={props.showSignInModal}><HeartLogo className='me-1' />login</Nav.Link>
-          <Nav.Link onClick={props.showSignUpModal}><HeartLogo className='me-1' />sign up</Nav.Link>
+          <div className='header-control-block'>
+            {buttonBlock()}
+          </div>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

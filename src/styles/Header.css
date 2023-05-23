@@ -3,11 +3,18 @@
 
 
 a {
-  font-family: 'Inter', sans-serif;
-  line-height: 150%;
-  color: black !important;
+  font-family: 'SF Pro Display', 'Montserrat', sans-serif;
+  color: var(--main-black) !important;
+  font-weight: 700 !important;
 }
 
 .header-logo {
-  font-size: 2rem;
+  font-size: calc(var(--index)*2);
+}
+
+.header-control-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }

@@ -16,6 +16,8 @@ import ReportPage from './components/ReportPage';
 import F404Page from './components/F404Page';
 import AccountPage from './components/AccountPage';
 
+import api from './services/api';
+
 
 
 
@@ -26,6 +28,22 @@ function App() {
   const [showPasportResetModal, setShowPasportResetModal] = useState(false);
   const [showPostEmailCodeModal, setShowPostEmailCodeModal] = useState(false);
   const [showEnterEmailToResetModal, setShowEnterEmailToResetModal] = useState(false);
+
+  const [isLogedIn, setIsLogedIn] = useState(false);
+
+  useEffect(() => {
+    api.get('/auth/check').catch((err) => {
+      if (err) {
+        setIsLogedIn(false)
+      }
+    }).then((res) => {
+      if (res && res.status === 200) {
+        setIsLogedIn(true)
+      } else {
+        setIsLogedIn(false)
+      }
+    })
+  }, [isLogedIn])
 
   const showModal = {
     'signUpModal': () => { setShowSignUpModal(true) },
@@ -42,15 +60,16 @@ function App() {
     'enterEmailToResetModal': () => { setShowEnterEmailToResetModal(false) },
   }
 
+
   return (
     <>
-      <SignUpModal show={showSignUpModal} onHide={hideModal['signUpModal']} />
-      <SignInModal show={showSignInModal} onHide={hideModal['signInModal']} />
+      <SignUpModal show={showSignUpModal} onHide={hideModal['signUpModal']} setIsLogedIn={() => setIsLogedIn(true)} />
+      <SignInModal show={showSignInModal} onHide={hideModal['signInModal']} setIsLogedIn={() => setIsLogedIn(true)} forgetPass={showModal["enterEmailToResetModal"]} />
       <EnterEmailToResetModal show={showEnterEmailToResetModal} onHide={hideModal['enterEmailToResetModal']} nextStep={showModal["postEmailCodeModal"]} />
       <PostEmailCodeModal show={showPostEmailCodeModal} onHide={hideModal['postEmailCodeModal']} nextStep={showModal["pasportResetModal"]} />
       <PasportResetModal show={showPasportResetModal} onHide={hideModal['pasportResetModal']} />
 
-      <Header showSignInModal={showModal['enterEmailToResetModal']} showSignUpModal={showModal['signUpModal']} />
+      <Header showSignInModal={showModal['signInModal']} isLogedIn={isLogedIn} showSignUpModal={showModal['signUpModal']} />
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/admin' element={<AdminForm />} />
