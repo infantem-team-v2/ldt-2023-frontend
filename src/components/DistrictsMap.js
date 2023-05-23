@@ -110,7 +110,7 @@ const DistrictsMap = () => {
 
   return (
     <div className='container'>
-      <YMaps
+      {/* <YMaps
         query={{
           lang: 'ru_RU', apikey: 'd3821b8c-9c4f-4885-9c54-6feda085a943'
         }}
@@ -122,25 +122,10 @@ const DistrictsMap = () => {
           height="500px"
 
         >
-          {/* <ListBox data={{ content: "Выбрать AO " }}>
-            {names.map((name) => (
-              <ListBoxItem
-                key={nanoid()}
-                onClick={handleMapColorChange}
-                data={{ content: name }}
-                options={{
-                  float: 'left',
-                  contentLayout: 'my#itemLayout',
-
-                }}
-
-              />
-            ))}
-          </ListBox> */}
 
           {getPolygons}
         </Map>
-      </YMaps>
+      </YMaps> */}
     </div>
   );
 };

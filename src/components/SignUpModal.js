@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Form } from 'react-bootstrap';
 
 import api from '../services/api';
 
@@ -159,14 +159,16 @@ const SignUpModal = ({ show, onHide, setIsLogedIn }) => {
 
     {
       if (step > 1 && step < 4) {
-        const buttons = (<><RegularButton
-          onClick={handlePrevious}
-          text="Вернуться"
-        />
+        const buttons = (<>
+          <RegularButton
+            onClick={handlePrevious}
+            text="Вернуться"
+          />
           <RegularButton
             onClick={handleNext}
             text="Далее"
-          /></>)
+          />
+        </>)
 
         if (!isOdd) {
           return buttons;
