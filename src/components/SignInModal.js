@@ -32,7 +32,7 @@ const SignInModal = ({ show, onHide, setIsLogedIn, forgetPass }) => {
       }
 
     }).then((res) => {
-      if (res && res.status === 200) {
+      if (res && res.status >= 200 && res.status < 300) {
         Swal.fire({
           icon: 'success',
           text: 'Вы вошли в систему!',

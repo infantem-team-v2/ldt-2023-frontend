@@ -22,7 +22,7 @@ const PasportResetModal = ({ show, onHide, nextStep }) => {
         text: err.message
       })
     }).then((res) => {
-      if (res && res.status === 200) {
+      if (res && res.status >= 200 && res.status < 300) {
         onHide();
         nextStep();
       }

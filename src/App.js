@@ -63,7 +63,7 @@ function App() {
 
   const logOut = (e) => {
     e.preventDefault();
-    api.delete('/auth/sign/out').then((res) => {
+    api.delete('/auth/sign/out', { a: 1 }).then((res) => {
       if (res && res.status >= 200 < 300) {
         setIsLogedIn(false)
         Swal.fire({
@@ -73,6 +73,7 @@ function App() {
       }
     }).catch((err) => {
       if (err) {
+        console.log(err)
         Swal.fire({
           icon: 'error',
           title: 'Что-то пошло не так',

@@ -33,7 +33,7 @@ const PasportResetModal = ({ show, onHide }) => {
           title: 'Ошибка',
           text: err.message
         }).then((res) => {
-          if (res && res.status === 200) {
+          if (res && res.status >= 200 && res.status < 300) {
             onHide();
             Swal.fire({
               icon: 'success',
