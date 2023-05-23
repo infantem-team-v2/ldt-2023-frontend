@@ -12,8 +12,8 @@ const PasportResetModal = ({ show, onHide, nextStep }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    api.post('/auth/email/code', {
-      emailCode
+    api.post('/auth/email/validate', {
+      code: Number(emailCode),
     }).catch((err) => {
       console.log(err);
       Swal.fire({
@@ -22,7 +22,7 @@ const PasportResetModal = ({ show, onHide, nextStep }) => {
         text: err.message
       })
     }).then((res) => {
-      if (res && res.response.status === 200) {
+      if (res && res.status === 200) {
         onHide();
         nextStep();
       }

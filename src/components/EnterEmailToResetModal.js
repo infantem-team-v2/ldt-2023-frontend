@@ -22,10 +22,9 @@ const EnterEmailToResetModal = ({ show, onHide, nextStep }) => {
     if (validateEmail()) {
       api
         .patch("/auth/password/reset/prepare", {
-          email,
+          email: email,
         })
         .catch((err) => {
-          console.log(err);
           Swal.fire({
             icon: "error",
             title: "Ошибка",
@@ -33,7 +32,7 @@ const EnterEmailToResetModal = ({ show, onHide, nextStep }) => {
           });
         })
         .then((res) => {
-          if (res && res.response.status === 200) {
+          if (res && res.status === 200) {
             onHide();
             nextStep();
           }
