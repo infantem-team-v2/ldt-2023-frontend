@@ -201,7 +201,7 @@ const SignUpModal = ({ show, onHide, setIsLogedIn }) => {
   const required = <span className="text-danger">*</span>;
 
   return (
-    <Modal show={show} onHide={onHide} className="sign-in-modal" centered>
+    <Modal show={show} onHide={onHide} className="sign-in-modal" centered size='lg'>
       <Modal.Header>
         <Modal.Title>Регистрация</Modal.Title>
         <div className='control-sign-up'>

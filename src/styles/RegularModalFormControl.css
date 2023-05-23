@@ -18,6 +18,13 @@
 
 }
 
+.regular-modal-form-control::-webkit-inner-spin-button,
+.regular-modal-form-control::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
 .regular-modal-form-control::placeholder {
   color: var(--main-acsent) !important;
 }

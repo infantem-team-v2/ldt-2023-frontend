@@ -27,7 +27,7 @@
 }
 
 .pbar-main-modal {
-  width: 100%;
+  width: calc(var(--index)*15.2);
   height: 1px !important;
   background-color: var(--main-grey) !important;
 }
