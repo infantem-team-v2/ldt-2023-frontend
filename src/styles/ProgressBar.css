@@ -8,8 +8,30 @@
 }
 
 .h2-main {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'SF Pro Display', 'Montserrat', sans-serif;
   font-size: 1rem;
   font-weight: 500;
   line-height: 24px;
+}
+
+.h2-main-modal {
+  font-size: small;
+  justify-self: start;
+  color: var(--main-white) !important;
+}
+
+.modal-pbar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.pbar-main-modal {
+  width: 100%;
+  height: 1px !important;
+  background-color: var(--main-grey) !important;
+}
+
+.pbar-main-modal * {
+  background-color: var(--main-success) !important;
 }

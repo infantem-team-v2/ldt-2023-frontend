@@ -1,0 +1,46 @@
+.modal-content {
+  background-color: var(--main-black) !important;
+  color: var(--main-white) !important;
+  border-radius: 16px;
+}
+
+.modal-content .modal-header,
+.modal-content .modal-footer {
+  border: none;
+}
+
+.modal-content .modal-header {
+  padding: 5%;
+  padding-bottom: 4%;
+}
+
+.modal-content .modal-body {
+  padding: 1% 5%;
+}
+
+.modal-content .modal-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding-left: 5%;
+  padding-top: 1%;
+  margin-top: 2vh;
+}
+
+.modal-content .modal-footer button {
+  width: 46%;
+  margin-bottom: 1%;
+  margin: 2% 0;
+  font-size: medium;
+  padding: 1.7vh !important;
+}
+
+.close-btn-modal {
+  cursor: pointer;
+}
+
+.sign-in-a {
+  color: var(--main-acsent) !important;
+  cursor: pointer;
+  font-size: smaller;
+}

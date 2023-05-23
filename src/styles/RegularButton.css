@@ -1,9 +1,9 @@
 .regular-button {
-  background-color: var(--main-acsent);
-  color: var(--main-white);
-  border-radius: 12px;
-  border: none;
+  background-color: var(--main-acsent) !important;
+  color: var(--main-white) !important;
+  border: none !important;
   padding: 0.5rem 1rem;
+  border-radius: 12px !important;
 }
 
 ;

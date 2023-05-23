@@ -32,14 +32,14 @@ function App() {
   const [isLogedIn, setIsLogedIn] = useState(false);
 
   useEffect(() => {
-    api.get('/auth/check').catch((err) => {
-      if (err) {
-        setIsLogedIn(false)
-      }
-    }).then((res) => {
-      if (res && res.status === 200) {
+    api.get('/auth/check').then((res) => {
+      if (res && res.status >= 200 < 300) {
         setIsLogedIn(true)
       } else {
+        setIsLogedIn(false)
+      }
+    }).catch((err) => {
+      if (err) {
         setIsLogedIn(false)
       }
     })

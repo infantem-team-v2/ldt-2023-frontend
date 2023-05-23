@@ -3,6 +3,13 @@ import { Modal, Button, Form } from 'react-bootstrap';
 
 import api from '../services/api';
 
+import RegularModalFormControl from './RegularModalFormControl';
+import RegularButton from './RegularButton';
+import ProgressBarModal from './ProgressBarModal';
+
+import '../styles/SignUpModal.css';
+
+import { ReactComponent as CloseButton } from '../asserts/close_white.svg';
 import Swal from 'sweetalert2';
 
 const SignUpModal = ({ show, onHide, setIsLogedIn }) => {
@@ -41,25 +48,31 @@ const SignUpModal = ({ show, onHide, setIsLogedIn }) => {
 
   // -----------------------------
 
-  const handleNext = () => {
+  const handleNext = (e) => {
+    e.preventDefault();
     setFormErrors({});
     if (step === 1 && (!name || !surname)) {
       if (!name) {
         setFormErrors({ ...formErrors, name: 'Пожалуйста, введите имя' });
+        return;
       } else if (!surname) {
         setFormErrors({ ...formErrors, surname: 'Пожалуйста, введите фамилию' });
+        return;
       }
-      return;
+
     }
     if (step === 2 && (!validateEmail(email) || !validatePassword(password) || !validateRepitedPassword(repitedPassword))) {
       if (!validateEmail(email)) {
         setFormErrors({ ...formErrors, email: 'Пожалуйста, введите корректный email' });
+        return;
       } else if (!validatePassword(password)) {
         setFormErrors({ ...formErrors, password: 'Пароль должен содержать не менее 8 символов, включая цифры, заглавные и строчные буквы' });
+        return;
       } else if (!validateRepitedPassword(repitedPassword)) {
         setFormErrors({ ...formErrors, repitedPassword: 'Пароли не совпадают' });
+        return;
       }
-      return;
+
     }
     if (step === 3 && (!inn || !(inn.length === 10 || inn.length === 12))) {
       setFormErrors({ ...formErrors, inn: 'Пожалуйста, введите корректный ИНН' });
@@ -68,7 +81,8 @@ const SignUpModal = ({ show, onHide, setIsLogedIn }) => {
     setStep(step + 1);
   };
 
-  const handlePrevious = () => {
+  const handlePrevious = (e) => {
+    e.preventDefault();
     setStep(step - 1);
   };
 
@@ -133,202 +147,223 @@ const SignUpModal = ({ show, onHide, setIsLogedIn }) => {
     });
   };
 
+  const submitButtons = (isOdd = false) => {
+
+    if (step === 1) return (
+      <RegularButton
+        onClick={handleNext}
+        text="Далее"
+        className="next-button-sign-up"
+      />
+    )
+
+    {
+      if (step > 1 && step < 4) {
+        const buttons = (<><RegularButton
+          onClick={handlePrevious}
+          text="Вернуться"
+        />
+          <RegularButton
+            onClick={handleNext}
+            text="Далее"
+          /></>)
+
+        if (!isOdd) {
+          return buttons;
+        }
+        return (<div className='sign-up-form mt-3'>{buttons}</div>)
+      }
+
+    }
+    {
+      if (step === 4) {
+        const buttons4 = (<>
+          <>
+            <RegularButton
+              onClick={handlePrevious}
+              text="Вернуться"
+            />
+            <RegularButton
+              onClick={handleSubmit}
+              text="Зарегистрироваться"
+            />
+
+          </>
+        </>)
+        if (!isOdd) {
+          return buttons4;
+        }
+        return (<div className='sign-up-form mt-3'>{buttons4}</div>)
+      }
+    }
+  }
+
   const required = <span className="text-danger">*</span>;
 
   return (
-    <Modal show={show} onHide={onHide}>
-      <Modal.Header closeButton>
+    <Modal show={show} onHide={onHide} className="sign-in-modal" centered>
+      <Modal.Header>
         <Modal.Title>Регистрация</Modal.Title>
+        <div className='control-sign-up'>
+          <CloseButton onClick={onHide} className="close-btn-modal" />
+          <ProgressBarModal range={4} current={step} />
+        </div>
       </Modal.Header>
+
       <Modal.Body>
         {step === 1 && (
-          <Form>
-            <Form.Group controlId="name">
-              <Form.Label>Имя {required}</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Введите ваше имя"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                className={renderInputErrorClass('name')}
-                onBlur={() => setFormErrors({ ...formErrors, name: '' })}
-              />
-              {renderInputError('name')}
-            </Form.Group>
-            <Form.Group controlId="surname">
-              <Form.Label>Фамилия {required}</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Введите вашу фамилию"
-                value={surname}
-                onChange={(e) => setSurname(e.target.value)}
-                required
-                className={renderInputErrorClass('surname')}
-                onBlur={() => setFormErrors({ ...formErrors, surname: '' })}
-              />
-              {renderInputError('surname')}
-            </Form.Group>
-            <Form.Group controlId="fathername">
-              <Form.Label>Отчество </Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Введите ваше отчество"
-                value={fathername}
-                onChange={(e) => setFathername(e.target.value)}
-                required={false}
-              />
-            </Form.Group>
+          <Form className='sign-up-form'>
+            <RegularModalFormControl
+              label={<>Имя {required}</>}
+              controlId={"name"}
+              type={"text"}
+              placeholder={"Введите ваше имя"}
+              value={name}
+              onChange={(e) => { setName(e.target.value); setFormErrors({ ...formErrors, name: '' }) }}
+              className={renderInputErrorClass('name')}
+              renderInputError={renderInputError('name')}
+            />
+            <RegularModalFormControl
+              label={<>Фамилия {required}</>}
+              controlId={"surname"}
+              type={"text"}
+              placeholder={"Введите вашу фамилию"}
+              value={surname}
+              onChange={(e) => { setSurname(e.target.value); setFormErrors({ ...formErrors, surname: '' }) }}
+              className={renderInputErrorClass('surname')}
+              renderInputError={renderInputError('surname')}
+            />
+            <RegularModalFormControl
+              label={"Отчество"}
+              controlId={"fathername"}
+              type={"text"}
+              placeholder={"Введите ваше отчество"}
+              value={fathername}
+              onChange={(e) => setFathername(e.target.value)}
+            />
+            {submitButtons()}
           </Form>
         )}
         {step === 2 && (
-          <Form>
-            <Form.Group controlId="email">
-              <Form.Label>Email {required}</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Введите ваш email"
+          <>
+            <Form className='sign-up-form'>
+              <RegularModalFormControl
+                label={<>Email {required}</>}
+                controlId={"email"}
+                type={"email"}
+                placeholder={"Введите ваш email"}
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
+                onChange={(e) => { setEmail(e.target.value); setFormErrors({ ...formErrors, email: '' }) }}
                 className={renderInputErrorClass('email')}
-                onBlur={() => setFormErrors({ ...formErrors, email: '' })}
+                renderInputError={renderInputError('email')}
               />
-              {renderInputError('email')}
-            </Form.Group>
-            <Form.Group controlId="password">
-              <Form.Label>Пароль {required}</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Введите ваш пароль"
+              <RegularModalFormControl
+                label={<>Пароль {required}</>}
+                controlId={"password"}
+                type={"password"}
+                placeholder={"Введите ваш пароль"}
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
+                onChange={(e) => { setPassword(e.target.value); setFormErrors({ ...formErrors, password: '' }) }}
                 className={renderInputErrorClass('password')}
-                onBlur={() => setFormErrors({ ...formErrors, password: '' })}
-
+                renderInputError={renderInputError('password')}
               />
-              {renderInputError('password')}
-            </Form.Group>
-            <Form.Group controlId="repitedPassword">
-              <Form.Label>Повторите пароль {required}</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Повторите ваш пароль"
+              <RegularModalFormControl
+                label={<>Повторите пароль {required}</>}
+                controlId={"repitedPassword"}
+                type={"password"}
+                placeholder={"Повторите ваш пароль"}
                 value={repitedPassword}
-                onChange={(e) => setRepitedPassword(e.target.value)}
-                required
+                onChange={(e) => { setRepitedPassword(e.target.value); setFormErrors({ ...formErrors, repitedPassword: '' }) }}
                 className={renderInputErrorClass('repitedPassword')}
-                onBlur={() => setFormErrors({ ...formErrors, repitedPassword: '' })}
+                renderInputError={renderInputError('repitedPassword')}
               />
-              {renderInputError('repitedPassword')}
-            </Form.Group>
-          </Form>
+
+            </Form>
+            {submitButtons(true)}
+          </>
         )}
         {step === 3 && (
-          <Form>
-            <Form.Group controlId="organization">
-              <Form.Label>Наименование организации</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter your organization"
+          <>
+            <Form className='sign-up-form'>
+              <RegularModalFormControl
+                label='Название организации'
+                controlId={"organization"}
+                type={"text"}
+                placeholder={"Введите название вашей организации"}
                 value={organization}
                 onChange={(e) => setOrganization(e.target.value)}
               />
-            </Form.Group>
-            <Form.Group controlId="inn">
-              <Form.Label>ИНН {required}</Form.Label>
-              <Form.Control
-                type="number"
-                minLength={10}
-                maxLength={12}
-                placeholder="Введите ваш ИНН"
+              <RegularModalFormControl
+                label={<>ИНН {required}</>}
+                controlId={"inn"}
+                type={"number"}
+                placeholder={"Введите ваш ИНН"}
                 value={inn}
-                onChange={(e) => setInn(e.target.value)}
-                required
+                onChange={(e) => { setInn(e.target.value); setFormErrors({ ...formErrors, inn: '' }) }}
                 className={renderInputErrorClass('inn')}
-                onBlur={() => setFormErrors({ ...formErrors, inn: '' })}
+                renderInputError={renderInputError('inn')}
               />
-              {renderInputError('inn')}
-            </Form.Group>
-            <Form.Group controlId="economicActivity">
-              <Form.Label>Вид экономической деятельности</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Введите вид экономической деятельности"
+              <RegularModalFormControl
+                label={"Вид экономической деятельности"}
+                controlId={"economicActivity"}
+                type={"text"}
+                placeholder={"Введите вид экономической деятельности"}
                 value={economicActivity}
                 onChange={(e) => setEconomicActivity(e.target.value)}
               />
-            </Form.Group>
-            <Form.Group controlId="siteLink">
-              <Form.Label>Ссылка на веб-сайт организации</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Введите ссылку на веб-сайт организации"
+              <RegularModalFormControl
+                label={"Ccылка на веб-сайт организации"}
+                controlId={"siteLink"}
+                type={"text"}
+                placeholder={"Введите ссылку на веб-сайт организации"}
                 value={siteLink}
                 onChange={(e) => setSiteLink(e.target.value)}
               />
-            </Form.Group>
-          </Form>
+
+            </Form>
+            {submitButtons(true)}
+          </>
         )}
         {step === 4 && (
-          <Form>
-            <Form.Group controlId="country">
-              <Form.Label>Страна</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Введите страну"
+          <>
+            <Form className='sign-up-form'>
+              <RegularModalFormControl
+                label={"Страна"}
+                controlId={"country"}
+                type={"text"}
+                placeholder={"Введите страну"}
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
               />
-            </Form.Group>
-            <Form.Group controlId="city">
-              <Form.Label>Город</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Введите город"
+              <RegularModalFormControl
+                label={"Город"}
+                controlId={"city"}
+                type={"text"}
+                placeholder={"Введите город"}
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
               />
-            </Form.Group>
-            <Form.Group controlId="position">
-              <Form.Label>Должность</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Введите должность"
+              <RegularModalFormControl
+                label={"Должность"}
+                controlId={"position"}
+                type={"text"}
+                placeholder={"Введите должность"}
                 value={position}
                 onChange={(e) => setPosition(e.target.value)}
               />
-            </Form.Group>
-          </Form>
+
+            </Form>
+            {submitButtons(true)}
+          </>
+
         )}
 
       </Modal.Body>
-      <Modal.Footer>
-        {step > 1 && step < 3 && (
-          <Button variant="secondary" onClick={handlePrevious}>
-            Вернуться
-          </Button>
-        )}
-        {step < 4 && (
-          <>
-            <Button variant="primary" onClick={handleNext}>
-              Далее
-            </Button>
-          </>
-        )}
-        {step === 4 && (
-          <>
-            <Button variant="secondary" onClick={handlePrevious}>
-              Вернуться
-            </Button>
-            <Button variant="primary" onClick={handleSubmit}>
-              Зарегистрироваться
-            </Button>
-          </>
-        )}
+      <Modal.Footer className='footer-sign-up'>
+
       </Modal.Footer>
     </Modal>
+
   );
 };
 

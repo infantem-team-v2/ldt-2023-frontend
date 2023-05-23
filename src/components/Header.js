@@ -25,7 +25,7 @@ const Header = (props) => {
       return (
         <>
           <Nav.Link onClick={props.showSignInModal}><LogIn className='me-1' />Войти</Nav.Link>
-          <RegularButton onClick={props.showSignUpModal} text={<>Зарегистрироваться</>} />
+          <RegularButton onClick={props.showSignUpModal} text={<>Зарегистрироваться</>} className='header-reg-button' />
         </>
       )
     }

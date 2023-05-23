@@ -1,0 +1,27 @@
+.control-sign-up {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  padding-left: 5%;
+  min-width: calc(var(--index) * 10);
+}
+
+.sign-up-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--index)*0.5);
+}
+
+.next-button-sign-up {
+  width: 100%;
+  height: fit-content;
+  margin-top: 2%;
+  font-size: medium;
+  border-radius: 12px !important;
+  padding: 1.7vh !important;
+  align-self: end;
+}
+
+.footer-sign-up {
+  margin-top: 2vh;
+}

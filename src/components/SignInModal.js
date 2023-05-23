@@ -4,7 +4,12 @@ import { useState } from "react";
 
 import api from "../services/api";
 
+import RegularModalFormControl from "./RegularModalFormControl";
+import RegularButton from "./RegularButton";
+
+import { ReactComponent as CloseButton } from "../asserts/close_white.svg";
 import Swal from "sweetalert2";
+import '../styles/SignInModal.css'
 
 const SignInModal = ({ show, onHide, setIsLogedIn, forgetPass }) => {
 
@@ -40,39 +45,34 @@ const SignInModal = ({ show, onHide, setIsLogedIn, forgetPass }) => {
   }
 
   return (
-    <Modal show={show} onHide={onHide}>
-      <Modal.Header closeButton>
+    <Modal show={show} onHide={onHide} className="sign-in-modal" centered >
+      <Modal.Header >
         <Modal.Title>Авторизация</Modal.Title>
+        <CloseButton onClick={onHide} className="close-btn-modal" />
       </Modal.Header>
       <Modal.Body>
-        <Form>
-          <Form.Group controlId="email">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group controlId="password">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </Form.Group>
+        <Form className="d-flex gap-4">
+          <RegularModalFormControl
+            type="email"
+            placeholder="Введите email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            label={"Email"}
+            controlId={"email"}
+          />
+          <RegularModalFormControl
+            type="password"
+            placeholder="Введите пароль"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            label={"Пароль"}
+            controlId={"password"}
+          />
         </Form>
       </Modal.Body>
-      <Modal.Footer>
-        <button className="btn btn-primary" onClick={handleSubmit}>Войти</button>
-        {/* forget password */}
-        <div className="sign-in-a " style={{
-          'color': "var(--main-acsent)",
-          'cursor': 'pointer',
-        }} onClick={(e) => { onHide(); forgetPass() }}>Забыли пароль?</div>
+      <Modal.Footer >
+        <RegularButton className="btn btn-primary" onClick={handleSubmit} text="Войти" />
+        <div className="sign-in-a " onClick={(e) => { onHide(); forgetPass() }}>Забыли пароль?</div>
       </Modal.Footer>
     </Modal>
   );
