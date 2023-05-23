@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 
-import Swal from 'sweetalert2';
+import { ReactComponent as CloseButton } from "../../asserts/close_white.svg"
+import Swal from "sweetalert2";
 
-import api from '../services/api';
+import RegularButton from "../RegularButton";
+import RegularModalFormControl from "../RegularModalFormControl";
+import api from '../../services/api';
 
 const PasportResetModal = ({ show, onHide }) => {
 
@@ -64,37 +67,36 @@ const PasportResetModal = ({ show, onHide }) => {
 
   return (
     <>
-      <Modal show={show} onHide={onHide}>
-        <Modal.Header closeButton>
+      <Modal show={show} onHide={onHide} centered>
+        <Modal.Header >
           <Modal.Title>Сброс пароля</Modal.Title>
+          <CloseButton onClick={onHide} className="close-btn-modal" />
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group className="mb-3" controlId="password">
-              <Form.Label>Введите новый пароль</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Пароль"
-                value={newPassword}
-                onChange={(e) => { setNewPassword(e.target.value); setErrors({ ...errors, password: '' }) }}
-                className={renderClassName('password')}
-              />
-              {renderErrors('password')}
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="repeatPassword">
-              <Form.Label>Повторите новый пароль</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Пароль"
-                value={newPasswordRepeat}
-                onChange={(e) => { setNewPasswordRepeat(e.target.value); setErrors({ ...errors, repeatPassword: '' }) }}
-                className={renderClassName('repeatPassword')}
-              />
-              {renderErrors('repeatPassword')}
-            </Form.Group>
-            <Button variant="primary" type="submit" onClick={handleSubmit}>Подтвердить</Button>
+            <RegularModalFormControl
+              type="password"
+              placeholder="Пароль"
+              value={newPassword}
+              onChange={(e) => { setNewPassword(e.target.value); setErrors({ ...errors, password: '' }) }}
+              className={renderClassName('password')}
+              label="Введите новый пароль"
+              renderInputError={renderErrors('password')}
+            />
+            <RegularModalFormControl
+              type="password"
+              placeholder="Повторите пароль"
+              value={newPasswordRepeat}
+              onChange={(e) => { setNewPasswordRepeat(e.target.value); setErrors({ ...errors, repeatPassword: '' }) }}
+              className={renderClassName('repeatPassword')}
+              label="Повторите новый пароль"
+              renderInputError={renderErrors('repeatPassword')}
+            />
           </Form>
         </Modal.Body>
+        <Modal.Footer>
+          <RegularButton onClick={handleSubmit} text="Подтвердить" />
+        </Modal.Footer>
       </Modal>
     </>
   );

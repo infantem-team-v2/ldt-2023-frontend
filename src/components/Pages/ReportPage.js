@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 
-import '../styles/ReportPage.css'
+import '../../styles/ReportPage.css'
 
-import Report from './Report';
-import CopyToClipboardButton from './CopyToClickboardButton';
+import Report from '../Report';
+import CopyToClipboardButton from '../CopyToClickboardButton';
+
 
 const ReportPage = (props) => {
   const { id } = useParams();

@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 
 import { Modal, Form, Button } from 'react-bootstrap';
 
-import Swal from 'sweetalert2';
+import { ReactComponent as CloseButton } from "../../asserts/close_white.svg"
+import Swal from "sweetalert2";
 
-import api from '../services/api';
+import RegularButton from "../RegularButton";
+import RegularModalFormControl from "../RegularModalFormControl";
+
+import api from '../../services/api';
 
 const PasportResetModal = ({ show, onHide, nextStep }) => {
 
@@ -31,32 +35,29 @@ const PasportResetModal = ({ show, onHide, nextStep }) => {
 
 
   return (
-    <Modal show={show} onHide={onHide}>
-      <Modal.Header closeButton>
+    <Modal show={show} onHide={onHide} centered>
+      <Modal.Header >
         <Modal.Title>Сброс пароля</Modal.Title>
+        <CloseButton onClick={onHide} className='close-btn-modal' />
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="formEmailCode">
-            <Form.Label>Email код</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="123456"
-              minLength={6}
-              maxLength={6}
-              value={emailCode}
-              onChange={(e) => setEmailCode(e.target.value)}
-            />
-            {/* description to user */}
-            <Form.Text className="text-muted">
+          <RegularModalFormControl
+            type='text'
+            placeholder='Введите код'
+            value={emailCode}
+            onChange={(e) => setEmailCode(e.target.value)}
+            renderInputError={<Form.Text className="text-muted">
               Введите код, который мы отправили на вашу почту
-            </Form.Text>
-          </Form.Group>
-          <Button variant="primary" type="submit" onClick={handleSubmit} className='mt-2'>Подтвердить</Button>
+            </Form.Text>}
+          />
         </Form>
 
       </Modal.Body>
-    </Modal>
+      <Modal.Footer>
+        <RegularButton onClick={handleSubmit} className='regular-btn-modal' text='Подтвердить' />
+      </Modal.Footer>
+    </Modal >
   );
 };
 

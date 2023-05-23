@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import '../styles/AccountPage.css';
+import '../../styles/AccountPage.css';
 
-import ResultsBlock from './ResultsBlock';
+import ResultsBlock from '../ResultsBlock';
 
 const AccountPage = (props) => {
   const [currentBlock, setCurrentBlock] = useState('data');

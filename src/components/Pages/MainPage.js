@@ -1,10 +1,10 @@
-import DistrictsMap from "./DistrictsMap";
-import BasicCalculator from "./BasicCalculator";
-import ProgressBar from "./ProgressBar";
+import DistrictsMap from "../DistrictsMap";
+import BasicCalculator from "../BasicCalculator";
+import ProgressBar from "../ProgressBar";
 
-import { ReactComponent as HeaderThing } from '../asserts/header_thing.svg';
+import { ReactComponent as HeaderThing } from '../../asserts/header_thing.svg';
 
-import '../styles/MainPage.css';
+import '../../styles/MainPage.css';
 
 const MainPage = () => {
 

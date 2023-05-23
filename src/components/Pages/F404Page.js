@@ -1,8 +1,8 @@
 import React from "react";
 
-import f404path from "../asserts/f404_img.jpg";
+import f404path from "../../asserts/f404_img.jpg";
 
-import "../styles/F404Page.css";
+import "../../styles/F404Page.css";
 
 
 const F404Page = () => {

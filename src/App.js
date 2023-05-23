@@ -4,17 +4,18 @@ import { useState, useEffect } from 'react';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
-import SignUpModal from './components/SignUpModal';
-import SignInModal from './components/SignInModal';
-import PasportResetModal from './components/PasportResetModal';
-import PostEmailCodeModal from './components/PostEmailCodeModal';
-import EnterEmailToResetModal from './components/EnterEmailToResetModal';
 
-import MainPage from './components/MainPage';
-import AdminForm from './components/AdminForm';
-import ReportPage from './components/ReportPage';
-import F404Page from './components/F404Page';
-import AccountPage from './components/AccountPage';
+import SignUpModal from './components/Modals/SignUpModal';
+import SignInModal from './components/Modals/SignInModal';
+import PasportResetModal from './components/Modals/PasportResetModal';
+import PostEmailCodeModal from './components/Modals/PostEmailCodeModal';
+import EnterEmailToResetModal from './components/Modals/EnterEmailToResetModal';
+
+import MainPage from './components/Pages/MainPage';
+import AdminForm from './components/Pages/AdminForm';
+import ReportPage from './components/Pages/ReportPage';
+import F404Page from './components/Pages/F404Page';
+import AccountPage from './components/Pages/AccountPage';
 
 import api from './services/api';
 import Swal from 'sweetalert2';
@@ -34,12 +35,12 @@ function App() {
 
   useEffect(() => {
     api.get('/auth/check').catch((err) => {
-      console.log(err)
+      console.log("ERR", err)
       if (err) {
         setIsLogedIn(false)
       }
     }).then((res) => {
-      console.log(res)
+      console.log("RES", res)
       if (res && res.status >= 200 < 300) {
         setIsLogedIn(true)
       } else {

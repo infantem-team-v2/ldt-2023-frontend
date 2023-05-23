@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { Modal, Form } from 'react-bootstrap';
 
-import api from '../services/api';
+import api from '../../services/api';
 
-import RegularModalFormControl from './RegularModalFormControl';
-import RegularButton from './RegularButton';
-import ProgressBarModal from './ProgressBarModal';
+import RegularModalFormControl from '../RegularModalFormControl';
+import RegularButton from '../RegularButton';
+import ProgressBarModal from '../ProgressBarModal';
 
-import '../styles/SignUpModal.css';
+import '../../styles/SignUpModal.css'
 
-import { ReactComponent as CloseButton } from '../asserts/close_white.svg';
+import { ReactComponent as CloseButton } from '../../asserts/close_white.svg';
 import Swal from 'sweetalert2';
 
 const SignUpModal = ({ show, onHide, setIsLogedIn }) => {

@@ -2,9 +2,12 @@ import React, { useState } from "react";
 
 import { Modal, Form, Button } from "react-bootstrap";
 
-import api from "../services/api";
+import api from "../../services/api";
 
+import { ReactComponent as CloseButton } from "../../asserts/close_white.svg"
 import Swal from "sweetalert2";
+import RegularButton from "../RegularButton";
+import RegularModalFormControl from "../RegularModalFormControl";
 
 const EnterEmailToResetModal = ({ show, onHide, nextStep }) => {
 
@@ -39,33 +42,33 @@ const EnterEmailToResetModal = ({ show, onHide, nextStep }) => {
         });
 
     } else {
+      console.log("email", email)
       setErrors({ ...errors, email: "Неверный формат email" });
     }
   }
 
   return (<>
-    <Modal show={show} onHide={onHide}>
-      <Modal.Header closeButton>
+    <Modal show={show} onHide={onHide} centered>
+      <Modal.Header>
         <Modal.Title>Сброс пароля</Modal.Title>
+        <CloseButton onClick={onHide} className="close-btn-modal" />
       </Modal.Header>
       <Modal.Body>
         <Form >
-          <Form.Group controlId="formEmail">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Введите email"
-              value={email}
-              onChange={(e) => { setEmail(e.target.value); setErrors({ ...errors, email: "" }) }}
-              isInvalid={errors.email}
-            />
-            <Form.Control.Feedback type="invalid">
-              {errors.email}
-            </Form.Control.Feedback>
-          </Form.Group>
+          <RegularModalFormControl
+            type="email"
+            placeholder="Введите email"
+            value={email}
+            onChange={(e) => { setEmail(e.target.value); setErrors({ ...errors, email: "" }) }}
+            label={"Email"}
+            className={errors.email ? "is-invalid" : ""}
+            errorHandler={errors.email}
+          />
         </Form>
-        <Button variant="primary" type="submit" onClick={handleSubmit} className='mt-2'>Подтвердить</Button>
       </Modal.Body>
+      <Modal.Footer >
+        <RegularButton onClick={handleSubmit} text="Войти" />
+      </Modal.Footer>
     </Modal>
   </>);
 };
