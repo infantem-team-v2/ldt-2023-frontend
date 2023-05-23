@@ -24,16 +24,24 @@ const PasportResetModal = ({ show, onHide }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validatePassword() && validatePasswordRepeat()) {
-      api.post('/auth/reset-password', {
-        newPassword,
-        newPasswordRepeat
+      api.post('/auth/password/reset', {
+        password: newPassword,
+        repeated_password: newPasswordRepeat
       }).catch((err) => {
-        console.log(err);
         Swal.fire({
           icon: 'error',
           title: 'Ошибка',
           text: err.message
-        })
+        }).then((res) => {
+          if (res && res.status === 200) {
+            onHide();
+            Swal.fire({
+              icon: 'success',
+              title: 'Успех',
+              text: 'Пароль успешно изменен'
+            });
+          }
+        });
       });
     } else if (!validatePassword()) {
       setErrors({ ...errors, password: 'Пароль должен содержать минимум 8 символов, одну заглавную букву и одну цифру' });
