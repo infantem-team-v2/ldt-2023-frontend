@@ -110,7 +110,7 @@ const DistrictsMap = () => {
 
   return (
     <div className='container'>
-      {/* <YMaps
+      <YMaps
         query={{
           lang: 'ru_RU', apikey: 'd3821b8c-9c4f-4885-9c54-6feda085a943'
         }}
@@ -123,9 +123,10 @@ const DistrictsMap = () => {
 
         >
 
+
           {getPolygons}
         </Map>
-      </YMaps> */}
+      </YMaps>
     </div>
   );
 };
