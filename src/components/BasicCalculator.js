@@ -107,10 +107,15 @@ const BasicCalculator = (props) => {
   };
 
   const isHidden = (categoryId) => {
-    if (categories[currentStep - 1]['cgId'] == categoryId) {
+    console.log(categories)
+    try {
+      if (categories[currentStep - 1]['cgId'] == categoryId) {
+        return false
+      }
+      return true
+    } catch (err) {
       return false
     }
-    return true
   }
 
   const handleCategory = (category, innerElement) => {
