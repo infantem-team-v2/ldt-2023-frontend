@@ -83,7 +83,8 @@ const BasicCalculator = (props) => {
             return null;
         }
       })
-      handleCategory(category, innerElements)
+      console.log(innerElements)
+      return handleCategory(category, innerElements)
     });
     console.log(innerCategories)
 
