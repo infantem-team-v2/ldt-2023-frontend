@@ -20,17 +20,14 @@ const BasicCalculator = (props) => {
   const [data, setData] = useState();
 
   useEffect(() => {
-    setTimeout(() => {
-      api.get("/ui/calc/element/active").then((response) => {
-        if (response.status >= 200 && response.status < 300) {
-          setData(response.data);
-        }
-      }).catch((err) => {
-        console.log(err);
+    api.get("/ui/calc/element/active").then((response) => {
+      if (response.status >= 200 && response.status < 300) {
+        setData(response.data);
       }
-      );
-    }, 1000);
-
+    }).catch((err) => {
+      console.log(err);
+    }
+    );
   }, []);
 
 
@@ -112,14 +109,16 @@ const BasicCalculator = (props) => {
   };
 
   const isHidden = (categoryId) => {
-    console.log(categories)
+
     try {
       if (categories[currentStep - 1]['cgId'] == categoryId) {
         return false
       }
       return true
     } catch (err) {
-      return false
+      setTimeout(() => {
+        return isHidden(categoryId)
+      }, 500);
     }
   }
 
