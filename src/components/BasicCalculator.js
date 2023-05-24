@@ -97,7 +97,6 @@ const BasicCalculator = (props) => {
     let newCategories = categories
     newCategories[currentStep - 1] = currentCategory
     setCategories({ ...newCategories });
-    console.log("ДЛИННА", categories.length)
     if (newStep > categories.length) {
       api.post("/calc/base").then((response) => {
         if (response.status >= 200 && response.status < 300) {
@@ -112,11 +111,7 @@ const BasicCalculator = (props) => {
       });
       return
     } else {
-      setIsAnimating(true);
-      setTimeout(() => {
-        setIsAnimating(false);
-        setCurrentStep(newStep);
-      }, 1000);
+      setCurrentStep(newStep);
     }
 
   };
