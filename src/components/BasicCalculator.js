@@ -121,7 +121,7 @@ const BasicCalculator = (props) => {
       }
       return true
     } catch (err) {
-      return isHidden(categoryId)
+      return true
     }
   }
 
