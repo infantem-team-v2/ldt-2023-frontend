@@ -40,6 +40,12 @@ const BasicCalculator = (props) => {
     }
   }, [data]);
 
+  useEffect(() => {
+    if (data) {
+      setComponents();
+    }
+  }, [categories]);
+
 
   const setInitialFields = () => {
     const fieldsNames = data.categories.map((category) => {
@@ -57,9 +63,7 @@ const BasicCalculator = (props) => {
     const initialsCategories = data.categories.map((category) => {
       return { cgId: category.category_id, filled: false }
     })
-    console.log(initialsCategories)
-    setCategories(initialsCategories)
-    console.log(categories)
+    setCategories(initialsCategories);
   }
 
   const setComponents = () => {
@@ -116,9 +120,7 @@ const BasicCalculator = (props) => {
       }
       return true
     } catch (err) {
-      setTimeout(() => {
-        return isHidden(categoryId)
-      }, 500);
+      return false
     }
   }
 
