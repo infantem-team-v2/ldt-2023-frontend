@@ -20,14 +20,17 @@ const BasicCalculator = (props) => {
   const [data, setData] = useState();
 
   useEffect(() => {
-    api.get("/ui/calc/element/active").then((response) => {
-      if (response.status >= 200 && response.status < 300) {
-        setData(response.data);
+    setTimeout(() => {
+      api.get("/ui/calc/element/active").then((response) => {
+        if (response.status >= 200 && response.status < 300) {
+          setData(response.data);
+        }
+      }).catch((err) => {
+        console.log(err);
       }
-    }).catch((err) => {
-      console.log(err);
-    }
-    );
+      );
+    }, 1000);
+
   }, []);
 
 
