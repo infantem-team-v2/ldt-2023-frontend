@@ -69,24 +69,7 @@ const BasicCalculator = (props) => {
 
   const setComponents = () => {
     const innerCategories = data.categories.map((category) => {
-      const innerElements = category.elements.map((element) => {
-        const type = element.type;
-        switch (type) {
-          case 'dropdown':
-            return handleDropdown(element);
-          case 'input':
-            return handleInput(element);
-          case "dropdown_multiselect":
-            return handleDropdownMultiselect(element);
-          case 'checkbox':
-            return handleCheckbox(element);
-          case 'range':
-            return handleSlider(element);
-          default:
-            return null;
-        }
-      })
-      return handleCategory(category, innerElements)
+      return handleCategory(category)
     });
     setResultsElements(innerCategories);
   }
@@ -109,7 +92,7 @@ const BasicCalculator = (props) => {
     currentCategory["filled"] = true
     let newCategories = categories
     newCategories[currentStep - 1] = currentCategory
-    setCategories(newCategories);
+    setCategories({ ...newCategories });
     setCurrentStep(newStep);
   };
 
@@ -125,12 +108,31 @@ const BasicCalculator = (props) => {
     }
   }
 
-  const handleCategory = (category, innerElement) => {
+  const handleCategory = (category) => {
     const hidden = isHidden(category.category_id)
+    if (hidden) {
+      return <></>
+    }
     return (
       <Form className='calculator-category' key={nanoid()} id={category.category_id} hidden={hidden}>
         <h1>{category.category}</h1>
-        {innerElement}
+        {category.elements.map((element) => {
+          const type = element.type;
+          switch (type) {
+            case 'dropdown':
+              return handleDropdown(element);
+            case 'input':
+              return handleInput(element);
+            case "dropdown_multiselect":
+              return handleDropdownMultiselect(element);
+            case 'checkbox':
+              return handleCheckbox(element);
+            case 'range':
+              return handleSlider(element);
+            default:
+              return null;
+          }
+        })}
         <RegularButton
           text="Submit"
           onClick={handleNextStep}
