@@ -21,6 +21,7 @@ const BasicCalculator = (props) => {
   const [resultsElements, setResultsElements] = useState();
   const [currentStep, setCurrentStep] = useState(1);
   const [data, setData] = useState();
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
     api.get("/ui/calc/element/active").then((response) => {
@@ -110,7 +111,11 @@ const BasicCalculator = (props) => {
       });
       return
     } else {
-      setCurrentStep(newStep);
+      setIsAnimating(true);
+      setTimeout(() => {
+        setIsAnimating(false);
+        setCurrentStep(newStep);
+      }, 1000);
     }
 
   };
@@ -133,7 +138,9 @@ const BasicCalculator = (props) => {
       return <div key={nanoid()}></div>
     }
     return (
-      <Form className='calculator-category d-flex gap-3' key={nanoid()} id={category.category_id} hidden={hidden}>
+      <Form
+        className={'calculator-category d-flex gap-3 animated-div' + (isAnimating ? 'animate' : "")}
+        key={nanoid()} id={category.category_id} hidden={hidden}>
         <Form.Label>{category.category}</Form.Label>
         {category.elements.map((element) => {
           const type = element.type;
