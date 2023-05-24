@@ -135,9 +135,9 @@ const BasicCalculator = (props) => {
 
   const handleCategory = (category) => {
     const hidden = isHidden(category.category_id)
-    if (hidden) {
-      return <div key={nanoid()}></div>
-    }
+    // if (hidden) {
+    //   return <div key={nanoid()}></div>
+    // }
     return (
       <Form
         className={'calculator-category animated-div' + (isAnimating ? 'animate' : "")}
