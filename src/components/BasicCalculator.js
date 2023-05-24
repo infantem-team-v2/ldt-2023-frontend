@@ -59,7 +59,7 @@ const BasicCalculator = (props) => {
     const newFields = {};
 
     fieldsNames.forEach((element) => {
-      newFields[element] = null;
+      newFields[element] = undefined;
     });
     setFields(newFields);
   }
