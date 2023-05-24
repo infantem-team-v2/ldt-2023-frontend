@@ -98,7 +98,8 @@ const BasicCalculator = (props) => {
     newCategories[currentStep - 1] = currentCategory
     setCategories({ ...newCategories });
     if (newStep > categories.length || newStep > 4) {
-      api.post("/calc/base").then((response) => {
+      const postedData = {}
+      api.post("/calc/base", postedData).then((response) => {
         if (response.status >= 200 && response.status < 300) {
           <Navigate to={"/report" + response.data.id ? response.data.id : 1} replace={true} />
         }
