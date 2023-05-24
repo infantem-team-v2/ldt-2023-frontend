@@ -97,6 +97,7 @@ const BasicCalculator = (props) => {
     let newCategories = categories
     newCategories[currentStep - 1] = currentCategory
     setCategories({ ...newCategories });
+    console.log("ДЛИННА", categories.length)
     if (newStep > categories.length) {
       api.post("/calc/base").then((response) => {
         if (response.status >= 200 && response.status < 300) {
@@ -139,26 +140,28 @@ const BasicCalculator = (props) => {
     }
     return (
       <Form
-        className={'calculator-category d-flex gap-3 animated-div' + (isAnimating ? 'animate' : "")}
+        className={'calculator-category animated-div' + (isAnimating ? 'animate' : "")}
         key={nanoid()} id={category.category_id} hidden={hidden}>
         <Form.Label>{category.category}</Form.Label>
-        {category.elements.map((element) => {
-          const type = element.type;
-          switch (type) {
-            case 'dropdown':
-              return handleDropdown(element);
-            case 'input':
-              return handleInput(element);
-            case "dropdown_multiselect":
-              return handleDropdownMultiselect(element);
-            case 'checkbox':
-              return handleCheckbox(element);
-            case 'range':
-              return handleSlider(element);
-            default:
-              return null;
-          }
-        })}
+        <div className='d-flex gap-3'>
+          {category.elements.map((element) => {
+            const type = element.type;
+            switch (type) {
+              case 'dropdown':
+                return handleDropdown(element);
+              case 'input':
+                return handleInput(element);
+              case "dropdown_multiselect":
+                return handleDropdownMultiselect(element);
+              case 'checkbox':
+                return handleCheckbox(element);
+              case 'range':
+                return handleSlider(element);
+              default:
+                return null;
+            }
+          })}
+        </div>
 
         <div className='calculator-control-block'>
           {currentStep === categories.length ? <p className='p-logo calculator-sign'>
