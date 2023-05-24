@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { OverlayTrigger, Tooltip, Form } from 'react-bootstrap';
 import { nanoid } from 'nanoid';
 
+import { Navigate } from 'react-router-dom';
+
 import RegularButton from './ui-kit/RegularButton';
 import ProgressBar from './ui-kit/ProgressBar';
 import RegularInput from './ui-kit/RegularInput';
@@ -97,7 +99,7 @@ const BasicCalculator = (props) => {
     if (newStep > categories.length) {
       api.post("/calc/base").then((response) => {
         if (response.status >= 200 && response.status < 300) {
-          history.push('/report/' + response.data.id ? response.data.id : 1)
+          <Navigate to={"/report" + response.data.id ? response.data.id : 1} replace={true} />
         }
       }).catch((err) => {
         Swal.fire({
