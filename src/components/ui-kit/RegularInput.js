@@ -9,7 +9,7 @@ const RegularInput = ({ controlId, label, type, placeholder, value, onChange, er
   size, renderInputError, className, overlay, overlayPosition = 'top' }) => {
 
   return (<>
-    <OverlayTrigger placement={overlayPosition} overlay={overlay} >
+    <OverlayTrigger placement={overlayPosition} overlay={overlay} key={nanoid()}>
       <Form.Group controlId={controlId} className="regular-input-form-group" key={nanoid()}>
         <Form.Label className="regular-modal-form-label">{label}</Form.Label>
         <Form.Control

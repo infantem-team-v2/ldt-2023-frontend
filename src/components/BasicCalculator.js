@@ -10,6 +10,7 @@ import '../styles/BasicCalculator.css';
 import api from '../services/api';
 import RegularSwitch from './ui-kit/RegularSwitch';
 import RegularDropdown from './ui-kit/RegularDropdown';
+import Swal from 'sweetalert2';
 
 const BasicCalculator = (props) => {
 
@@ -93,7 +94,23 @@ const BasicCalculator = (props) => {
     let newCategories = categories
     newCategories[currentStep - 1] = currentCategory
     setCategories({ ...newCategories });
-    setCurrentStep(newStep);
+    if (newStep > categories.length) {
+      api.post("/calc/base").then((response) => {
+        if (response.status >= 200 && response.status < 300) {
+          history.push('/report/' + response.data.id ? response.data.id : 1)
+        }
+      }).catch((err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Что-то пошло не так!',
+        })
+      });
+      return
+    } else {
+      setCurrentStep(newStep);
+    }
+
   };
 
 
@@ -111,11 +128,11 @@ const BasicCalculator = (props) => {
   const handleCategory = (category) => {
     const hidden = isHidden(category.category_id)
     if (hidden) {
-      return <></>
+      return <div key={nanoid()}></div>
     }
     return (
-      <Form className='calculator-category' key={nanoid()} id={category.category_id} hidden={hidden}>
-        <h1>{category.category}</h1>
+      <Form className='calculator-category d-flex gap-3' key={nanoid()} id={category.category_id} hidden={hidden}>
+        <Form.Label>{category.category}</Form.Label>
         {category.elements.map((element) => {
           const type = element.type;
           switch (type) {
@@ -133,10 +150,16 @@ const BasicCalculator = (props) => {
               return null;
           }
         })}
-        <RegularButton
-          text="Submit"
-          onClick={handleNextStep}
-        />
+
+        <div className='calculator-control-block'>
+          {currentStep === categories.length ? <p className='p-logo calculator-sign'>
+            Нажимая на кнопку вы принимайте условия <a href="https://www.google.com/">пользовательского соглашения</a>
+          </p> : <></>}
+          <RegularButton
+            text="Submit"
+            onClick={handleNextStep}
+          />
+        </div>
       </Form>
     )
   }
@@ -192,7 +215,7 @@ const BasicCalculator = (props) => {
     const fieldId = element.field_id;
     return (
       <Form.Group key={nanoid()}>
-        <OverlayTrigger placement="top" overlay={renderTooltip(element.comment)} >
+        <OverlayTrigger placement="top" overlay={renderTooltip(element.comment)} key={nanoid()}>
           <Form.Range
             type="range"
             id={fieldId}
@@ -211,7 +234,7 @@ const BasicCalculator = (props) => {
     const fieldId = element.field_id;
     return (
       <Form.Group key={nanoid()}>
-        <OverlayTrigger placement="top" overlay={renderTooltip(element.comment)} >
+        <OverlayTrigger placement="top" overlay={renderTooltip(element.comment)} key={nanoid()}>
           <Form.Select
             value={fields[fieldId]}
             onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, e.target.value) }}
@@ -235,18 +258,7 @@ const BasicCalculator = (props) => {
     <>
       <ProgressBar range={data ? data.categories.length : 10} current={currentStep} />
       <div className='mb-4 '>
-        <div >
-          {resultsElements}
-          <div className='calculator-control-block'>
-            <p className='p-logo calculator-sign'>
-              Нажимая на кнопку вы принимайте условия <a href="https://www.google.com/">пользовательского соглашения</a>
-            </p>
-            {/* <RegularButton
-              text="Submit"
-              onClick={(e) => { e.preventDefault(); console.log(e); console.log(fields) }}
-            /> */}
-          </div>
-        </div>
+        {resultsElements}
       </div>
 
     </>

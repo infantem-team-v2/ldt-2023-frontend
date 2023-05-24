@@ -12,8 +12,8 @@ const RegularDropdown = ({ onChange, value, controlId, overlay, innerData,
   overlayPosition = "top", formLabel = undefined, formClass = undefined, dropdownClass = undefined }) => {
   return (
     <>
-      <OverlayTrigger placement={overlayPosition} overlay={overlay} >
-        <Form.Group controlId={controlId} className={"regular-dropdown-form-group" + (formClass ? formClass : "")}>
+      <OverlayTrigger placement={overlayPosition} overlay={overlay} key={nanoid()}>
+        <Form.Group controlId={controlId} className={"regular-dropdown-form-group" + (formClass ? formClass : "")} key={nanoid()}>
           {formLabel ? <Form.Label className="regular-modal-form-label">{formLabel}</Form.Label> : <></>}
           <Form.Select
             value={value}
