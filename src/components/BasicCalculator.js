@@ -42,6 +42,7 @@ const BasicCalculator = (props) => {
 
   useEffect(() => {
     if (data) {
+      console.log('rerender')
       setComponents();
     }
   }, [categories]);
@@ -112,20 +113,20 @@ const BasicCalculator = (props) => {
     setCurrentStep(newStep);
   };
 
-  const isHidden = (categoryId) => {
 
+  const isHidden = (categoryId) => {
     try {
       if (categories[currentStep - 1]['cgId'] == categoryId) {
         return false
       }
       return true
     } catch (err) {
-      return false
+      return isHidden(categoryId)
     }
   }
 
   const handleCategory = (category, innerElement) => {
-    const hidden = isHidden(category.category_id);
+    const hidden = isHidden(category.category_id)
     return (
       <Form className='calculator-category' key={nanoid()} id={category.category_id} hidden={hidden}>
         <h1>{category.category}</h1>
