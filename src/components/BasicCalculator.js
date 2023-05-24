@@ -79,11 +79,8 @@ const BasicCalculator = (props) => {
             return null;
         }
       })
-      console.log(innerElements)
       return handleCategory(category, innerElements)
     });
-    console.log(innerCategories)
-
     setResultsElements(innerCategories);
   }
 
@@ -110,7 +107,7 @@ const BasicCalculator = (props) => {
   };
 
   const isHidden = (categoryId) => {
-    if (categories[currentStep - 1]['name'] == categoryId) {
+    if (categories[currentStep - 1]['cgId'] == categoryId) {
       return false
     }
     return true
