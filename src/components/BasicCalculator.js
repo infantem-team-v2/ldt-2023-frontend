@@ -46,8 +46,12 @@ const BasicCalculator = (props) => {
 
   useEffect(() => {
     if (data) {
+      console.log("1C", categories)
+      console.log("1F", fields)
       console.log('rerender')
       setComponents();
+      console.log("2C", categories)
+      console.log("2F", fields)
     }
   }, [categories]);
 
