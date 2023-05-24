@@ -65,7 +65,7 @@ const BasicCalculator = (props) => {
   }
 
   const setComponents = () => {
-    const categories = data.categories.map((category) => {
+    const innerCategories = data.categories.map((category) => {
       const innerElements = category.elements.map((element) => {
         const type = element.type;
         switch (type) {
@@ -85,8 +85,9 @@ const BasicCalculator = (props) => {
       })
       handleCategory(category, innerElements)
     });
+    console.log(innerCategories)
 
-    setResultsElements(categories);
+    setResultsElements(innerCategories);
   }
 
   const handleCategory = (category, innerElement) => {
@@ -223,5 +224,6 @@ const BasicCalculator = (props) => {
     </>
   );
 };
+
 
 export default BasicCalculator;
