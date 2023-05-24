@@ -63,7 +63,7 @@ const BasicCalculator = (props) => {
     const newFields = {};
 
     fieldsNames.forEach((element) => {
-      newFields[element] = "";
+      newFields[element] = undefined;
     });
     setFields(newFields);
   }
@@ -105,7 +105,7 @@ const BasicCalculator = (props) => {
       const postedData = {}
       api.post("/calc/base", postedData).then((response) => {
         if (response.status >= 200 && response.status < 300) {
-          <Navigate to={"/report" + response.data.id ? response.data.id : 1} replace={true} />
+          <Navigate to={"/report" + (response.data.id ? response.data.id : 1)} replace={true} />
         }
       }).catch((err) => {
         Swal.fire({
