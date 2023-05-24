@@ -16,7 +16,7 @@ const BasicCalculator = (props) => {
   const [categories, setCategories] = useState([]);
   const [fields, setFields] = useState({});
   const [resultsElements, setResultsElements] = useState();
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(1);
   const [data, setData] = useState();
 
   useEffect(() => {
@@ -40,10 +40,6 @@ const BasicCalculator = (props) => {
     }
   }, [data]);
 
-  useEffect(() => {
-    const numberOfSteps = Object.values(fields).filter((field) => field !== undefined).length;
-    setCurrentStep(numberOfSteps);
-  }, [fields]);
 
   const setInitialFields = () => {
     const fieldsNames = data.categories.map((category) => {
@@ -52,7 +48,7 @@ const BasicCalculator = (props) => {
     const newFields = {};
 
     fieldsNames.forEach((element) => {
-      newFields[element] = undefined;
+      newFields[element] = null;
     });
     setFields(newFields);
   }
@@ -91,16 +87,6 @@ const BasicCalculator = (props) => {
     setResultsElements(innerCategories);
   }
 
-  const handleCategory = (category, innerElement) => {
-    return (
-      <div className='calculator-category' key={nanoid()} id={category.category_id}>
-        <h1>{category.category}</h1>
-        <div>
-          {innerElement}
-        </div>
-      </div>
-    )
-  }
 
 
   const updateFieldsStates = (fieldId, newValue) => {
@@ -112,7 +98,37 @@ const BasicCalculator = (props) => {
     });
   };
 
+  const handleNextStep = (e) => {
+    e.preventDefault();
+    const newStep = currentStep + 1
+    const currentCategory = categories[currentStep - 1]
+    currentCategory["filled"] = true
+    let newCategories = categories
+    newCategories[currentStep - 1] = currentCategory
+    setCategories(newCategories);
+    setCurrentStep(newStep);
+  };
 
+  const isHidden = (categoryId) => {
+    if (categories[currentStep - 1]['name'] == categoryId) {
+      return false
+    }
+    return true
+  }
+
+  const handleCategory = (category, innerElement) => {
+    const hidden = isHidden(category.category_id);
+    return (
+      <Form className='calculator-category' key={nanoid()} id={category.category_id} hidden={hidden}>
+        <h1>{category.category}</h1>
+        {innerElement}
+        <RegularButton
+          text="Submit"
+          onClick={handleNextStep}
+        />
+      </Form>
+    )
+  }
 
   const renderTooltip = (hint) => (
     <Tooltip id="hint-tooltip"  >
@@ -208,18 +224,18 @@ const BasicCalculator = (props) => {
     <>
       <ProgressBar range={data ? data.categories.length : 10} current={currentStep} />
       <div className='mb-4 '>
-        <Form >
+        <div >
           {resultsElements}
           <div className='calculator-control-block'>
             <p className='p-logo calculator-sign'>
               Нажимая на кнопку вы принимайте условия <a href="https://www.google.com/">пользовательского соглашения</a>
             </p>
-            <RegularButton
+            {/* <RegularButton
               text="Submit"
               onClick={(e) => { e.preventDefault(); console.log(e); console.log(fields) }}
-            />
+            /> */}
           </div>
-        </Form>
+        </div>
       </div>
 
     </>
