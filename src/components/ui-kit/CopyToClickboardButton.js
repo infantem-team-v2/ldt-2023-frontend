@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Toast from 'react-bootstrap/Toast';
 
-import { ReactComponent as CopyToClickboardIcon } from '../asserts/copy_to_clickboard_icon.svg';
+import { ReactComponent as CopyToClickboardIcon } from '../../asserts/copy_to_clickboard_icon.svg';
 
 const CopyToClipboardButton = ({ text }) => {
   const [showToast, setShowToast] = useState(false);

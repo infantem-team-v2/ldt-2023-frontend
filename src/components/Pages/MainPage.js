@@ -1,12 +1,13 @@
+import React from "react";
 import DistrictsMap from "../DistrictsMap";
 import BasicCalculator from "../BasicCalculator";
-import ProgressBar from "../ProgressBar";
 
 import { ReactComponent as HeaderThing } from '../../asserts/header_thing.svg';
 
 import '../../styles/MainPage.css';
 
 const MainPage = () => {
+
 
   return (
     <>
@@ -17,9 +18,11 @@ const MainPage = () => {
         </div>
         <h1 className="h1-main">Расчитай вложения <HeaderThing /></h1>
 
-        <ProgressBar range={10} current={1} />
-        <DistrictsMap />
 
+        <BasicCalculator />
+        <div className="w-25">
+          <DistrictsMap />
+        </div>
       </div>
     </>
   )

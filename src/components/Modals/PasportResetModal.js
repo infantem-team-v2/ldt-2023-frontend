@@ -4,8 +4,8 @@ import { Modal, Form, Button } from 'react-bootstrap';
 import { ReactComponent as CloseButton } from "../../asserts/close_white.svg"
 import Swal from "sweetalert2";
 
-import RegularButton from "../RegularButton";
-import RegularModalFormControl from "../RegularModalFormControl";
+import RegularButton from "../ui-kit/RegularButton";
+import RegularModalFormControl from "../ui-kit/RegularModalFormControl";
 import api from '../../services/api';
 
 const PasportResetModal = ({ show, onHide }) => {
@@ -35,17 +35,18 @@ const PasportResetModal = ({ show, onHide }) => {
           icon: 'error',
           title: 'Ошибка',
           text: err.message
-        }).then((res) => {
-          if (res && res.status >= 200 && res.status < 300) {
-            onHide();
-            Swal.fire({
-              icon: 'success',
-              title: 'Успех',
-              text: 'Пароль успешно изменен'
-            });
-          }
-        });
-      });
+        })
+        onHide();
+      }).then((res) => {
+        if (res && res.status >= 200 && res.status < 300) {
+          onHide();
+          Swal.fire({
+            icon: 'success',
+            title: 'Успех',
+            text: 'Пароль успешно изменен'
+          });
+        }
+      });;
     } else if (!validatePassword()) {
       setErrors({ ...errors, password: 'Пароль должен содержать минимум 8 символов, одну заглавную букву и одну цифру' });
       return;

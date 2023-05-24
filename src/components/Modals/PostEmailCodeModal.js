@@ -5,8 +5,8 @@ import { Modal, Form, Button } from 'react-bootstrap';
 import { ReactComponent as CloseButton } from "../../asserts/close_white.svg"
 import Swal from "sweetalert2";
 
-import RegularButton from "../RegularButton";
-import RegularModalFormControl from "../RegularModalFormControl";
+import RegularButton from "../ui-kit/RegularButton";
+import RegularModalFormControl from "../ui-kit/RegularModalFormControl";
 
 import api from '../../services/api';
 
@@ -16,7 +16,7 @@ const PasportResetModal = ({ show, onHide, nextStep }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    api.post('/auth/email/validate', {
+    api.post('/auth/password/reset/validate', {
       code: Number(emailCode),
     }).catch((err) => {
       console.log(err);

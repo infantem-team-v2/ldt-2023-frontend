@@ -1,6 +1,6 @@
 import React from "react";
 
-import '../styles/RegularButton.css'
+import '../../styles/RegularButton.css'
 
 
 const RegularButton = ({ text, onClick, className, onBlur }) => {

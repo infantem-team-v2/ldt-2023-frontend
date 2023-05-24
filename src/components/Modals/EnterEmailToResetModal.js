@@ -6,8 +6,8 @@ import api from "../../services/api";
 
 import { ReactComponent as CloseButton } from "../../asserts/close_white.svg"
 import Swal from "sweetalert2";
-import RegularButton from "../RegularButton";
-import RegularModalFormControl from "../RegularModalFormControl";
+import RegularButton from "../ui-kit/RegularButton";
+import RegularModalFormControl from "../ui-kit/RegularModalFormControl";
 
 const EnterEmailToResetModal = ({ show, onHide, nextStep }) => {
 

@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import '../../styles/ReportPage.css'
 
 import Report from '../Report';
-import CopyToClipboardButton from '../CopyToClickboardButton';
+import CopyToClipboardButton from '../ui-kit/CopyToClickboardButton';
 
 
 const ReportPage = (props) => {

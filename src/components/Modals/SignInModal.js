@@ -4,8 +4,8 @@ import { useState } from "react";
 
 import api from "../../services/api";
 
-import RegularModalFormControl from "../RegularModalFormControl";
-import RegularButton from "../RegularButton";
+import RegularModalFormControl from "../ui-kit/RegularModalFormControl";
+import RegularButton from "../ui-kit/RegularButton";
 
 import { ReactComponent as CloseButton } from "../../asserts/close_white.svg";
 import Swal from "sweetalert2";

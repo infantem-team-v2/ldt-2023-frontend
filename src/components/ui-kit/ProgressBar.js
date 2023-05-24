@@ -1,4 +1,4 @@
-import '../styles/ProgressBar.css'
+import '../../styles/ProgressBar.css'
 
 const ProgressBar = ({ range, current }) => {
   const progress = (current / range) * 100;

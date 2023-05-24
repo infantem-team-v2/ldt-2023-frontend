@@ -4,7 +4,7 @@ import { ReactComponent as LogIn } from '../asserts/in.svg';
 import { ReactComponent as LogOut } from '../asserts/out.svg';
 import { ReactComponent as Documents } from '../asserts/documents.svg';
 
-import RegularButton from "./RegularButton";
+import RegularButton from "./ui-kit/RegularButton";
 import '../styles/Header.css';
 
 const Header = (props) => {

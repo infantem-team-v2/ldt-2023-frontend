@@ -3,9 +3,9 @@ import { Modal, Form } from 'react-bootstrap';
 
 import api from '../../services/api';
 
-import RegularModalFormControl from '../RegularModalFormControl';
-import RegularButton from '../RegularButton';
-import ProgressBarModal from '../ProgressBarModal';
+import RegularModalFormControl from '../ui-kit/RegularModalFormControl';
+import RegularButton from '../ui-kit/RegularButton';
+import ProgressBarModal from '../ui-kit/ProgressBarModal';
 
 import '../../styles/SignUpModal.css'
 
@@ -157,47 +157,45 @@ const SignUpModal = ({ show, onHide, setIsLogedIn }) => {
       />
     )
 
-    {
-      if (step > 1 && step < 4) {
-        const buttons = (<>
+
+    if (step > 1 && step < 4) {
+      const buttons = (<>
+        <RegularButton
+          onClick={handlePrevious}
+          text="Вернуться"
+        />
+        <RegularButton
+          onClick={handleNext}
+          text="Далее"
+        />
+      </>)
+
+      if (!isOdd) {
+        return buttons;
+      }
+      return (<div className='sign-up-form mt-3'>{buttons}</div>)
+    }
+
+    if (step === 4) {
+      const buttons4 = (<>
+        <>
           <RegularButton
             onClick={handlePrevious}
             text="Вернуться"
           />
           <RegularButton
-            onClick={handleNext}
-            text="Далее"
+            onClick={handleSubmit}
+            text="Зарегистрироваться"
           />
-        </>)
 
-        if (!isOdd) {
-          return buttons;
-        }
-        return (<div className='sign-up-form mt-3'>{buttons}</div>)
+        </>
+      </>)
+      if (!isOdd) {
+        return buttons4;
       }
-
+      return (<div className='sign-up-form mt-3'>{buttons4}</div>)
     }
-    {
-      if (step === 4) {
-        const buttons4 = (<>
-          <>
-            <RegularButton
-              onClick={handlePrevious}
-              text="Вернуться"
-            />
-            <RegularButton
-              onClick={handleSubmit}
-              text="Зарегистрироваться"
-            />
 
-          </>
-        </>)
-        if (!isOdd) {
-          return buttons4;
-        }
-        return (<div className='sign-up-form mt-3'>{buttons4}</div>)
-      }
-    }
   }
 
   const required = <span className="text-danger">*</span>;

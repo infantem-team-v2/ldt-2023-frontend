@@ -1,0 +1,13 @@
+.regular-input-form-group {
+  background-color: var(--main-white) !important;
+  color: var(--main-acsent) !important;
+}
+
+.regular-input-form-control {
+  background-color: var(--main-white) !important;
+  border-color: var(--main-acsent) !important;
+  color: var(--main-acsent) !important;
+  border-radius: 12px !important;
+  padding: 1.5vh !important;
+
+}

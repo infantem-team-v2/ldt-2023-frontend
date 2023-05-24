@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 
-import '../styles/RegularModalFormControl.css'
+import '../../styles/RegularModalFormControl.css'
 
 const RegularModalFormControl = ({ controlId, label, type, placeholder, value, onChange, errorHandler, size, renderInputError, className }) => {
 
