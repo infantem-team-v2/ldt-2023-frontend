@@ -143,7 +143,7 @@ const BasicCalculator = (props) => {
         className={'calculator-category animated-div' + (isAnimating ? 'animate' : "")}
         key={nanoid()} id={category.category_id} hidden={hidden}>
         <Form.Label>{category.category}</Form.Label>
-        <div className='d-flex gap-3'>
+        <div className='d-flex gap-3' key={nanoid()}>
           {category.elements.map((element) => {
             const type = element.type;
             switch (type) {
