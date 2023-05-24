@@ -59,7 +59,7 @@ const BasicCalculator = (props) => {
     const newFields = {};
 
     fieldsNames.forEach((element) => {
-      newFields[element] = undefined;
+      newFields[element] = "";
     });
     setFields(newFields);
   }
@@ -97,7 +97,7 @@ const BasicCalculator = (props) => {
     let newCategories = categories
     newCategories[currentStep - 1] = currentCategory
     setCategories({ ...newCategories });
-    if (newStep > categories.length) {
+    if (newStep > categories.length || newStep > 4) {
       api.post("/calc/base").then((response) => {
         if (response.status >= 200 && response.status < 300) {
           <Navigate to={"/report" + response.data.id ? response.data.id : 1} replace={true} />
