@@ -4,14 +4,16 @@ import { nanoid } from 'nanoid';
 
 import RegularButton from './ui-kit/RegularButton';
 import ProgressBar from './ui-kit/ProgressBar';
-
-import exampleData from './exampleData.json';
+import RegularInput from './ui-kit/RegularInput';
 
 import '../styles/BasicCalculator.css';
 import api from '../services/api';
+import RegularSwitch from './ui-kit/RegularSwitch';
+import RegularDropdown from './ui-kit/RegularDropdown';
 
 const BasicCalculator = (props) => {
 
+  const [categories, setCategories] = useState([]);
   const [fields, setFields] = useState({});
   const [resultsElements, setResultsElements] = useState();
   const [currentStep, setCurrentStep] = useState(0);
@@ -24,7 +26,6 @@ const BasicCalculator = (props) => {
       }
     }).catch((err) => {
       console.log(err);
-      setData(exampleData)
     }
     );
   }, []);
@@ -34,6 +35,7 @@ const BasicCalculator = (props) => {
   useEffect(() => {
     if (data) {
       setInitialFields();
+      setInitialCategories();
       setComponents();
     }
   }, [data]);
@@ -44,7 +46,9 @@ const BasicCalculator = (props) => {
   }, [fields]);
 
   const setInitialFields = () => {
-    const fieldsNames = data.elements.map((element) => element.field_id);
+    const fieldsNames = data.categories.map((category) => {
+      return category.elements.map((element) => element.field_id)
+    });
     const newFields = {};
 
     fieldsNames.forEach((element) => {
@@ -53,27 +57,46 @@ const BasicCalculator = (props) => {
     setFields(newFields);
   }
 
+  const setInitialCategories = () => {
+    const initialsCategories = data.categories.map((category) => {
+      return { cgId: category.category_id, filled: false }
+    })
+    setCategories(initialsCategories)
+  }
+
   const setComponents = () => {
-    setResultsElements(
-      <>
-        {data.elements.map((element) => {
-          const type = element.type;
-          switch (type) {
-            case 'dropdown':
-              return handleDropdown(element);
-            case 'input':
-              return handleInput(element);
-            case "dropdown_multiselect":
-              return handleDropdownMultiselect(element);
-            case 'checkbox':
-              return handleCheckbox(element);
-            case 'range':
-              return handleSlider(element);
-            default:
-              return null;
-          }
-        })}
-      </>
+    const categories = data.categories.map((category) => {
+      const innerElements = category.elements.map((element) => {
+        const type = element.type;
+        switch (type) {
+          case 'dropdown':
+            return handleDropdown(element);
+          case 'input':
+            return handleInput(element);
+          case "dropdown_multiselect":
+            return handleDropdownMultiselect(element);
+          case 'checkbox':
+            return handleCheckbox(element);
+          case 'range':
+            return handleSlider(element);
+          default:
+            return null;
+        }
+      })
+      handleCategory(category, innerElements)
+    });
+
+    setResultsElements(categories);
+  }
+
+  const handleCategory = (category, innerElement) => {
+    return (
+      <div className='calculator-category' key={nanoid()} id={category.category_id}>
+        <h1>{category.category}</h1>
+        <div>
+          {innerElement}
+        </div>
+      </div>
     )
   }
 
@@ -98,58 +121,41 @@ const BasicCalculator = (props) => {
   const handleDropdown = (element) => {
     const fieldId = element.field_id;
     return (
-      <Form.Group key={nanoid()}>
-        <OverlayTrigger placement="top" overlay={renderTooltip(element.comment)} >
-          <Form.Select
-            value={fields[fieldId]}
-            onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, e.target.value) }}
-          >
-            {element.options.map((option) => {
-              return (
-                <option
-                  key={nanoid()}
-                  value={option}
-                >
-                  {option}
-                </option>
-              )
-            })}
-          </Form.Select>
-        </OverlayTrigger>
-      </Form.Group>
+      <RegularDropdown
+        controlId={fieldId}
+        label={element.field}
+        value={fields[fieldId]}
+        onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, e.target.value) }}
+        overlay={renderTooltip(element.comment)}
+        innerData={element.options}
+      />
     )
   };
 
   const handleInput = (element) => {
     const fieldId = element.field_id;
     return (
-      <Form.Group key={nanoid()}>
-        <OverlayTrigger placement="top" overlay={renderTooltip(element.comment)} >
-          <Form.Control
-            type={element.input_type ? element.input_type : "text"}
-            name={element.field}
-            value={fields[fieldId]}
-            onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, e.target.value) }}
-          />
-        </OverlayTrigger>
-      </Form.Group>
+      <RegularInput
+        controlId={fieldId}
+        label={element.field}
+        type={element.input_type ? element.input_type : "text"}
+        value={fields[fieldId]}
+        onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, e.target.value) }}
+        overlay={renderTooltip(element.comment)}
+      />
     )
   };
 
   const handleCheckbox = (element) => {
     const fieldId = element.field_id;
     return (
-      <Form.Group key={nanoid()}>
-        <OverlayTrigger placement="top" overlay={renderTooltip(element.comment)} >
-          <Form.Check
-            type="switch"
-            id={fieldId}
-            label={element.field}
-            value={fields[fieldId]}
-            onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, e.target.value) }}
-          />
-        </OverlayTrigger>
-      </Form.Group>
+      <RegularSwitch
+        controlId={fieldId}
+        label={element.field}
+        value={fields[fieldId]}
+        onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, e.target.value) }}
+        overlay={renderTooltip(element.comment)}
+      />
     )
 
   };
@@ -198,7 +204,7 @@ const BasicCalculator = (props) => {
 
   return (
     <>
-      <ProgressBar range={data ? data.elements.length : 10} current={currentStep} />
+      <ProgressBar range={data ? data.categories.length : 10} current={currentStep} />
       <div className='mb-4 '>
         <Form >
           {resultsElements}

@@ -1,0 +1,21 @@
+.regular-switch-form-group {
+  background-color: var(--main-white) !important;
+  color: var(--main-acsent) !important;
+
+}
+
+.regular-switch-form-control .form-check-input:checked {
+  background-color: var(--main-acsent) !important;
+}
+
+.regular-switch-form-control .form-check-input {
+  border-color: var(--main-acsent) !important;
+}
+
+.form-switch .form-check-input {
+  background-image: url('../asserts/switch-circle.svg') !important;
+}
+
+.form-switch .form-check-input:checked {
+  background-image: url('../asserts/switch-circle-checked.svg') !important;
+}

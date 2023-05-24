@@ -1,0 +1,16 @@
+.regular-dropdown-form-group {
+  background-color: var(--main-white) !important;
+  margin: calc(var(--index)*0.7) 0;
+}
+
+.regular-dropdown-form-group .form-select {
+  border-color: var(--main-acsent) !important;
+  background-color: var(--main-white) !important;
+  color: var(--main-acsent) !important;
+  background-image: url('../asserts/dropdown-arrow.svg') !important;
+}
+
+.regular-dropdown-form-group .form-select:focus {
+  border-color: var(--main-acsent) !important;
+  box-shadow: none !important;
+}

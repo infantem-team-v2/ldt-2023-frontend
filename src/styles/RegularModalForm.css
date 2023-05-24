@@ -9,5 +9,17 @@
   color: var(--main-acsent) !important;
   border-radius: 12px !important;
   padding: 1.5vh !important;
+  margin: calc(var(--index)*0.2) 0;
 
+}
+
+.regular-input-form-control::-webkit-inner-spin-button,
+.regular-input-form-control::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+.regular-input-form-control::placeholder {
+  color: var(--main-acsent) !important;
 }
