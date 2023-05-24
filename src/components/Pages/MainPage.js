@@ -20,9 +20,7 @@ const MainPage = () => {
 
 
         <BasicCalculator />
-        <div className="w-25">
-          <DistrictsMap />
-        </div>
+        <DistrictsMap />
       </div>
     </>
   )
