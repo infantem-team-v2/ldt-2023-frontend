@@ -38,6 +38,7 @@ const BasicCalculator = (props) => {
 
   useEffect(() => {
     if (data) {
+      console.log("data", data)
       setInitialFields();
       setInitialCategories();
       setComponents();
