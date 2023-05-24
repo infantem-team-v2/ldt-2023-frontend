@@ -57,7 +57,9 @@ const BasicCalculator = (props) => {
     const initialsCategories = data.categories.map((category) => {
       return { cgId: category.category_id, filled: false }
     })
+    console.log(initialsCategories)
     setCategories(initialsCategories)
+    console.log(categories)
   }
 
   const setComponents = () => {
