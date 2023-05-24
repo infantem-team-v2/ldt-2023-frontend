@@ -38,7 +38,6 @@ const BasicCalculator = (props) => {
 
   useEffect(() => {
     if (data) {
-      console.log("data", data)
       setInitialFields();
       setInitialCategories();
       setComponents();
@@ -142,7 +141,7 @@ const BasicCalculator = (props) => {
     return (
       <Form
         className={'calculator-category animated-div' + (isAnimating ? 'animate' : "")}
-        key={nanoid()} id={category.category_id} hidden={hidden}>
+        key={nanoid()} id={category.category_id}>
         <Form.Label>{category.category}</Form.Label>
         <div className='d-flex gap-3' key={nanoid()}>
           {category.elements.map((element) => {
