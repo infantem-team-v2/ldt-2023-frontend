@@ -28,12 +28,9 @@
 }
 
 .animated-div {
-  background-color: #f0f0f0;
-  width: 200px;
-  height: 200px;
-  transition: background-color 0.5s ease;
+  transition: transformr 0.5s ease;
 }
 
 .animate {
-  background-color: #5e55df;
+  transform: translate(100px, 0);
 }
