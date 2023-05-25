@@ -217,11 +217,12 @@ const BasicCalculator = () => {
 
   const handleInput = (element) => {
     const fieldId = element.field_id;
+    const type = element.options[0] ? element.options[0] : 'text';
     return (
       <RegularInput
         controlId={fieldId}
         label={element.field}
-        type={element.input_type ? element.input_type : "text"}
+        type={type}
         value={fields[fieldId]}
         onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, e.target.value) }}
         overlay={renderTooltip(element.comment)}
@@ -235,8 +236,7 @@ const BasicCalculator = () => {
       <RegularSwitch
         controlId={fieldId}
         label={element.field}
-        value={fields[fieldId]}
-        onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, e.target.value) }}
+        onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, fieldId[fieldId] ? !fieldId[fieldId] : false) }}
         overlay={renderTooltip(element.comment)}
       />
     )
