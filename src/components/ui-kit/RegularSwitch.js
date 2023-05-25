@@ -17,7 +17,6 @@ const RegularSwitch = ({ onChange, value, label, controlId, overlay, overlayPosi
             key={nanoid()}
             type="switch"
             label={label}
-            value={value}
             onChange={onChange}
             className={"regular-switch-form-control " + (switchClass ? switchClass : "")}
           />
