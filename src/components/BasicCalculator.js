@@ -237,13 +237,16 @@ const BasicCalculator = () => {
 
   const handleCheckbox = (element) => {
     const fieldId = element.field_id;
+    if (fields[fieldId] === undefined) {
+      updateFieldsStates(fieldId, false)
+    }
     return (
       <RegularCheckbox
         controlId={fieldId}
         label={element.comment}
         formLabel={element.field}
         value={fields[fieldId]}
-        onChange={(e) => { console.log(e); updateFieldsStates(fieldId, !e.target.checked) }}
+        onChange={() => { updateFieldsStates(fieldId, !fields[fieldId]) }}
         overlay={renderTooltip(element.comment)}
       />
     )
