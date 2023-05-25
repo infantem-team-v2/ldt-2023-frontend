@@ -9,4 +9,5 @@
   border-color: var(--main-acsent) !important;
   background-color: var(--main-white) !important;
   background-size: 65% !important;
+  box-shadow: none !important;
 }

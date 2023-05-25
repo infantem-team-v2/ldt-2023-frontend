@@ -237,15 +237,13 @@ const BasicCalculator = () => {
 
   const handleCheckbox = (element) => {
     const fieldId = element.field_id;
-    console.log("Value: ", fields[fieldId], "\nBooleanValue: ", Boolean(fields[fieldId]), "!Bv", !Boolean(fields[fieldId]))
     return (
       <RegularCheckbox
         controlId={fieldId}
         label={element.comment}
         formLabel={element.field}
-        value={testState}
-        onChange={() => { setTestState(!Boolean(testState)) }}
-        // onChange={() => { updateFieldsStates(fieldId, !Boolean(fields[fieldId])) }}
+        value={fields[fieldId]}
+        onChange={() => { updateFieldsStates(fieldId, !Boolean(fields[fieldId])) }}
         overlay={renderTooltip(element.comment)}
       />
     )

@@ -9,7 +9,6 @@ import '../../styles/RegularCheckbox.css'
 
 const RegularCheckbox = ({ onChange, value, label, controlId, overlay, overlayPosition = "top",
   formLabel = undefined, formClass = undefined, checkboxClass = undefined }) => {
-  console.log("REGULACHBVAL", value)
   return (
     <OverlayTrigger placement={overlayPosition} overlay={overlay} key={nanoid()} >
       <Form.Group controlId={controlId} className="regular-checkbox-form-group" key={nanoid()}>
@@ -19,7 +18,7 @@ const RegularCheckbox = ({ onChange, value, label, controlId, overlay, overlayPo
             key={nanoid()}
             className={"form-check-input regular-checkbox-form-control " + (checkboxClass ? checkboxClass : "")}
             type="checkbox"
-            checked={value}
+            checked={value === undefined ? false : value}
             onChange={onChange}
           />
           <label className="form-check-label" key={nanoid()}>
