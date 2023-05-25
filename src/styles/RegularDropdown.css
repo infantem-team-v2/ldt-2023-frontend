@@ -1,6 +1,7 @@
 .regular-dropdown-form-group {
   background-color: var(--main-white) !important;
   margin: calc(var(--index)*0.7) 0;
+  max-width: 80%;
 }
 
 .regular-dropdown-form-group .form-select {
