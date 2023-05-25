@@ -29,7 +29,8 @@ const BasicCalculator = () => {
   useEffect(() => {
     api.get("/ui/calc/element/active").then((response) => {
       if (response.status >= 200 && response.status < 300) {
-        setData(JSON.parse(response.data));
+        console.log(typeof response.data)
+        setData(response.data);
       }
     }).catch((err) => { return err; });
   }, []);
@@ -95,12 +96,21 @@ const BasicCalculator = () => {
     e.preventDefault();
     const newStep = currentStep + 1
     if (newStep > categories.length) {
-      const postedData = {}
+      let postedData = {};
+      Object.keys(fields).forEach((key) => {
+        if (fields[key] !== undefined) {
+          postedData[key] = fields[key];
+        } else {
+          postedData[key] = null;
+        }
+      });
       api.post("/calc/base", postedData).then((response) => {
+        HTMLFormControlsCollection.log(response);
         if (response.status >= 200 && response.status < 300) {
           navigate('/report' + response.data.id ? response.data.id : '1');
         }
       }).catch((err) => {
+        console.log(err);
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
