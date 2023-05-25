@@ -56,6 +56,7 @@ const BasicCalculator = () => {
   useEffect(() => {
     console.log(fields);
     console.log(categories);
+    setComponents();
   }, [fields, categories]);
 
 
