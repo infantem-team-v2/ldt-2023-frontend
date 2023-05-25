@@ -16,6 +16,7 @@ import AdminForm from './components/Pages/AdminForm';
 import ReportPage from './components/Pages/ReportPage';
 import F404Page from './components/Pages/F404Page';
 import AccountPage from './components/Pages/AccountPage';
+import DocumentsPage from './components/Pages/DocumentsPage';
 
 import api from './services/api';
 import Swal from 'sweetalert2';
@@ -98,8 +99,9 @@ function App() {
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/admin' element={<AdminForm />} />
-        <Route path='/report/:id' element={<ReportPage />} />
         <Route path='/account' element={<AccountPage />} />
+        <Route path='/documents' element={<DocumentsPage />} />
+        <Route path='/report/:id' element={<ReportPage />} />
         <Route path='*' element={<F404Page />} />
       </Routes>
       <Footer />

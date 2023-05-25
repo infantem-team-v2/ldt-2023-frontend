@@ -21,6 +21,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-margin-top: 15vh;
 }
 
 h1,
@@ -37,4 +38,9 @@ h6 {
 p,
 div {
   font-family: 'SF Pro Display', 'Montserrat', sans-serif;
+}
+
+ul,
+li {
+  list-style: none;
 }

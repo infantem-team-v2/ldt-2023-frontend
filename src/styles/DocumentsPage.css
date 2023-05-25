@@ -1,0 +1,29 @@
+.h1-docs {
+  font-size: calc(var(--index)*2.5);
+}
+
+.point {
+  cursor: pointer;
+  color: var(--secondary-gray-2) !important;
+  font-size: calc(var(--index)*1);
+}
+
+.docs-li {
+  margin: calc(var(--index)*0.6) 0;
+  font-weight: normal !important;
+}
+
+.choosed-point {
+  color: var(--main-black) !important;
+  font-size: calc(var(--index)*1.6) !important;
+}
+
+.docs-col {
+  align-self: end;
+}
+
+.docs-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

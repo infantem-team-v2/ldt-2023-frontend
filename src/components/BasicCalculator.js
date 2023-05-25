@@ -177,7 +177,7 @@ const BasicCalculator = () => {
 
           <div className='calculator-control-block'>
             {currentStep === categories.length ? <p className='p-logo calculator-sign'>
-              Нажимая на кнопку вы принимайте условия <a href="https://www.google.com/">пользовательского соглашения</a>
+              Нажимая на кнопку вы принимайте условия <a href="/documents">пользовательского соглашения</a>
             </p> : <></>}
             <RegularButton
               className='mt-2'

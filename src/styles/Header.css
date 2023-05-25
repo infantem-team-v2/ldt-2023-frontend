@@ -2,7 +2,7 @@
 
 
 
-a {
+.header-navbar-el a {
   font-family: 'SF Pro Display', 'Montserrat', sans-serif;
   color: var(--main-black) !important;
   font-weight: 700 !important;
