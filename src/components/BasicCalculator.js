@@ -110,7 +110,7 @@ const BasicCalculator = () => {
         }
       });
       api.post("/calc/base", postedData).then((response) => {
-        HTMLFormControlsCollection.log(response);
+        console.log(response);
         if (response.status >= 200 && response.status < 300) {
           navigate('/report' + response.data.id ? response.data.id : '1');
         }
