@@ -30,7 +30,10 @@ const UserDataBlock = () => {
         limit: 10
       }
     }).catch(err => { setError(true); console.log(err) }).then((res) => {
-      setUserData(res.data);
+      if (res && res.status >= 200 && res.status < 300) {
+        setUserData(res.data);
+      }
+
     });
   }, []);
 

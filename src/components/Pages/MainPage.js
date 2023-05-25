@@ -4,6 +4,8 @@ import BasicCalculator from "../BasicCalculator";
 
 import { ReactComponent as HeaderThing } from '../../asserts/header_thing.svg';
 
+import PieChart from "../PieChart";
+
 import '../../styles/MainPage.css';
 
 const MainPage = () => {
@@ -18,7 +20,7 @@ const MainPage = () => {
         </div>
         <h1 className="h1-main">Расчитай вложения <HeaderThing /></h1>
 
-
+        {/* <PieChart /> */}
         <BasicCalculator />
         <DistrictsMap />
       </div>
