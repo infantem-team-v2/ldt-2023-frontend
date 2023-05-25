@@ -22,6 +22,9 @@ const BasicCalculator = () => {
   const [resultsElements, setResultsElements] = useState();
   const [currentStep, setCurrentStep] = useState(1);
   const [data, setData] = useState();
+  const [testState, setTestState] = useState(undefined);
+
+
   const navigate = useNavigate();
 
 
@@ -240,8 +243,9 @@ const BasicCalculator = () => {
         controlId={fieldId}
         label={element.comment}
         formLabel={element.field}
-        value={Boolean(fields[fieldId])}
-        onChange={() => { updateFieldsStates(fieldId, !Boolean(fields[fieldId])) }}
+        value={Boolean(testState)}
+        onChange={() => { setTestState(!Boolean(testState)) }}
+        // onChange={() => { updateFieldsStates(fieldId, !Boolean(fields[fieldId])) }}
         overlay={renderTooltip(element.comment)}
       />
     )
