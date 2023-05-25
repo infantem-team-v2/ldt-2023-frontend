@@ -112,7 +112,8 @@ const BasicCalculator = () => {
       api.post("/calc/base", postedData).then((response) => {
         console.log(response);
         if (response.status >= 200 && response.status < 300) {
-          navigate('/report' + response.data.id ? response.data.id : '1');
+          const id = response.data.id ? response.data.id : '1';
+          navigate(`/report/${id}`);
         }
       }).catch((err) => {
         console.log(err);
