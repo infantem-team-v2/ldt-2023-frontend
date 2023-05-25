@@ -8,7 +8,7 @@ import '../../styles/RegularDropdown.css'
 
 
 
-const RegularDropdown = ({ onChange, value, controlId, overlay, innerData,
+const RegularDropdown = ({ onChange, value, controlId, overlay, innerData, label,
   overlayPosition = "top", formLabel = undefined, formClass = undefined, dropdownClass = undefined }) => {
   return (
     <>
@@ -20,7 +20,7 @@ const RegularDropdown = ({ onChange, value, controlId, overlay, innerData,
             onChange={onChange}
             className={"regular-dropdown-form-control " + (dropdownClass ? dropdownClass : "")}
           >
-            <option key={nanoid()} value="">{controlId}</option>
+            <option key={nanoid()} value="">{label}</option>
             {innerData.map((option) => {
               return (
                 <option
