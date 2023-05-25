@@ -39,9 +39,9 @@ const BasicCalculator = () => {
   // firs render
   useEffect(() => {
     if (data) {
-      setInitialCategories();
-      setInitialFields();
-      setComponents();
+      setInitialCategories(data);
+      setInitialFields(data);
+      setComponents(data);
     }
   }, [data]);
 
@@ -56,17 +56,16 @@ const BasicCalculator = () => {
   useEffect(() => {
     console.log(fields);
     console.log(categories);
-    setComponents();
   }, [fields, categories]);
 
 
 
-  const setInitialCategories = () => {
+  const setInitialCategories = (data) => {
     const initialsCategories = data.categories.map(category => category.category_id)
     setCategories(initialsCategories);
   }
 
-  const setInitialFields = () => {
+  const setInitialFields = (data) => {
     const newFields = {};
 
     data.categories.forEach((category) => {
@@ -80,7 +79,7 @@ const BasicCalculator = () => {
 
 
 
-  const setComponents = () => {
+  const setComponents = (data) => {
     const innerCategories = data.categories.map((category) => {
       return handleCategory(category)
     });
