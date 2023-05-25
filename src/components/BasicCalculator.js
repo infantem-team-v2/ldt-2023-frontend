@@ -13,6 +13,7 @@ import api from '../services/api';
 import RegularSwitch from './ui-kit/RegularSwitch';
 import RegularDropdown from './ui-kit/RegularDropdown';
 import Swal from 'sweetalert2';
+import RegularCheckbox from './ui-kit/RegularCheckbox';
 
 const BasicCalculator = () => {
 
@@ -233,9 +234,10 @@ const BasicCalculator = () => {
   const handleCheckbox = (element) => {
     const fieldId = element.field_id;
     return (
-      <RegularSwitch
+      <RegularCheckbox
         controlId={fieldId}
         label={element.field}
+        value={fields[fieldId] ? fields[fieldId] : false}
         onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, fieldId[fieldId] ? !fieldId[fieldId] : false) }}
         overlay={renderTooltip(element.comment)}
       />
