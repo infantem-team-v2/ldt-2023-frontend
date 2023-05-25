@@ -22,7 +22,6 @@ const BasicCalculator = () => {
   const [resultsElements, setResultsElements] = useState();
   const [currentStep, setCurrentStep] = useState(1);
   const [data, setData] = useState();
-  const [testState, setTestState] = useState(undefined);
 
 
   const navigate = useNavigate();
@@ -33,7 +32,6 @@ const BasicCalculator = () => {
   useEffect(() => {
     api.get("/ui/calc/element/active").then((response) => {
       if (response.status >= 200 && response.status < 300) {
-        console.log(typeof response.data)
         setData(response.data);
       }
     }).catch((err) => { return err; });
@@ -114,13 +112,11 @@ const BasicCalculator = () => {
         }
       });
       api.post("/calc/base", postedData).then((response) => {
-        console.log(response);
         if (response.status >= 200 && response.status < 300) {
           const id = response.data.id ? response.data.id : '1';
           navigate(`/report/${id}`);
         }
       }).catch((err) => {
-        console.log(err);
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -246,7 +242,7 @@ const BasicCalculator = () => {
         label={element.comment}
         formLabel={element.field}
         value={fields[fieldId]}
-        onChange={() => { updateFieldsStates(fieldId, !fields[fieldId]) }}
+        onChange={() => { console.log(fields[fieldId]); updateFieldsStates(fieldId, !fields[fieldId]) }}
         overlay={renderTooltip(element.comment)}
       />
     )
