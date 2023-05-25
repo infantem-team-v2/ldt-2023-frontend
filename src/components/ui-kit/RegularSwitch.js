@@ -11,13 +11,12 @@ const RegularSwitch = ({ onChange, value, label, controlId, overlay, overlayPosi
   return (
     <>
       <OverlayTrigger placement={overlayPosition} overlay={overlay} key={nanoid()} >
-        <Form.Group controlId={controlId} className="regular-switch-form-group" key={nanoid()}>
+        <Form.Group controlId={controlId} className="regular-switch-form-group" key={nanoid()} onClick={onChange}>
           {formLabel ? <Form.Label className="regular-modal-form-label" key={nanoid()}>{formLabel}</Form.Label> : <></>}
           <Form.Check
             key={nanoid()}
             type="switch"
             label={label}
-            onClick={onChange}
             className={"regular-switch-form-control " + (switchClass ? switchClass : "")}
           />
         </Form.Group>
