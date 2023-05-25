@@ -52,6 +52,12 @@ const BasicCalculator = () => {
     }
   }, [currentStep]);
 
+  // rerendering fields
+  useEffect(() => {
+    console.log(fields);
+    console.log(categories);
+  }, [fields, categories]);
+
 
 
   const setInitialCategories = () => {
