@@ -240,7 +240,7 @@ const BasicCalculator = () => {
         controlId={fieldId}
         label={element.field}
         value={Boolean(fields[fieldId])}
-        onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, !Boolean(fields[fieldId])) }}
+        onChange={() => { updateFieldsStates(fieldId, !Boolean(fields[fieldId])) }}
         overlay={renderTooltip(element.comment)}
       />
     )
