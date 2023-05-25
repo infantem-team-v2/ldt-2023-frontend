@@ -1,9 +1,12 @@
 .regular-checkbox-form-control {
   color: var(--main-acsent) !important;
   border-color: var(--main-acsent) !important;
+  padding: calc(var(--index)*0.4) !important;
 }
 
 .regular-checkbox-form-control:checked {
   background-image: url('../asserts/checkbox-arrow.svg') !important;
   border-color: var(--main-acsent) !important;
+  background-color: var(--main-white) !important;
+  background-size: 65% !important;
 }
