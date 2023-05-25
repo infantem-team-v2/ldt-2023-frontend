@@ -237,8 +237,8 @@ const BasicCalculator = () => {
       <RegularCheckbox
         controlId={fieldId}
         label={element.field}
-        value={fields[fieldId]}
-        onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, !fields[fieldId]) }}
+        value={Boolean(fields[fieldId])}
+        onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, !Boolean(fields[fieldId])) }}
         overlay={renderTooltip(element.comment)}
       />
     )

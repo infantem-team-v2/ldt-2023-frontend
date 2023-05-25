@@ -44,7 +44,7 @@ const Header = (props) => {
       <Navbar.Collapse id="basic-navbar-nav " className='text-center me-5'>
         <Navbar.Brand href="#home" className='ms-auto me-auto'>
           {/* <HeartLogo className='d-inline-block align-top' /> */}
-          <span className='d-inline-block align-middle header-logo'>LOGO</span>
+          <span className='d-inline-block align-middle header-logo' onClick={() => navigate('/')}>LOGO</span>
         </Navbar.Brand>
         <Nav onSelect={handleSelect} >
           <div className='header-control-block'>
