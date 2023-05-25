@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+
+import { ReactComponent as Docs } from '../asserts/documents.svg';
 import { ReactComponent as LogIn } from '../asserts/in.svg';
 import { ReactComponent as LogOut } from '../asserts/out.svg';
 import { ReactComponent as Documents } from '../asserts/documents.svg';
@@ -10,6 +13,8 @@ import '../styles/Header.css';
 const Header = (props) => {
   const [expanded, setExpanded] = useState(false);
 
+  const navigate = useNavigate();
+
   const handleSelect = () => {
     setExpanded(!expanded);
   };
@@ -18,6 +23,7 @@ const Header = (props) => {
     if (props.isLogedIn) {
       return (
         <>
+          <Nav.Link onClick={navigate('/account')}><Docs className='me-1' />Личный кабинет</Nav.Link>
           <Nav.Link onClick={props.logOut}><LogOut className='me-1' />Выйти</Nav.Link>
         </>
       )
