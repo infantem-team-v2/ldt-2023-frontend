@@ -240,8 +240,20 @@ const BasicCalculator = () => {
         overlay={renderTooltip(element.comment)}
       />
     )
-
   };
+
+  const handleSwitch = (element) => {
+    const fieldId = element.field_id;
+    return (
+      <RegularSwitch
+        controlId={fieldId}
+        label={element.field}
+        onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, fieldId[fieldId] ? !fieldId[fieldId] : false) }}
+        overlay={renderTooltip(element.comment)}
+      />
+    )
+  };
+
   const handleSlider = (element) => {
     const fieldId = element.field_id;
     return (
