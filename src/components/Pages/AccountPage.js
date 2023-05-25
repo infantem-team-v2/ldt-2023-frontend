@@ -3,19 +3,20 @@ import React, { useState } from 'react';
 import '../../styles/AccountPage.css';
 
 import ResultsBlock from '../ResultsBlock';
+import UserDataBlock from '../UserDataBlock';
 
-const AccountPage = (props) => {
+const AccountPage = () => {
   const [currentBlock, setCurrentBlock] = useState('data');
 
   return (
     <div className='container main-account-block'>
       <div className='account-control-block '>
-        <p className={currentBlock === 'data' ? 'active' : ''} onClick={() => { setCurrentBlock('data') }}>Данные</p>
-        <p className={currentBlock === 'results' ? 'active' : ''} onClick={() => { setCurrentBlock('results') }}>Результаты</p>
+        <p className={currentBlock === 'data' ? 'ac-active' : ''} onClick={() => { setCurrentBlock('data') }}>Данные</p>
+        <p className={currentBlock === 'results' ? 'ac-active' : ''} onClick={() => { setCurrentBlock('results') }}>Результаты</p>
       </div>
-      <div className='div-account '>
+      <div className='div-account'>
         <h1 className='text-white account-header'>Личный кабинет</h1>
-        {currentBlock === 'data' ? <div className='account-data-block'></div> : <ResultsBlock />}
+        {currentBlock === 'data' ? <UserDataBlock /> : <ResultsBlock />}
       </div>
     </div>
   );

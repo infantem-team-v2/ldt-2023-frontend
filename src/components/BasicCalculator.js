@@ -308,7 +308,7 @@ const BasicCalculator = () => {
 
   return (
     <>
-      <ProgressBar range={data ? data.categories.length : 10} current={currentStep} />
+      <ProgressBar range={data ? data.categories.length : 6} current={currentStep} />
       <div className='mb-4 '>
         {resultsElements}
       </div>

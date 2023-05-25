@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import axios from 'axios';
 
 const AdminForm = () => {
   const [login, setLogin] = useState('');
