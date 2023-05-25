@@ -30,7 +30,7 @@ const UserDataBlock = () => {
         limit: 10
       }
     }).catch(err => { setError(true); console.log(err) }).then((res) => {
-      setUserData(res);
+      setUserData(res.data);
     });
   }, []);
 
