@@ -19,12 +19,6 @@ const RegularSwitch = ({ onChange, value, label, controlId, overlay, overlayPosi
             label={label}
             className={"regular-switch-form-control " + (switchClass ? switchClass : "")}
           >
-            <Form.Check.Input
-              key={nanoid()}
-              type="switch"
-              checked={value}
-              onChange={onChange}
-            />
           </Form.Check>
         </Form.Group>
       </OverlayTrigger>

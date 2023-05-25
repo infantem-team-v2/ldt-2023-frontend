@@ -1,0 +1,4 @@
+.regular-checkbox-form-control {
+  color: var(--main-accent-color) !important;
+  border-color: var(--main-accent-color) !important;
+}
