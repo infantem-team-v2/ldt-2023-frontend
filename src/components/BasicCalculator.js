@@ -243,8 +243,8 @@ const BasicCalculator = () => {
         controlId={fieldId}
         label={element.comment}
         formLabel={element.field}
-        value={testState}
-        onChange={() => { setTestState(!testState) }}
+        value={String(testState)}
+        onChange={() => { setTestState(String(!testState)) }}
         // onChange={() => { updateFieldsStates(fieldId, !Boolean(fields[fieldId])) }}
         overlay={renderTooltip(element.comment)}
       />

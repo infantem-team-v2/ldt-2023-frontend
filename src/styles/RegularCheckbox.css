@@ -4,6 +4,6 @@
 }
 
 .regular-checkbox-form-control:checked {
-  background-color: var(--main-acsent) !important;
+  background-image: url('../asserts/checkbox-arrow.svg') !important;
   border-color: var(--main-acsent) !important;
 }
