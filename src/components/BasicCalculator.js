@@ -181,7 +181,8 @@ const BasicCalculator = () => {
               Нажимая на кнопку вы принимайте условия <a href="https://www.google.com/">пользовательского соглашения</a>
             </p> : <></>}
             <RegularButton
-              text="Submit"
+              className='mt-2'
+              text={currentStep === categories.length ? 'Получить результат' : 'Далее'}
               onClick={handleNextStep}
             />
           </div>
