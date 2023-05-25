@@ -48,15 +48,14 @@ const BasicCalculator = () => {
   // rerendering components
   useEffect(() => {
     if (data) {
-      setComponents();
+      setComponents(data);
     }
-  }, [currentStep]);
+  }, [currentStep, categories]);
 
   // rerendering fields
   useEffect(() => {
     console.log(fields);
-    console.log(categories);
-  }, [fields, categories]);
+  }, [fields]);
 
 
 
