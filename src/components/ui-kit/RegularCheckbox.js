@@ -7,6 +7,7 @@ import { nanoid } from 'nanoid';
 
 import '../../styles/RegularCheckbox.css'
 
+
 const RegularCheckbox = ({ onChange, value, label, controlId, overlay, overlayPosition = "top",
   formLabel = undefined, formClass = undefined, checkboxClass = undefined }) => {
   return (

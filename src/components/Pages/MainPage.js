@@ -1,5 +1,4 @@
 import React from "react";
-import DistrictsMap from "../DistrictsMap";
 import BasicCalculator from "../BasicCalculator";
 
 import { ReactComponent as HeaderThing } from '../../asserts/header_thing.svg';
@@ -21,7 +20,6 @@ const MainPage = () => {
         <h1 className="h1-main">Расчитай вложения <HeaderThing /></h1>
         {currentScreen <= 768 ? < div className="p-logo secondary-head-sign">Быстрый и удобный инструмент для московских предпринимателей, расчитайте инвестиции в два клика!</div> : <></>}
         < BasicCalculator />
-        <DistrictsMap />
       </div >
     </>
   )

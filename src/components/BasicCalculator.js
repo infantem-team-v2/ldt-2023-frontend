@@ -58,7 +58,7 @@ const BasicCalculator = () => {
 
   // rerendering fields
   useEffect(() => {
-    console.log(fields);
+    console.log("FIELDS ", fields);
   }, [fields]);
 
 
@@ -73,10 +73,12 @@ const BasicCalculator = () => {
 
     data.categories.forEach((category) => {
       category.elements.forEach((element) => {
+        console.log("TYPE OF FIELD_ID", typeof element.field_id);
         newFields[element.field_id] = undefined;
       })
     });
 
+    console.log("NEW FIELDS", newFields)
     setFields(newFields);
   }
 
@@ -94,6 +96,7 @@ const BasicCalculator = () => {
 
   const updateFieldsStates = (fieldId, newValue) => {
     setFields(prevState => {
+      console.log("PREV STATE", prevState);
       return {
         ...prevState,
         [fieldId]: newValue
@@ -235,17 +238,13 @@ const BasicCalculator = () => {
 
   const handleCheckbox = (element) => {
     const fieldId = element.field_id;
-    // if (fields[fieldId] === undefined) {
-    //   updateFieldsStates(fieldId, false)
-    // }
     return (
       <RegularCheckbox
         controlId={fieldId}
         label={element.comment}
         formLabel={element.field}
         value={fields[fieldId]}
-        // по консол логу приходит андефайнед
-        onChange={() => { console.log(fields[fieldId]); updateFieldsStates(fieldId, !fields[fieldId]) }}
+        onChange={() => { updateFieldsStates(fieldId, !fields[fieldId]) }}
         overlay={renderTooltip(element.comment)}
       />
     )

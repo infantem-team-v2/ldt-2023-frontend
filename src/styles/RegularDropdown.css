@@ -4,6 +4,12 @@
   max-width: 80%;
 }
 
+.regular-dropdown-form-group .btn-group .dropdown-menu {
+  overflow-x: scroll;
+  max-width: 90vw !important;
+
+}
+
 .regular-dropdown-form-group .form-select {
   border-color: var(--main-acsent) !important;
   background-color: var(--main-white) !important;
@@ -14,4 +20,11 @@
 .regular-dropdown-form-group .form-select:focus {
   border-color: var(--main-acsent) !important;
   box-shadow: none !important;
+}
+
+@media screen and (max-width: 768px) {
+  .regular-dropdown-form-group .btn-group .dropdown-menu {
+    width: 90vw !important;
+    max-height: 50vh !important;
+  }
 }
