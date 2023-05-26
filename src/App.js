@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import Header from './components/Header';
@@ -33,6 +33,8 @@ function App() {
   const [showEnterEmailToResetModal, setShowEnterEmailToResetModal] = useState(false);
 
   const [isLogedIn, setIsLogedIn] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     api.get('/auth/check').catch((err) => {
@@ -74,6 +76,7 @@ function App() {
           icon: 'success',
           title: 'Вы вышли из аккаунта',
         })
+        navigate('/')
       }
     }).catch((err) => {
       if (err) {
