@@ -20,10 +20,42 @@
 
 .docs-col {
   align-self: end;
+  width: 50%;
 }
 
 .docs-row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+  .h1-docs {
+    font-size: calc(var(--index)*1.5);
+  }
+
+  .point {
+    font-size: calc(var(--index)*0.8);
+  }
+
+  .docs-li {
+    font-size: calc(var(--index)*0.8);
+  }
+
+  .choosed-point {
+    font-size: calc(var(--index)*1.2) !important;
+  }
+
+  .docs-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .docs-col {
+    width: 100%;
+  }
+
 }

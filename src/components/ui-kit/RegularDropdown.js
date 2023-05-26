@@ -20,7 +20,7 @@ const RegularDropdown = ({ onChange, value, controlId, overlay, innerData, label
             onChange={onChange}
             className={"regular-dropdown-form-control " + (dropdownClass ? dropdownClass : "")}
           >
-            <option key={nanoid()} value="">{label}</option>
+            <option key={nanoid()} value={undefined}>{label}</option>
             {innerData.map((option) => {
               return (
                 <option

@@ -11,6 +11,7 @@ import '../../styles/SignUpModal.css'
 
 import { ReactComponent as CloseButton } from '../../asserts/close_white.svg';
 import Swal from 'sweetalert2';
+import RegularModalDropdown from '../ui-kit/RegularModalDropdown';
 
 const SignUpModal = ({ show, onHide, setIsLogedIn }) => {
   const [step, setStep] = useState(1);
@@ -29,6 +30,19 @@ const SignUpModal = ({ show, onHide, setIsLogedIn }) => {
   const [economicActivity, setEconomicActivity] = useState('');
 
   const [formErrors, setFormErrors] = useState({});
+
+  const organizationTypes = [
+    'Пищевая промышленность',
+    'Производство строительных материалов',
+    'Производство металлургической продукции',
+    'Производство машин и оборудования',
+    'Производство электронной и оптической продукции',
+    'Производство автомобилей и автокомпонентов',
+    'Производство мебели',
+    'Производство одежды',
+    'Производство обуви',
+    'Производство игр и игрушек',
+  ]
 
   // Validation
   // -----------------------------
@@ -303,19 +317,20 @@ const SignUpModal = ({ show, onHide, setIsLogedIn }) => {
                 className={renderInputErrorClass('inn')}
                 renderInputError={renderInputError('inn')}
               />
-              <RegularModalFormControl
-                label={"Вид деятельности"}
-                controlId={"economicActivity"}
-                type={"text"}
-                placeholder={"Введите вид деятельности"}
+              <RegularModalDropdown
+                formLabel={"Тип деятельности"}
+                label={"Отрасль производства"}
+                controlId={"organizationType"}
                 value={economicActivity}
                 onChange={(e) => setEconomicActivity(e.target.value)}
+                innerData={organizationTypes}
+                overlay={"Выберите тип организации"}
               />
               <RegularModalFormControl
-                label={"Ccылка на веб-сайт организации"}
+                label={"Cайт организации"}
                 controlId={"siteLink"}
                 type={"text"}
-                placeholder={"Введите ссылку на веб-сайт"}
+                placeholder={"Введите ссылку на сайт"}
                 value={siteLink}
                 onChange={(e) => setSiteLink(e.target.value)}
               />

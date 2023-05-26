@@ -1,0 +1,29 @@
+.regular-modal-dropdown-form-group {
+  background-color: var(--main-black) !important;
+  color: var(--main-acsent) !important;
+  border-color: var(--main-acsent) !important;
+  box-shadow: none !important;
+}
+
+.regular-modal-dropdown-form-group .form-select {
+  border-color: var(--main-acsent) !important;
+  background-color: var(--main-black) !important;
+  color: var(--main-acsent) !important;
+  background-image: url('../asserts/dropdown-arrow.svg') !important;
+  background-size: calc(var(--index)*0.8) !important;
+  padding: 1.5vh !important;
+}
+
+
+.regular-modal-dropdown-form-group .form-select:focus,
+.regular-modal-dropdown-form-group .form-select:active {
+  border-color: var(--main-acsent) !important;
+  box-shadow: none !important;
+}
+
+.modal-dropdown-option {
+  background-color: var(--main-black) !important;
+  color: var(--main-acsent) !important;
+  box-shadow: none !important;
+  border: none !important;
+}

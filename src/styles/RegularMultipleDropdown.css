@@ -1,0 +1,24 @@
+.regular-multiple-dropdown-checkbox {
+  color: var(--main-acsent);
+}
+
+.regular-multiple-dropdown-checkbox .form-check-input {
+  margin-left: 0.2vw !important;
+  margin-right: 0.2vw !important;
+  box-shadow: none !important;
+
+}
+
+.regular-multiple-dropdown-checkbox .form-check-input:checked {
+  color: var(--main-acsent);
+  background-color: var(--main-acsent) !important;
+  border-color: var(--main-acsent) !important;
+  box-shadow: none !important;
+}
+
+.multi-dropdown-toggle {
+  color: var(--main-acsent);
+  background-color: var(--main-acsent) !important;
+  border-color: var(--main-acsent) !important;
+  box-shadow: none !important;
+}

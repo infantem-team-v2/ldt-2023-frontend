@@ -4,10 +4,9 @@ import BasicCalculator from "../BasicCalculator";
 
 import { ReactComponent as HeaderThing } from '../../asserts/header_thing.svg';
 
-import PieChart from "../PieChart";
-
 import '../../styles/MainPage.css';
-import LinearChart from "../LinearChart";
+
+import RegularMultipleDropdown from "../ui-kit/RegularMultipleDropdown";
 
 const MainPage = () => {
 
@@ -20,8 +19,6 @@ const MainPage = () => {
           <div className="p-logo secondary-head-sign">Быстрый и удобный инструмент для московских предпринимателей, расчитайте инвестиции в два клика!</div>
         </div>
         <h1 className="h1-main">Расчитай вложения <HeaderThing /></h1>
-
-
         < BasicCalculator />
         <DistrictsMap />
       </div>

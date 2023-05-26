@@ -29,3 +29,31 @@
   text-align: right !important;
   max-height: 10vh;
 }
+
+@media screen and (max-width: 768px) {
+  .h1-main {
+    font-size: calc(var(--index)*4);
+    line-height: calc(var(--index)*0.2) !important;
+    margin-top: 15vh;
+  }
+
+  .h1-main svg {
+    width: 10%;
+  }
+
+  .p-logo {
+    font-size: calc(var(--index)*1.2);
+    line-height: 24px;
+  }
+
+  .secondary-head-sign {
+    width: 50%;
+    text-align: right !important;
+    max-height: 10vh;
+  }
+
+  .p-logo-div {
+    margin-left: 0;
+
+  }
+}

@@ -32,8 +32,8 @@ const DocumentsPage = () => {
 
   return (
     <Container>
-      <Row className='docs-row'>
-        <Col md={3} className='position-static'>
+      <div className='docs-row'>
+        <Col md={3} className='position-static docs-col-1'>
           <h1 className='h1-docs'>Документы</h1>
           <ul className='p-0'>
             {points.map((point, index) => (
@@ -55,7 +55,7 @@ const DocumentsPage = () => {
           </ul>
 
         </Col>
-        <Col md={9} className='w-50 docs-col' >
+        <div className='docs-col' >
           <div className='text-left'>
             <h2 id='p1'>1. Общие положения</h2>
             <p>1.1.Настоящее пользовательское соглашение(далее по тексту — «Соглашение») определяет
@@ -139,8 +139,8 @@ const DocumentsPage = () => {
               блогах и аккаунтах Владельца Сайта на сторонних ресурсах.
             </p>
           </div>
-        </Col>
-      </Row>
+        </div>
+      </div>
 
     </Container>
   );
