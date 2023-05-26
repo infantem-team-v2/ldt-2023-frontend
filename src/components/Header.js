@@ -23,8 +23,8 @@ const Header = (props) => {
     if (props.isLogedIn) {
       return (
         <>
-          <Nav.Link onClick={() => navigate('/account')}><LogIn className='me-1' />Личный кабинет</Nav.Link>
           <Nav.Link onClick={props.logOut}><LogOut className='me-1' />Выйти</Nav.Link>
+          <RegularButton onClick={() => navigate('/account')} text={<>Личный кабинет</>} className='header-reg-button' />
         </>
       )
     } else {
