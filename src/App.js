@@ -38,13 +38,11 @@ function App() {
 
   useEffect(() => {
     api.get('/auth/check').catch((err) => {
-      console.log("ERR", err)
       if (err) {
         setIsLogedIn(false)
       }
     }).then((res) => {
-      console.log("RES", res)
-      if (res && res.status >= 200 < 300) {
+      if (res && res.status >= 200 && res.status < 300) {
         setIsLogedIn(true)
       } else {
         setIsLogedIn(false)
@@ -69,8 +67,8 @@ function App() {
 
   const logOut = (e) => {
     e.preventDefault();
-    api.delete('/auth/sign/out', { a: 1 }).then((res) => {
-      if (res && res.status >= 200 < 300) {
+    api.delete('/auth/sign/out', { ok: true }).then((res) => {
+      if (res && res.status && res.status >= 200 && res.status < 300) {
         setIsLogedIn(false)
         Swal.fire({
           icon: 'success',

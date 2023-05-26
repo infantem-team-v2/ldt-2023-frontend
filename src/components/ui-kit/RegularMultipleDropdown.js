@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ButtonGroup, Dropdown, Form, OverlayTrigger } from 'react-bootstrap';
 
 import { nanoid } from 'nanoid';
 
 import '../../styles/RegularMultipleDropdown.css';
 
-const RegularMultipleDropdown = ({ onChange, value, controlId, overlay, innerData, label,
-  overlayPosition = "top", formLabel = undefined, formClass = undefined, dropdownClass = undefined }) => {
-  const [selectedOptions, setSelectedOptions] = useState([]);
+const RegularMultipleDropdown = ({ selectedOptions, setSelectedOptions, controlId, overlay, innerData, label,
+  overlayPosition = "top", formLabel = undefined, formClass = undefined, }) => {
+
+
 
   const handleOptionChange = (optionValue) => {
     const newSelectedOptions = [...selectedOptions];
@@ -34,9 +35,9 @@ const RegularMultipleDropdown = ({ onChange, value, controlId, overlay, innerDat
                   type="checkbox"
                   label={option}
                   //selectedOptions.includes(option)
-                  checked={value}
+                  checked={selectedOptions.includes(option)}
                   //() => handleOptionChange(option)
-                  onChange={onChange}
+                  onChange={handleOptionChange}
                   className='regular-multiple-dropdown-checkbox'
                 />
               ))}

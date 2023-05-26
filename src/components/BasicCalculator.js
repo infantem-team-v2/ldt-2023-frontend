@@ -7,13 +7,15 @@ import { useNavigate } from 'react-router-dom';
 import RegularButton from './ui-kit/RegularButton';
 import ProgressBar from './ui-kit/ProgressBar';
 import RegularInput from './ui-kit/RegularInput';
+import RegularMultipleDropdown from './ui-kit/RegularMultipleDropdown';
+import RegularCheckbox from './ui-kit/RegularCheckbox';
+import RegularSwitch from './ui-kit/RegularSwitch';
+import RegularDropdown from './ui-kit/RegularDropdown';
 
 import '../styles/BasicCalculator.css';
 import api from '../services/api';
-import RegularSwitch from './ui-kit/RegularSwitch';
-import RegularDropdown from './ui-kit/RegularDropdown';
 import Swal from 'sweetalert2';
-import RegularCheckbox from './ui-kit/RegularCheckbox';
+
 
 const BasicCalculator = () => {
 
@@ -282,24 +284,16 @@ const BasicCalculator = () => {
 
   const handleDropdownMultiselect = (element) => {
     const fieldId = element.field_id;
+    fields[fieldId] = fields[fieldId] ? fields[fieldId] : [];
     return (
-      <Form.Group key={nanoid()}>
-        <OverlayTrigger placement="top" overlay={renderTooltip(element.comment)} key={nanoid()}>
-          <Form.Select
-            value={fields[fieldId]}
-            onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, e.target.value) }}
-          >
-            {element.options.map((option) => {
-              return (
-                <option
-                  key={nanoid()}
-                  value={option}
-                >{option}</option>
-              )
-            })}
-          </Form.Select>
-        </OverlayTrigger>
-      </Form.Group>
+      <RegularMultipleDropdown
+        controlId={fieldId}
+        label={element.field}
+        selectedOptions={fields[fieldId]}
+        setSelectedOptions={(values) => { updateFieldsStates(fieldId, values) }}
+        overlay={renderTooltip(element.comment)}
+        innerData={element.options}
+      />
     )
   };
 

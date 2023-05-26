@@ -13,7 +13,7 @@ const Footer = () => {
     const handleResize = () => setScreenSize(window.innerWidth);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [screenSize]);
 
   const colClassName = screenSize < 768 ? 'footer-col' : "col-md-3 col-sm-6 footer-col";
   const mainRowClassName = screenSize < 768 ? 'footer-main-div' : "row d-flex align-items-space-around text-center footer-main-div";

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 
 
 import '../../styles/ReportPage.css'
@@ -8,7 +7,7 @@ import Report from '../Report';
 import CopyToClipboardButton from '../ui-kit/CopyToClickboardButton';
 
 
-const ReportPage = (props) => {
+const ReportPage = () => {
 
   const [link, setLink] = useState('');
 

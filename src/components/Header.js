@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-import { ReactComponent as Docs } from '../asserts/documents.svg';
 import { ReactComponent as LogIn } from '../asserts/in.svg';
 import { ReactComponent as LogOut } from '../asserts/out.svg';
 import { ReactComponent as Documents } from '../asserts/documents.svg';
