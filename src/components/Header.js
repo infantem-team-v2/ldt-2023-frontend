@@ -24,7 +24,7 @@ const Header = (props) => {
       return (
         <>
           <Nav.Link onClick={props.logOut}><LogOut className='me-1' />Выйти</Nav.Link>
-          <RegularButton onClick={() => navigate('/account')} text={<>Личный кабинет</>} className='header-reg-button' />
+          <RegularButton onClick={() => navigate(0)} text={<>Личный кабинет</>} className='header-reg-button' />
         </>
       )
     } else {
