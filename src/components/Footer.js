@@ -19,8 +19,8 @@ const Footer = () => {
   const mainRowClassName = screenSize < 768 ? 'footer-main-div' : "row d-flex align-items-space-around text-center footer-main-div";
 
   return (
-    <footer className="bg-dark text-light py-3">
-      <div className="container ">
+    <footer className="bg-dark text-light py-3 ">
+      <div className="container">
         <div className="footer-logo">
           <h5>LOGO<span>/INFANTEM</span></h5>
         </div>

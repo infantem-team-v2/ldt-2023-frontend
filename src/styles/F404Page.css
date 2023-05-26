@@ -14,3 +14,10 @@
   mix-blend-mode: multiply;
   filter: brightness(1.2);
 }
+
+@media screen and (max-width: 768px) {
+  .img-404 {
+    width: 50%;
+    margin: calc(var(--index)*2) auto;
+  }
+}

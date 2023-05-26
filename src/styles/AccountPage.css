@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 70vh;
 }
 
 .ac-active {
@@ -74,8 +75,42 @@
   margin-right: calc(var(--index)*1.2);
 }
 
+/* card block css */
+
+.card-result-block {
+  border-color: var(--main-acsent) !important;
+  border-radius: 16px !important;
+  border-width: 1px !important;
+  margin: 0 !important;
+  width: fit-content !important;
+}
+
+.card-result-block a {
+  color: var(--main-acsent) !important;
+}
+
+.card-result-block .card-body {
+  background-color: var(--main-black) !important;
+  border-radius: 16px !important;
+  border-color: var(--main-acsent) !important;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: calc(var(--index)*1.2);
+  align-items: center;
+  margin: calc(var(--index)*1.2);
+  margin-bottom: calc(var(--index)*1.7);
+}
+
 @media screen and (max-width: 1200px) {
   .account-control-block {
     min-width: 70%;
+  }
+
+  .card-container {
+    flex-direction: column;
   }
 }

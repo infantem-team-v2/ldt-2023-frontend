@@ -8,26 +8,52 @@ const ResultsBlock = (props) => {
   const [results, setResults] = useState([]);
   const [error, setError] = useState(false);
 
+
   useEffect(() => {
-    api.get('/results', {
-      params: {
-        page: 1,
-        limit: 10
+    api.get('/account/results', {
+    }).catch(err => {
+      setError(true);
+    }).then((res) => {
+      if (res && res.status >= 200 && res.status < 300) {
+        if (res.data.results) {
+          setResults(res.data.results);
+        }
       }
-    }).catch(err => { setError(true); console.log(err) }).then((res) => {
-      setResults(res);
+
     });
   }, []);
+
+  const renderComponent = () => {
+    if (results && results.length > 0) {
+      return results.map((result) => {
+        return (
+          <div className="card bg-dark card-result-block" >
+            <div className="card-body">
+              <h5 className="card-title text-white">{result.name}<span></span></h5>
+              <h6 className="card-subtitle mb-2 text-muted">Сумма инвестиции: {result.summary}₽</h6>
+              <p className="card-text text-muted">Дата: {result.time_stamp.slice(0, 10)}</p>
+              <a href={"/report/" + result.report_id} className="card-link">Подробнее</a>
+            </div>
+          </div>
+        )
+      })
+    }
+    return (<></>);
+  }
+
+
   if (error) {
     return (<>
-      <div className="alert alert-danger data m-3" role="alert">
+      <div className="alert alert-danger data " role="alert">
         Произошла ошибка при загрузке результатов.
         Возможно вы не авторизованы?
       </div>
     </>)
   }
   return (<>
-    <div></div>
+    <div className='card-container'>
+      {renderComponent()}
+    </div>
   </>)
 };
 

@@ -38,3 +38,11 @@
     font-size: 3vw !important;
   }
 }
+
+@media screen and (max-width: 480px) {
+  footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+  }
+}
