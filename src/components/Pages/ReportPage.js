@@ -9,12 +9,10 @@ import CopyToClipboardButton from '../ui-kit/CopyToClickboardButton';
 
 
 const ReportPage = (props) => {
-  const { id } = useParams();
 
   const [link, setLink] = useState('');
 
   useEffect(() => {
-    // Extracting the whole link
     const link = window.location.href;
     setLink(link);
   }, []);
@@ -27,7 +25,7 @@ const ReportPage = (props) => {
           <h1 className='h1-report'>Результат расчёта</h1>
         </aside>
         <div className="main-section">
-          <Report id={id} />
+          <Report />
         </div>
       </div>
       <div className='d-flex justify-content-between mt-4 mb-4'>

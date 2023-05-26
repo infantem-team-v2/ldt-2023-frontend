@@ -6,8 +6,6 @@ import { ReactComponent as HeaderThing } from '../../asserts/header_thing.svg';
 
 import '../../styles/MainPage.css';
 
-import RegularMultipleDropdown from "../ui-kit/RegularMultipleDropdown";
-
 const MainPage = () => {
 
   const currentScreen = window.screen.width;
