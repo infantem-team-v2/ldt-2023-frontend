@@ -1,3 +1,22 @@
+.regular-multiple-dropdown-form-group {
+  color: var(--main-acsent) !important;
+  border-color: var(--main-acsent) !important;
+  box-shadow: none !important;
+  width: 100% !important;
+}
+
+.regular-multiple-dropdown-form-group .btn-group {
+  width: 100% !important;
+}
+
+.regular-multiple-dropdown-form-group .btn-group .dropdown-menu {
+
+  width: 90vw !important;
+  overflow-y: scroll;
+  max-height: 50vh !important;
+}
+
+
 .regular-multiple-dropdown-checkbox {
   color: var(--main-acsent);
 }

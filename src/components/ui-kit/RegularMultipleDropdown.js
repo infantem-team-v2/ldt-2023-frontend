@@ -22,7 +22,7 @@ const RegularMultipleDropdown = ({ selectedOptions, setSelectedOptions, controlI
 
   return (
     <OverlayTrigger placement={overlayPosition} overlay={overlay} key={nanoid()}>
-      <Form.Group controlId={controlId} className={"regular-modal-dropdown-form-group" + (formClass ? formClass : "")} key={nanoid()}>
+      <Form.Group controlId={controlId} className={"regular-multiple-dropdown-form-group" + (formClass ? formClass : "")} key={nanoid()}>
         <Dropdown as={ButtonGroup}>
           <Dropdown.Toggle variant="primary" id="dropdown-basic" className='multi-dropdown-toggle'>
             {formLabel ? formLabel : "Выберите из списка"}
