@@ -7,18 +7,18 @@ import { nanoid } from 'nanoid';
 const DistrictsMap = () => {
 
   const districtsColors = {
-    'Центральный': '#FF0000',
-    'Северный': '#00FF00',
-    'Северо-Восточный': '#0000FF',
-    'Восточный': '#FFFF00',
-    'Юго-Восточный': '#00FFFF',
-    'Южный': '#FF00FF',
-    'Юго-Западный': '#FFFFFF',
-    'Западный': '#000000',
-    'Северо-Западный': '#FFA500',
-    'Зеленоградский': '#A52A2A',
-    'Троицкий': '#800000',
-    'Новомосковский': '#808000',
+    'Центральный': '#B5DEFF',
+    'Северный': '#D8B9FF',
+    'Северо-Восточный': '#FBBCFF',
+    'Восточный': '#FFC6E5',
+    'Юго-Восточный': '#FFC1C4',
+    'Южный': '#FFE0C7',
+    'Юго-Западный': '#FFFCC1',
+    'Западный': '#DBFFB0',
+    'Северо-Западный': '#D1FFCF',
+    'Зеленоградский': '#D1FFE6',
+    'Троицкий': '#DFFFFF',
+    'Новомосковский': '#B7BAFF',
   }
 
   const [districtsColorsState, setDistrictsColorsState] = useState(districtsColors);
@@ -55,7 +55,7 @@ const DistrictsMap = () => {
 
   const handleMapClick = (e) => {
     const fillCoor = e.get('target')['options']['_options']['fillColor']
-    if (fillCoor !== '#F24900') {
+    if (fillCoor !== '#5E55DF') {
       // find district by color
       const district = Object.keys(districtsColors).find(key => districtsColors[key] === fillCoor);
       // change color of clicked district
@@ -73,11 +73,11 @@ const DistrictsMap = () => {
 
   const handleMapColorChange = (e) => {
     if (e.district && e.district in districtsColors) {
-      setDistrictsColorsState({ ...districtsColors, [e.district]: '#F24900' });
+      setDistrictsColorsState({ ...districtsColors, [e.district]: '#5E55DF' });
       setChoosenDistrict(e.district);
     } else if (e.originalEvent.target.data['_data']['content']) {
       const districtName = e.originalEvent.target.data['_data']['content'];
-      setDistrictsColorsState({ ...districtsColors, [districtName]: '#F24900' });
+      setDistrictsColorsState({ ...districtsColors, [districtName]: '#5E55DF' });
       setChoosenDistrict(districtName);
     }
   }
@@ -92,8 +92,8 @@ const DistrictsMap = () => {
         openEmptyBalloon={true}
         openHintOnHover={true}
         options={{
-          strokeColor: '#ffffff',
-          opacity: coord.name === choosenDistrict ? 0.7 : 0.4,
+          strokeColor: '#000',
+          opacity: coord.name === choosenDistrict ? 0.8 : 0.5,
           fillColor: districtsColorsState[coord.name],
           strokeOpacity: 0.5,
           strokeWidth: 2,

@@ -23,7 +23,7 @@ const Header = (props) => {
     if (props.isLogedIn) {
       return (
         <>
-          <Nav.Link onClick={() => navigate('/account')}><Docs className='me-1' />Личный кабинет</Nav.Link>
+          <Nav.Link onClick={() => navigate('/account')}><LogIn className='me-1' />Личный кабинет</Nav.Link>
           <Nav.Link onClick={props.logOut}><LogOut className='me-1' />Выйти</Nav.Link>
         </>
       )

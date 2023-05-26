@@ -1,6 +1,6 @@
 import React from "react";
 
-import f404path from "../../asserts/f404_img.jpg";
+import { ReactComponent as F404Svg } from "../../asserts/img404.svg";
 
 import "../../styles/F404Page.css";
 
@@ -10,7 +10,7 @@ const F404Page = () => {
     <div className="container text-center mt-4">
       <h1 className="h1-404">Ooops...</h1>
       <h1 className="h1-404">Что-то пошло не так</h1>
-      <img src={f404path} alt="404" className="img-fluid img-404" />
+      <F404Svg className="img-fluid img-404" />
       <p className="p-404">Произошла ошибка 404 <br />Страница не найдена</p>
     </div>
   );
