@@ -1,0 +1,40 @@
+.footer-main-div div h5 {
+  color: var(--main-white) !important;
+  font-family: 'SF Pro Display', "Montserrat", sans-serif !important;
+}
+
+.footer-col h5 {
+  font-weight: 700;
+  font-size: 1.2rem !important;
+  line-height: 150%;
+  letter-spacing: -0.023em;
+}
+
+.footer-logo h5 {
+  color: var(--main-white) !important;
+  font-size: calc(var(--index) * 2);
+}
+
+.footer-logo h5 span {
+  color: var(--main-acsent) !important;
+}
+
+@media screen and (max-width: 768px) {
+  .footer-logo h5 {
+    font-size: calc(var(--index) * 3);
+  }
+
+  .footer-logo {
+    text-align: center;
+  }
+
+  .footer-main-div {
+    display: grid;
+    grid-template-columns: 3fr 3fr;
+    text-align: center;
+  }
+
+  .footer-col h5 {
+    font-size: 3vw !important;
+  }
+}

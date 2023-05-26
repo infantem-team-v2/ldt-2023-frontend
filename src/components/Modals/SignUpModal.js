@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Form } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
 
 import api from '../../services/api';
 
@@ -30,6 +31,8 @@ const SignUpModal = ({ show, onHide, setIsLogedIn }) => {
   const [economicActivity, setEconomicActivity] = useState('');
 
   const [formErrors, setFormErrors] = useState({});
+
+  const navigate = useNavigate();
 
   const organizationTypes = [
     'Пищевая промышленность',
@@ -158,6 +161,7 @@ const SignUpModal = ({ show, onHide, setIsLogedIn }) => {
       }
 
       onHide();
+      navigate(0);
     });
   };
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal, Form } from "react-bootstrap";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import api from "../../services/api";
 
@@ -11,10 +12,13 @@ import { ReactComponent as CloseButton } from "../../asserts/close_white.svg";
 import Swal from "sweetalert2";
 import '../../styles/SignInModal.css'
 
+
 const SignInModal = ({ show, onHide, setIsLogedIn, forgetPass }) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,8 +42,10 @@ const SignInModal = ({ show, onHide, setIsLogedIn, forgetPass }) => {
           text: 'Вы вошли в систему!',
         })
         setIsLogedIn();
+
       }
       onHide();
+      navigate(0);
     })
 
   }
