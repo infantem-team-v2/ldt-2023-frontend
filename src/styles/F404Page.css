@@ -1,10 +1,11 @@
 .h1-404 {
-  font-family: 'Montserrat', 'SF Pro Display', sans-serif;
+  font-family: 'SF Pro Display', 'Montserrat', sans-serif;
+  font-weight: 500;
   font-size: calc(var(--index)*2.5);
 }
 
 .p-404 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'SF Pro Display', 'Montserrat', sans-serif;
   font-size: calc(var(--index)*0.7);
   margin-top: calc(var(--index)*1.2);
 }
@@ -15,9 +16,29 @@
   filter: brightness(1.2);
 }
 
+.page-404-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
 @media screen and (max-width: 768px) {
+
+  .h1-404 {
+    font-size: calc(var(--index)*3.5);
+  }
+
+  .p-404 {
+    font-size: calc(var(--index)*2.5) !important;
+    margin: 0;
+  }
+
+  .p-404:last-of-type {
+    margin-bottom: calc(var(--index)*1) !important;
+  }
+
   .img-404 {
-    width: 50%;
-    margin: calc(var(--index)*2) auto;
+    padding: calc(var(--index)*2);
   }
 }

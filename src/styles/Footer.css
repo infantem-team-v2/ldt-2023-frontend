@@ -41,8 +41,11 @@
 
 @media screen and (max-width: 480px) {
   footer {
+    display: block;
     position: fixed;
     bottom: 0px;
     width: 100%;
   }
+
+
 }

@@ -32,13 +32,10 @@
 
 @media screen and (max-width: 768px) {
   .h1-main {
-    font-size: calc(var(--index)*4);
-    line-height: calc(var(--index)*0.2) !important;
-    margin-top: 15vh;
-  }
-
-  .h1-main svg {
-    width: 10%;
+    font-size: calc(var(--index)*5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .p-logo {
@@ -46,10 +43,15 @@
     line-height: 24px;
   }
 
+  .main-div {
+    text-align: center;
+  }
+
   .secondary-head-sign {
-    width: 50%;
-    text-align: right !important;
-    max-height: 10vh;
+    margin-top: 3vh !important;
+    text-align: center !important;
+    width: 100%;
+
   }
 
   .p-logo-div {

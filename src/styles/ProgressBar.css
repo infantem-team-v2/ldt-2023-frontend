@@ -10,8 +10,7 @@
 .h2-main {
   font-family: 'SF Pro Display', 'Montserrat', sans-serif;
   font-size: 1rem;
-  font-weight: 500;
-  line-height: 24px;
+  font-weight: 700;
 }
 
 .h2-main-modal {
@@ -34,4 +33,11 @@
 
 .pbar-main-modal * {
   background-color: var(--main-success) !important;
+}
+
+@media screen and (max-width: 768px) {
+  .h2-main {
+    margin-top: 2vh !important;
+    text-align: center;
+  }
 }
