@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'SF Pro Display';
-  src: url('./fonts/SF-Pro.ttf') format('truetype');
+  src: url('./fonts/SF-Pro.ttf') format('truetype') url('./fonts/SF-Pro.woff') format('woff');
 }
 
 :root {
