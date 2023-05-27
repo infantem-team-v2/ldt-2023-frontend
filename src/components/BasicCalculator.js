@@ -38,7 +38,7 @@ const BasicCalculator = () => {
 
   const [currentStep, setCurrentStep] = useState(1);
   const [data, setData] = useState();
-  const [isDataLoading, setIsDataLoaded] = useState(true);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
 
   const navigate = useNavigate();
@@ -56,7 +56,7 @@ const BasicCalculator = () => {
 
   useEffect(() => {
     if (data !== undefined) {
-      setIsDataLoaded(false);
+      setIsDataLoaded(true);
     }
   }, [data]);
 
@@ -113,7 +113,7 @@ const BasicCalculator = () => {
     <>
 
       <ProgressBar range={4} current={currentStep} />
-      {isDataLoading ? <>
+      {isDataLoaded ? <>
         <div className='mb-4' hidden={data !== undefined}>
           <div className='calculator-category-container' hidden={!(currentStep === 1)}>
             <h1 className='calculator-category-title'>Общее</h1>
