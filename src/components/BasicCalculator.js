@@ -307,13 +307,13 @@ const BasicCalculator = () => {
   };
 
   // --------------------------------------------------
-
+  console.log(dataCategories)
 
   return (
     <>
       <ProgressBar range={data ? data.categories.length : 6} current={currentStep} />
       <div className='mb-4 '>
-        {dataCategories && data.categories ? data.categories.map((category) => {
+        {dataCategories ? dataCategories.map((category) => {
           return handleCategory(category)
         }) : <></>}
       </div>
