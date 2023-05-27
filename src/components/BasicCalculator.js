@@ -37,12 +37,7 @@ const BasicCalculator = () => {
 
   const [currentStep, setCurrentStep] = useState(1);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
-  const [innerData, setInnerData] = useState({
-    machine_names: [],
-    industry: [],
-    other_needs: [],
-    patents: [],
-  });
+  const [innerData, setInnerData] = useState({});
 
 
   const navigate = useNavigate();
@@ -60,7 +55,7 @@ const BasicCalculator = () => {
   }, []);
 
   useEffect(() => {
-    if (innerData.industry && innerData.industry.length > 0) {
+    if (innerData.length > 0) {
       console.log(innerData);
       setIsDataLoaded(true);
     }
