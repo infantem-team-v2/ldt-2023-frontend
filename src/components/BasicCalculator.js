@@ -60,7 +60,7 @@ const BasicCalculator = () => {
   }, []);
 
   useEffect(() => {
-    if (innerData) {
+    if (innerData && Object.keys(innerData).length > 0) {
       setIsDataLoaded(true);
     }
   }, [innerData]);
