@@ -26,3 +26,10 @@
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
+
+.calculator-div-categories {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: calc(var(--index) * 1.2);
+}

@@ -94,14 +94,22 @@ const BasicCalculator = () => {
 
   const updateFieldsStates = (fieldId, newValue) => {
     setFields(prevState => {
-      console.log("PREV STATE", prevState);
-      console.log("VALUE FROM FIELDS", fields.fieldId)
-      console.log("VALUE FROM PREVSTATE", prevState.fieldId)
-      console.log("VALUE FROM PREVSTATE[]", prevState[fieldId])
-      console.log("VALUE FOR HUINA", fields.huina)
-      console.log("KEYS FROM FIELDS", Object.keys(fields))
-      console.log("KEYS FROM PREVSTATE", Object.keys(prevState))
-
+      return {
+        ...prevState,
+        [fieldId]: newValue
+      }
+    });
+  };
+  const updateFiedlsStatesBoolean = (fieldId) => {
+    setFields(prevState => {
+      return {
+        ...prevState,
+        [fieldId]: !prevState[fieldId]
+      }
+    });
+  };
+  const updateFiedlsStatesMultipleDropdown = (fieldId, newValue) => {
+    setFields(prevState => {
       return {
         ...prevState,
         [fieldId]: newValue
@@ -181,7 +189,7 @@ const BasicCalculator = () => {
           id={category.category_id}
         >
           <h2>{category.category}</h2>
-          <div className='d-flex gap-3' key={nanoid()}>
+          <div className='calculator-div-categories' key={nanoid()}>
             {category.elements.map((element) => handleInnerElements(element))}
           </div>
 
@@ -249,7 +257,7 @@ const BasicCalculator = () => {
         label={element.comment}
         formLabel={element.field}
         value={fields[fieldId]}
-        onChange={() => { console.log("ID", fieldId); console.log("VALUE", fields[fieldId]); updateFieldsStates(fieldId, !fields[fieldId]) }}
+        onChange={() => { updateFiedlsStatesBoolean(fieldId) }}
         overlay={renderTooltip(element.comment)}
       />
     )
@@ -261,7 +269,7 @@ const BasicCalculator = () => {
       <RegularSwitch
         controlId={fieldId}
         label={element.field}
-        onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, fieldId[fieldId] ? !fieldId[fieldId] : false) }}
+        onChange={() => { updateFiedlsStatesBoolean(fieldId) }}
         overlay={renderTooltip(element.comment)}
       />
     )
