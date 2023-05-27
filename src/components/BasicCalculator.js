@@ -73,12 +73,10 @@ const BasicCalculator = () => {
 
     data.categories.forEach((category) => {
       category.elements.forEach((element) => {
-        console.log("TYPE OF FIELD_ID", typeof element.field_id);
         newFields[element.field_id] = undefined;
       })
     });
 
-    console.log("NEW FIELDS", newFields)
     setFields(newFields);
   }
 
@@ -97,7 +95,7 @@ const BasicCalculator = () => {
   const updateFieldsStates = (fieldId, newValue) => {
     setFields(prevState => {
       console.log("PREV STATE", prevState);
-      console.log("VALUE FROM FIELDS", fields[fieldId])
+      console.log("VALUE FROM FIELDS", fields.fieldId)
       return {
         ...prevState,
         [fieldId]: newValue
@@ -210,7 +208,6 @@ const BasicCalculator = () => {
 
   const handleDropdown = (element) => {
     const fieldId = element.field_id;
-    console.log("VALUE FROM FIELDS IN ELEMENT", fields[fieldId])
     return (
       <RegularDropdown
         controlId={fieldId}

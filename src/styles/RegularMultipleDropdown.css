@@ -9,6 +9,10 @@
   width: 100% !important;
 }
 
+.regular-multiple-dropdown-form-group .btn-group button {
+  height: 100% !important;
+}
+
 .regular-multiple-dropdown-form-group .btn-group .dropdown-menu {
 
   width: 90vw !important;
