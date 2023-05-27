@@ -140,7 +140,135 @@ const BasicCalculator = () => {
     }
   }
 
-  // const handleInnerElements = (element) => {
+
+
+
+  // --------------------------------------------------
+  // handlers for different types of elements
+  // --------------------------------------------------
+
+  const renderTooltip = (hint) => (
+    <Tooltip id="hint-tooltip"  >
+      {hint}
+    </Tooltip>
+  );
+
+
+
+  // --------------------------------------------------
+
+  return (
+    <>
+      <ProgressBar range={data ? data.categories.length : 6} current={currentStep} />
+      <div className='mb-4 '>
+        {isCategories ? data.categories.map((category) => (<HandleCategoryComponent
+          handleNextStep={handleNextStep}
+          currentStep={currentStep}
+          categories={categories}
+          category={category}
+          fields={fields}
+          isHidden={isHidden}
+          renderTooltip={renderTooltip}
+          updateFieldsStates={updateFieldsStates}
+        />)) : <></>}
+      </div>
+
+    </>
+  );
+};
+
+
+export default BasicCalculator;
+  // const handleDropdown = (element) => {
+  //   const fieldId = element.field_id;
+  //   return (
+  //     <RegularDropdown
+  //       controlId={fieldId}
+  //       label={element.field}
+  //       value={fields[fieldId]}
+  //       onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, e.target.value) }}
+  //       overlay={renderTooltip(element.comment)}
+  //       innerData={element.options}
+  //     />
+  //   )
+  // };
+
+  // const handleInput = (element) => {
+  //   const fieldId = element.field_id;
+  //   const type = element.options[0] ? element.options[0] : 'text';
+  //   return (
+  //     <RegularInput
+  //       controlId={fieldId}
+  //       label={element.field}
+  //       type={type}
+  //       value={fields[fieldId]}
+  //       onChange={(e) => { updateFieldsStates(fieldId, e.target.value) }}
+  //       overlay={renderTooltip(element.comment)}
+  //     />
+  //   )
+  // };
+
+  // const handleCheckbox = (element) => {
+  //   const fieldId = element.field_id;
+  //   return (
+  //     <RegularCheckbox
+  //       controlId={fieldId}
+  //       label={element.comment}
+  //       formLabel={element.field}
+  //       value={fields[fieldId]}
+  //       onChange={() => { updateFiedlsStatesBoolean(fieldId) }}
+  //       overlay={renderTooltip(element.comment)}
+  //     />
+  //   )
+  // };
+
+  // const handleSwitch = (element) => {
+  //   const fieldId = element.field_id;
+  //   return (
+  //     <RegularSwitch
+  //       controlId={fieldId}
+  //       label={element.field}
+  //       onChange={() => { updateFiedlsStatesBoolean(fieldId) }}
+  //       overlay={renderTooltip(element.comment)}
+  //     />
+  //   )
+  // };
+
+  // const handleSlider = (element) => {
+  //   const fieldId = element.field_id;
+  //   return (
+  //     <Form.Group key={nanoid()}>
+  //       <OverlayTrigger placement="top" overlay={renderTooltip(element.comment)} key={nanoid()}>
+  //         <Form.Range
+  //           type="range"
+  //           id={fieldId}
+  //           label={element.field}
+  //           value={fields[fieldId]}
+  //           min={element.range_min}
+  //           max={element.range_max}
+  //           onChange={(e) => { updateFieldsStates(fieldId, e.target.value) }}
+  //         />
+  //       </OverlayTrigger>
+  //     </Form.Group>
+  //   )
+  // };
+
+  // const handleDropdownMultiselect = (element) => {
+  //   const fieldId = element.field_id;
+  //   fields[fieldId] = fields[fieldId] ? fields[fieldId] : [];
+  //   return (
+  //     <RegularMultipleDropdown
+  //       controlId={fieldId}
+  //       label={element.field}
+  //       selectedOptions={fields[fieldId]}
+  //       setSelectedOptions={(values) => { updateFieldsStates(fieldId, values) }}
+  //       overlay={renderTooltip(element.comment)}
+  //       innerData={element.options}
+  //     />
+  //   )
+  // };
+
+   // const handleInnerElements = (element) => {
   //   const type = element.type;
   //   switch (type) {
   //     case 'dropdown':
@@ -188,128 +316,3 @@ const BasicCalculator = () => {
   //     );
   //   }
   // }
-
-
-  // --------------------------------------------------
-  // handlers for different types of elements
-  // --------------------------------------------------
-
-  const renderTooltip = (hint) => (
-    <Tooltip id="hint-tooltip"  >
-      {hint}
-    </Tooltip>
-  );
-
-  // const handleDropdown = (element) => {
-  //   const fieldId = element.field_id;
-  //   return (
-  //     <RegularDropdown
-  //       controlId={fieldId}
-  //       label={element.field}
-  //       value={fields[fieldId]}
-  //       onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, e.target.value) }}
-  //       overlay={renderTooltip(element.comment)}
-  //       innerData={element.options}
-  //     />
-  //   )
-  // };
-
-  // const handleInput = (element) => {
-  //   const fieldId = element.field_id;
-  //   const type = element.options[0] ? element.options[0] : 'text';
-  //   return (
-  //     <RegularInput
-  //       controlId={fieldId}
-  //       label={element.field}
-  //       type={type}
-  //       value={fields[fieldId]}
-  //       onChange={(e) => { updateFieldsStates(fieldId, e.target.value) }}
-  //       overlay={renderTooltip(element.comment)}
-  //     />
-  //   )
-  // };
-
-  const handleCheckbox = (element) => {
-    const fieldId = element.field_id;
-    return (
-      <RegularCheckbox
-        controlId={fieldId}
-        label={element.comment}
-        formLabel={element.field}
-        value={fields[fieldId]}
-        onChange={() => { updateFiedlsStatesBoolean(fieldId) }}
-        overlay={renderTooltip(element.comment)}
-      />
-    )
-  };
-
-  const handleSwitch = (element) => {
-    const fieldId = element.field_id;
-    return (
-      <RegularSwitch
-        controlId={fieldId}
-        label={element.field}
-        onChange={() => { updateFiedlsStatesBoolean(fieldId) }}
-        overlay={renderTooltip(element.comment)}
-      />
-    )
-  };
-
-  const handleSlider = (element) => {
-    const fieldId = element.field_id;
-    return (
-      <Form.Group key={nanoid()}>
-        <OverlayTrigger placement="top" overlay={renderTooltip(element.comment)} key={nanoid()}>
-          <Form.Range
-            type="range"
-            id={fieldId}
-            label={element.field}
-            value={fields[fieldId]}
-            min={element.range_min}
-            max={element.range_max}
-            onChange={(e) => { updateFieldsStates(fieldId, e.target.value) }}
-          />
-        </OverlayTrigger>
-      </Form.Group>
-    )
-  };
-
-  const handleDropdownMultiselect = (element) => {
-    const fieldId = element.field_id;
-    fields[fieldId] = fields[fieldId] ? fields[fieldId] : [];
-    return (
-      <RegularMultipleDropdown
-        controlId={fieldId}
-        label={element.field}
-        selectedOptions={fields[fieldId]}
-        setSelectedOptions={(values) => { updateFieldsStates(fieldId, values) }}
-        overlay={renderTooltip(element.comment)}
-        innerData={element.options}
-      />
-    )
-  };
-
-  // --------------------------------------------------
-
-  return (
-    <>
-      <ProgressBar range={data ? data.categories.length : 6} current={currentStep} />
-      <div className='mb-4 '>
-        {isCategories ? data.categories.map((category) => (<HandleCategoryComponent
-          handleNextStep={handleNextStep}
-          currentStep={currentStep}
-          categories={categories}
-          category={category}
-          fields={fields}
-          isHidden={isHidden}
-          renderTooltip={renderTooltip}
-          updateFieldsStates={updateFieldsStates}
-        />)) : <></>}
-      </div>
-
-    </>
-  );
-};
-
-
-export default BasicCalculator;
