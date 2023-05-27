@@ -52,6 +52,7 @@ const BasicCalculator = () => {
   useEffect(() => {
     if (data) {
       setDataCategories(data.categories);
+      console.log(dataCategories);
     }
   }, [currentStep, categories, fields]);
 
