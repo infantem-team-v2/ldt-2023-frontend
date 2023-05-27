@@ -269,7 +269,7 @@ const BasicCalculator = () => {
         </div>
 
       </> : <div className='mt-5 d-flex justify-content-center align-items-center' >
-        <div className="spinner-border text-primary" role="status" />
+        <div className="spinner-border regular-spinner" role="status" />
       </div>}
 
     </>

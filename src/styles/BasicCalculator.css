@@ -20,6 +20,10 @@
   align-self: center;
 }
 
+.regular-spinner {
+  color: var(--main-acsent) !important;
+}
+
 @media screen and (max-width: 800px) {
   .calculator-category-content {
     grid-template-columns: 1fr;
