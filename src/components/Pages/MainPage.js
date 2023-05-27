@@ -17,7 +17,7 @@ const MainPage = () => {
           <div className="p-logo ">Калькулятор для предпринимателей </div>
           {currentScreen > 768 ? < div className="p-logo secondary-head-sign">Быстрый и удобный инструмент для московских предпринимателей, расчитайте инвестиции в два клика!</div> : <></>}
         </div>
-        <h1 className="h1-main">Расчитай вложения <HeaderThing /></h1>
+        <h1 className="h1-main">Рассчитай вложения <HeaderThing /></h1>
         {currentScreen <= 768 ? < div className="p-logo secondary-head-sign">Быстрый и удобный инструмент для московских предпринимателей, расчитайте инвестиции в два клика!</div> : <></>}
         < BasicCalculator />
       </div >

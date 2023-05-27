@@ -28,7 +28,7 @@ const BasicCalculator = () => {
     building_area: undefined,
     machine_names: [],
     machine_quantities: [],
-    patents: undefined,
+    patent_type: undefined,
     bookkeeping: false,
     tax_system: undefined,
     operations: undefined,
@@ -180,12 +180,12 @@ const BasicCalculator = () => {
             <div className='calculator-category-content'>
               <RegularInput
                 controlId='building_area'
-                label='Площадь здания'
+                label='Площадь земли'
                 value={fields.land_area ? fields.land_area : ""}
-                placeholder={"Введите площадь здания (м2)"}
+                placeholder={"Введите площадь земли (м2)"}
                 onChange={(e) => { setFields({ ...fields, land_area: e.target.value }) }}
                 overlay={renderTooltip('')}
-                formLabel={"Площадь здания"}
+                formLabel={"Площадь земли"}
                 className={"calculator-input"}
                 type={"number"}
               />
@@ -256,10 +256,10 @@ const BasicCalculator = () => {
                 hidden={(!fields.bookkeeping)}
               />
               <RegularDropdown
-                controlId='patents'
+                controlId='patent_type'
                 label='Тип патента'
-                value={fields.patents}
-                onChange={(e) => { setFields({ ...fields, patents: e.target.value }) }}
+                value={fields.patent_type}
+                onChange={(e) => { setFields({ ...fields, patent_type: e.target.value }) }}
                 innerData={innerData["patents"]}
                 overlay={renderTooltip('Если вы работаете по патенту, выберите тип патента')}
                 formLabel={"Тип патента"}
