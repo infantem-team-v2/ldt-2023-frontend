@@ -48,7 +48,8 @@ const BasicCalculator = () => {
   useEffect(() => {
     api.get("/calc/fields").then((response) => {
       if (response.status >= 200 && response.status < 300) {
-        const data = response.data.data;
+        const dataJson = response.json();
+        const data = dataJson.data;
         setInnerData(data);
       }
     }).catch((err) => { return err; });
