@@ -53,18 +53,14 @@ const BasicCalculator = () => {
     try {
       const response = await api.get("/calc/fields");
       const dataJson = await response.data.data;
-      console.log("DATAJSON", dataJson);
-      await setInnerData(dataJson);
+      setInnerData(dataJson);
     } catch (err) {
       console.log(err);
     }
   }
 
   useEffect(() => {
-    console.log("FirstCheck", innerData);
     if (innerData && !isDataLoaded && Object.keys(innerData).length > 0) {
-      console.log("SecondCheck", innerData["industry"]);
-      console.log("SecondCheck2", innerData.industry);
       setIsDataLoaded(true);
     }
   }, [innerData]);
@@ -134,7 +130,7 @@ const BasicCalculator = () => {
                 label='Отрасль'
                 value={fields.industry}
                 onChange={(e) => { setFields({ ...fields, industry: e.target.value }) }}
-                innerData={innerData["industry"]}
+                innerData={innerData["industries"]}
                 overlay={renderTooltip('Отрасль')}
                 formLabel={"Отрасль"}
               />
@@ -211,7 +207,7 @@ const BasicCalculator = () => {
                 label='Оборудование'
                 selectedOptions={fields.machine_names}
                 setSelectedOptions={(value) => setFields({ ...fields, machine_names: value })}
-                innerData={innerData["machine_names"]}
+                innerData={innerData["machines"]}
                 overlay={renderTooltip('вы можете выбрать несколько вариантов оборудования')}
                 formLabel={"Оборудование"}
               />
@@ -220,7 +216,7 @@ const BasicCalculator = () => {
                 label='Иные потребности'
                 selectedOptions={fields.other_needs}
                 setSelectedOptions={(value) => setFields({ ...fields, other_needs: value })}
-                innerData={innerData["other_needs"]}
+                innerData={innerData["needs"]}
                 overlay={renderTooltip('вы можете выбрать несколько дополнительных потребностей')}
                 formLabel={"Иные потребности"}
               />
