@@ -19,3 +19,14 @@
 .calculator-input {
   align-self: center;
 }
+
+@media screen and (max-width: 800px) {
+  .calculator-category-content {
+    grid-template-columns: 1fr;
+  }
+
+  .calculator-category-content:nth-child(2n) {
+    justify-self: center !important;
+  }
+
+}
