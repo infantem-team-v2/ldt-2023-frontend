@@ -52,10 +52,9 @@ const BasicCalculator = () => {
   // rerendering components
   useEffect(() => {
     if (data) {
-      console.log("FIELDS ON RERENDER", fields);
       setComponents(data);
     }
-  }, [currentStep, categories]);
+  }, [currentStep, categories, fields]);
 
   // rerendering fields
   useEffect(() => {
