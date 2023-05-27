@@ -50,7 +50,7 @@ const BasicCalculator = () => {
   // getting initial data
 
   useEffect(() => {
-    api.get("/ui/calc/element/active").then((response) => {
+    api.get("/ui/calc/element").then((response) => {
       if (response.status >= 200 && response.status < 300) {
         setInnerData(response.data.data);
       }
