@@ -64,7 +64,8 @@ const BasicCalculator = () => {
   }, []);
 
   useEffect(() => {
-    if (innerData && Object.keys(innerData).length > 0) {
+    if (innerData && Object.keys(innerData).length === 4) {
+      console.log(innerData);
       setIsDataLoaded(true);
     }
   }, [innerData]);
@@ -220,12 +221,7 @@ const BasicCalculator = () => {
                 label='Иные потребности'
                 selectedOptions={fields.other_needs}
                 setSelectedOptions={(value) => setFields({ ...fields, other_needs: value })}
-                innerData={[
-                  "Системы теплоснабжения",
-                  "Системы вентиляции",
-                  "Системы кондиционирования",
-                  "Системы водоснабжения",
-                  "Системы канализации"]}
+                innerData={innerData.other_needs}
                 overlay={renderTooltip('вы можете выбрать несколько дополнительных потребностей')}
                 formLabel={"Иные потребности"}
               />
