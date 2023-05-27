@@ -12,7 +12,7 @@ const Report = () => {
 
 
   useEffect(() => {
-    api.get(`/report/${reportId}`).then((res) => {
+    api.get(`calc/report/${reportId}`).then((res) => {
       if (res && res.status >= 200 && res.status < 300) {
         if (res.data) {
           setReport(res.data);
