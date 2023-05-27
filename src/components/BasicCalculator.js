@@ -209,8 +209,13 @@ const BasicCalculator = () => {
   }
 
   const tryGetData = (fields, fieldId) => {
+    console.log("CURRENT FIELDS", fields)
+    console.log("CURRENT FIELD ID", fieldId)
+    console.log("CURRENT FIELDS KEYS", Object.keys(fields))
+    console.log("CURRENT FIELDS KEYS INCLUDES", Object.keys(fields).includes(fieldId))
     const newFields = JSON.parse(JSON.stringify(fields));
     const currentField = newFields[fieldId];
+    console.log(JSON.stringify(fields))
     console.log("CURRENT FIELD ", currentField);
     return currentField;
   }
@@ -248,7 +253,7 @@ const BasicCalculator = () => {
         label={element.field}
         type={type}
         value={fields[fieldId]}
-        onChange={(e) => { e.preventDefault(); tryGetData(fields, fieldId); updateFieldsStates(fieldId, e.target.value) }}
+        onChange={(e) => { e.preventDefault(); console.log(fields[fieldId]); updateFieldsStates(fieldId, e.target.value) }}
         overlay={renderTooltip(element.comment)}
       />
     )
