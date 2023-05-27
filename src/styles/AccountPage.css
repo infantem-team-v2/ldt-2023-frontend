@@ -79,7 +79,7 @@
 
 .card-container {
   display: grid !important;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
 }
 
 .card-result-block {
