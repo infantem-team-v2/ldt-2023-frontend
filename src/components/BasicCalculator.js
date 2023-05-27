@@ -62,7 +62,7 @@ const BasicCalculator = () => {
   }, []);
 
   useEffect(() => {
-    if (innerData && Object.keys(innerData).length === 4) {
+    if (innerData && innerData.industry.length > 0) {
       console.log(innerData);
       setIsDataLoaded(true);
     }
