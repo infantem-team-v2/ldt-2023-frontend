@@ -65,14 +65,26 @@ const BasicCalculator = () => {
     }
   }, [innerData]);
 
+  const convertDataToApiFormat = () => {
+    const newFields = { ...fields };
+    const machine_names = newFields.machine_names.length;
+    const machine_quantities = Array(machine_names).fill(1);
+    newFields.machine_quantities = machine_quantities;
+    for (const [key, value] of Object.entries(fields)) {
+      if (!isNaN(value)) {
+        newFields[key] = Number(value);
+      }
+    }
+    return newFields;
+  }
+
 
 
   const handleNextStep = (e) => {
     e.preventDefault();
     const newStep = currentStep + 1
     if (newStep > 4) {
-      console.log(fields)
-      api.post("/calc/base", fields).then((response) => {
+      api.post("/calc/base", convertDataToApiFormat()).then((response) => {
         if (response.status >= 200 && response.status < 300) {
           const id = response.data.tracker_id;
           navigate(`/report/${id}`);
@@ -121,7 +133,7 @@ const BasicCalculator = () => {
                 label='Тип организации'
                 value={fields.organization_type}
                 onChange={(e) => { setFields({ ...fields, organization_type: e.target.value }) }}
-                innerData={["OOO", "ИП"]}
+                innerData={["ООО", "ИП"]}
                 overlay={renderTooltip('Тип организации')}
                 formLabel={"Тип организации"}
               />
@@ -144,13 +156,14 @@ const BasicCalculator = () => {
                 formLabel={"Количество сотрудников"}
                 className={"calculator-input"}
               />
+              <div className='calc-control'>
+                <RegularButton
+                  text={"Далее"}
+                  onClick={handleNextStep}
+                  className="calculator-next-button"
 
-              <RegularButton
-                text={"Далее"}
-                onClick={handleNextStep}
-                className="calculator-next-button"
-
-              />
+                />
+              </div>
             </div>
           </div>
           <div className='calculator-category-container' hidden={!(currentStep === 2)}>

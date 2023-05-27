@@ -12,7 +12,7 @@
   margin-top: calc(var(--index)*1);
 }
 
-.calculator-category-content:nth-child(2n) {
+.calculator-category-content:nth-child(2n + 1) {
   justify-self: end !important;
 }
 
