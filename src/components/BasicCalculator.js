@@ -50,15 +50,10 @@ const BasicCalculator = () => {
     api.get("/ui/calc/element/active").then((response) => {
       if (response.status >= 200 && response.status < 300) {
         setData(response.data);
+        setIsDataLoaded(true);
       }
     }).catch((err) => { return err; });
   }, []);
-
-  useEffect(() => {
-    if (data !== undefined) {
-      setIsDataLoaded(true);
-    }
-  }, [data]);
 
 
 
