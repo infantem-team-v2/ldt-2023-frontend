@@ -310,35 +310,35 @@ const BasicCalculator = () => {
                     const type = element.type;
                     switch (type) {
                       case 'dropdown':
-
-                        <RegularDropdown
-                          controlId={element.field_id}
-                          label={element.field}
-                          value={fields[element.field_id]}
-                          onChange={(e) => { e.preventDefault(); updateFieldsStates(element.field_id, e.target.value) }}
-                          overlay={renderTooltip(element.comment)}
-                          innerData={element.options}
-                        />
-
+                        return (
+                          <RegularDropdown
+                            controlId={element.field_id}
+                            label={element.field}
+                            value={fields[element.field_id]}
+                            onChange={(e) => { e.preventDefault(); updateFieldsStates(element.field_id, e.target.value) }}
+                            overlay={renderTooltip(element.comment)}
+                            innerData={element.options}
+                          />
+                        )
                       case 'input':
-
-                        <RegularInput
-                          controlId={element.field_id}
-                          label={element.field}
-                          type={element.options[0] ? element.options[0] : 'text'}
-                          value={fields[element.field_id]}
-                          onChange={(e) => { updateFieldsStates(element.field_id, e.target.value) }}
-                          overlay={renderTooltip(element.comment)}
-                        />
-
+                        return (
+                          <RegularInput
+                            controlId={element.field_id}
+                            label={element.field}
+                            type={element.options[0] ? element.options[0] : 'text'}
+                            value={fields[element.field_id]}
+                            onChange={(e) => { updateFieldsStates(element.field_id, e.target.value) }}
+                            overlay={renderTooltip(element.comment)}
+                          />
+                        )
                       case "dropdown_multiselect":
-                        <div></div>;
+                        return <div></div>;
                       case 'checkbox':
-                        <div></div>;
+                        return <div></div>;
                       case 'range':
-                        <div></div>;
+                        return <div></div>;
                       default:
-                        <></>;
+                        return <></>;
                     }
                   })}
                 </div>
