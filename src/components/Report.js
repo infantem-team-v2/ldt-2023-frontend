@@ -57,16 +57,17 @@ const Report = ({ isLogedIn }) => {
             <h2>{totalExpenses}₽</h2>
             <hr />
             {
-              report.output.map((category) => {
+              Object.keys(report.output).map((category) => {
+                const categoryData = report.output[category];
                 return (
                   <div>
-                    <h3>{category.name}</h3>
+                    <h3>{category}</h3>
                     <ul>
-                      {category.items.map((item) => {
+                      {Object.entries(categoryData).map((item) => {
                         return (
                           <li>
-                            <span>{item.name}</span>
-                            <span>{item.value}</span>
+                            <span>{item[0]}</span>
+                            <span>{item[1]}</span>
                           </li>
                         )
                       })}
