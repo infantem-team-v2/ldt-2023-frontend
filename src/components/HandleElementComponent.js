@@ -4,6 +4,7 @@ import RegularInput from "./ui-kit/RegularInput";
 
 const HandleElementComponent = ({ element, updateFieldsStates, renderTooltip, fields }) => {
   const type = element.type;
+  console.log(type)
 
   return (
     <>
