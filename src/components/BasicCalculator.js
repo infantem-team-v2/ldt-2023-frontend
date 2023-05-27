@@ -46,15 +46,19 @@ const BasicCalculator = () => {
   // getting initial data
 
   useEffect(() => {
-    api.get("/calc/fields").then((response) => {
-      if (response.status >= 200 && response.status < 300) {
-        const dataJson = response.json();
-        console.log(dataJson);
-        const data = dataJson.data;
-        setInnerData(data);
-      }
-    }).catch((err) => { return err; });
+    fetchInnerData();
   }, []);
+
+  const fetchInnerData = async () => {
+    try {
+      const response = await api.get("/calc/fields");
+      const dataJson = await response.json();
+      const data = dataJson.data;
+      await setInnerData(data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   useEffect(() => {
     console.log("FirstCheck", innerData);
