@@ -1,31 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import { OverlayTrigger, Tooltip, Form } from 'react-bootstrap';
-import { nanoid } from 'nanoid';
+import { Tooltip, Form } from 'react-bootstrap';
 
 import { useNavigate } from 'react-router-dom';
 
 import RegularButton from './ui-kit/RegularButton';
 import ProgressBar from './ui-kit/ProgressBar';
-import RegularInput from './ui-kit/RegularInput';
 import RegularMultipleDropdown from './ui-kit/RegularMultipleDropdown';
 import RegularCheckbox from './ui-kit/RegularCheckbox';
 import RegularSwitch from './ui-kit/RegularSwitch';
 import RegularDropdown from './ui-kit/RegularDropdown';
+import DistrictsMap from './DistrictsMap';
 
 import '../styles/BasicCalculator.css';
 import api from '../services/api';
 import Swal from 'sweetalert2';
-import HandleElementComponent from './HandleElementComponent';
-import HandleCategoryComponent from './HandleCategoryComponent';
+import RegularSlider from './ui-kit/RegularSlider';
+import RegularInput from './ui-kit/RegularInput';
 
 
 const BasicCalculator = () => {
 
-  const [categories, setCategories] = useState([]);
   const [fields, setFields] = useState({
-
+    organization_type: undefined,
+    industry: undefined,
+    employees: undefined,
+    district: undefined,
+    area: undefined,
+    construction_area: undefined,
+    machines: [],
+    machine_quantities: [],
+    patent_activity: "Нет патента",
+    accounting: false,
+    tax_system: undefined,
+    accounting_operations: 50,
+    other_needs: [],
   });
-  const [isCategories, setIsCategories] = useState(false);
+
   const [currentStep, setCurrentStep] = useState(1);
   const [data, setData] = useState();
 
@@ -44,68 +54,11 @@ const BasicCalculator = () => {
   }, []);
 
 
-  // firs render
-  useEffect(() => {
-    if (data) {
-      setInitialCategories(data);
-      setInitialFields(data);
-    }
-  }, [data]);
-
-  // rerendering components
-  useEffect(() => {
-    if (data) {
-      setIsCategories(true);
-    }
-  }, [currentStep, categories]);
-
-
-
-  const setInitialCategories = (data) => {
-    const initialsCategories = data.categories.map(category => category.category_id)
-    setCategories(initialsCategories);
-  }
-
-  const setInitialFields = (data) => {
-    const newFields = {};
-
-    data.categories.forEach((category) => {
-      category.elements.forEach((element) => {
-        newFields[element.field_id] = undefined;
-      })
-    });
-
-    setFields(newFields);
-  }
-
-
-  const updateFieldsStates = (fieldId, newValue) => {
-    setFields({ ...fields, [fieldId]: newValue })
-  }
-
-
-
-  // const updateFieldsStates = (fieldId, newValue) => {
-  //   setFields(prevState => {
-  //     return {
-  //       ...prevState,
-  //       [fieldId]: newValue
-  //     }
-  //   });
-  // };
-  const updateFiedlsStatesBoolean = (fieldId) => {
-    setFields(prevState => {
-      return {
-        ...prevState,
-        [fieldId]: !prevState[fieldId]
-      }
-    });
-  };
 
   const handleNextStep = (e) => {
     e.preventDefault();
     const newStep = currentStep + 1
-    if (newStep > categories.length) {
+    if (newStep > 4) {
       let postedData = {};
       Object.keys(fields).forEach((key) => {
         if (fields[key] !== undefined) {
@@ -133,17 +86,6 @@ const BasicCalculator = () => {
   };
 
 
-  const isHidden = (categoryId) => {
-    try {
-      if (categories[currentStep - 1] === categoryId) {
-        return false;
-      }
-      return true;
-    } catch (err) {
-      return true;
-    }
-  }
-
 
 
 
@@ -159,164 +101,190 @@ const BasicCalculator = () => {
 
 
 
-  // --------------------------------------------------
 
   return (
     <>
       <ProgressBar range={data ? data.categories.length : 6} current={currentStep} />
-      <div className='mb-4 '>
-        {isCategories ? data.categories.map((category) => (<HandleCategoryComponent
-          handleNextStep={handleNextStep}
-          currentStep={currentStep}
-          categories={categories}
-          category={category}
-          fields={fields}
-          isHidden={isHidden}
-          renderTooltip={renderTooltip}
-          updateFieldsStates={updateFieldsStates}
-        />)) : <></>}
+      <div className='mb-4' hidden={data !== undefined}>
+        <div className='calculator-category-container' hidden={!(currentStep === 1)}>
+          <h1 className='calculator-category-title'>Общее</h1>
+          <div className='calculator-category-content'>
+            <RegularDropdown
+              controlId='organization_type'
+              label='Тип организации'
+              value={fields.organization_type}
+              onChange={(e) => { setFields({ ...fields, organization_type: e.target.value }) }}
+              innerData={["OOO", "ИП"]}
+              overlay={renderTooltip('Тип организации')}
+              formLabel={"Тип организации"}
+            />
+            <RegularDropdown
+              controlId='industry'
+              label='Отрасль'
+              value={fields.industry}
+              onChange={(e) => { setFields({ ...fields, industry: e.target.value }) }}
+              innerData={["Производство хлебобулочных изделий", "Производство напитков", "Производство макаронных изделий"]}
+              overlay={renderTooltip('Отрасль')}
+              formLabel={"Отрасль"}
+            />
+            <RegularInput
+              controlId='employees'
+              label='Количество сотрудников'
+              value={fields.employees ? fields.employees : ""}
+              placeholder={"Введите количество сотрудников (чел)"}
+              onChange={(e) => { setFields({ ...fields, employees: e.target.value }) }}
+              overlay={renderTooltip('Количество сотрудников')}
+              formLabel={"Количество сотрудников"}
+              className={"calculator-input"}
+            />
+
+            <RegularButton
+              text={"Далее"}
+              onClick={handleNextStep}
+              className="calculator-next-button"
+
+            />
+          </div>
+        </div>
+        <div className='calculator-category-container' hidden={!(currentStep === 2)}>
+          <h1 className='calculator-category-title'>Территория</h1>
+          <div className='calculator-category-content'>
+            <RegularDropdown
+              controlId='district'
+              value={fields.district}
+              onChange={(e) => { setFields({ ...fields, district: e.target.value }) }}
+              innerData={[
+                "Центральный",
+                "Северный",
+                "Северо-Восточный",
+                "Восточный",
+                "Юго-Восточный",
+                "Южный",
+                "Юго-Западный",
+                "Западный",
+                "Северо-Западный",
+                "Зеленоградский",
+                "Троицкий",
+                "Новомосковский",
+              ]}
+              overlay={renderTooltip('Административный округ')}
+              formLabel={"Административный округ"}
+            />
+            <DistrictsMap choosenDistrict={fields.district} setChoosenDistrict={(value) => setFields({ ...fields, district: value })} />
+            <RegularButton
+              text={"Далее"}
+              onClick={handleNextStep}
+            />
+          </div>
+        </div>
+        <div className='calculator-category-container' hidden={!(currentStep === 3)}>
+          <h1 className='calculator-category-title'>Здание</h1>
+          <div className='calculator-category-content'>
+            <RegularInput
+              controlId='building_area'
+              label='Площадь здания'
+              value={fields.area ? fields.area : ""}
+              placeholder={"Введите площадь здания (м2)"}
+              onChange={(e) => { setFields({ ...fields, area: e.target.value }) }}
+              overlay={renderTooltip('')}
+              formLabel={"Площадь здания"}
+              className={"calculator-input"}
+              type={"number"}
+            />
+            <RegularInput
+              controlId='construction_area'
+              label='Площадь застройки'
+              value={fields.construction_area ? fields.construction_area : ""}
+              placeholder={"Введите площадь застройки (м2)"}
+              onChange={(e) => { setFields({ ...fields, construction_area: e.target.value }) }}
+              overlay={renderTooltip('')}
+              formLabel={"Площадь застройки"}
+              className={"calculator-input"}
+              type={"number"}
+            />
+
+
+            <RegularMultipleDropdown
+              controlId='machines'
+              label='Оборудование'
+              selectedOptions={fields.machines}
+              setSelectedOptions={(value) => setFields({ ...fields, machines: value })}
+              innerData={[
+                "Системы теплоснабжения",
+                "Системы вентиляции",
+                "Системы кондиционирования",
+                "Системы водоснабжения",
+                "Системы канализации",
+                "Системы электроснабжения",
+                "Системы освещения",
+
+              ]}
+              overlay={renderTooltip('вы можете выбрать несколько вариантов оборудования')}
+              formLabel={"Оборудование"}
+            />
+            <RegularMultipleDropdown
+              controlId='other-needs'
+              label='Иные потребности'
+              selectedOptions={fields.other_needs}
+              setSelectedOptions={(value) => setFields({ ...fields, other_needs: value })}
+              innerData={[
+                "Системы теплоснабжения",
+                "Системы вентиляции",
+                "Системы кондиционирования",
+                "Системы водоснабжения",
+                "Системы канализации"]}
+              overlay={renderTooltip('вы можете выбрать несколько дополнительных потребностей')}
+              formLabel={"Иные потребности"}
+            />
+            <RegularButton
+              text={"Далее"}
+              onClick={handleNextStep}
+            />
+          </div>
+        </div>
+        <div className='calculator-category-container' hidden={!(currentStep === 4)}>
+          <h1 className='calculator-category-title'>Отчисления</h1>
+          <div className='calculator-category-content'>
+            <RegularDropdown
+              controlId='tax-system'
+              label='Налоговая система'
+              value={fields.tax_system}
+              onChange={(e) => { setFields({ ...fields, tax_system: e.target.value }) }}
+              innerData={["УСН6%", "УСН15%", "ОСНО"]}
+              overlay={renderTooltip('Налоговая система')}
+              formLabel={"Налоговая система"}
+            />
+            <RegularCheckbox
+              controlId='accounting'
+              label='Бухгалтерия'
+              value={fields.accounting}
+              onChange={(e) => { setFields({ ...fields, accounting: e.target.checked }) }}
+              overlay={renderTooltip('Нужна ли вам бухгалтерия (да/нет)')}
+              formLabel={"Бухгалтерия"}
+            />
+            <RegularSlider
+              controlId='accounting-operations'
+              label='Количество бухгалтерских операций'
+              value={fields.accounting_operations}
+              onChange={(e) => { setFields({ ...fields, accounting_operations: e.target.value }) }}
+              overlay={renderTooltip('Количество бухгалтерских операций в месяц')}
+              formLabel={"Количество бухгалтерских операций: "}
+              hidden={(!fields.accounting)}
+            />
+
+            <RegularButton
+              text={"Рассчитать инвестиции"}
+              onClick={handleNextStep}
+            />
+
+
+          </div>
+        </div>
+
       </div>
 
     </>
   );
 };
 
-
 export default BasicCalculator;
-  // const handleDropdown = (element) => {
-  //   const fieldId = element.field_id;
-  //   return (
-  //     <RegularDropdown
-  //       controlId={fieldId}
-  //       label={element.field}
-  //       value={fields[fieldId]}
-  //       onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, e.target.value) }}
-  //       overlay={renderTooltip(element.comment)}
-  //       innerData={element.options}
-  //     />
-  //   )
-  // };
-
-  // const handleInput = (element) => {
-  //   const fieldId = element.field_id;
-  //   const type = element.options[0] ? element.options[0] : 'text';
-  //   return (
-  //     <RegularInput
-  //       controlId={fieldId}
-  //       label={element.field}
-  //       type={type}
-  //       value={fields[fieldId]}
-  //       onChange={(e) => { updateFieldsStates(fieldId, e.target.value) }}
-  //       overlay={renderTooltip(element.comment)}
-  //     />
-  //   )
-  // };
-
-  // const handleCheckbox = (element) => {
-  //   const fieldId = element.field_id;
-  //   return (
-  //     <RegularCheckbox
-  //       controlId={fieldId}
-  //       label={element.comment}
-  //       formLabel={element.field}
-  //       value={fields[fieldId]}
-  //       onChange={() => { updateFiedlsStatesBoolean(fieldId) }}
-  //       overlay={renderTooltip(element.comment)}
-  //     />
-  //   )
-  // };
-
-  // const handleSwitch = (element) => {
-  //   const fieldId = element.field_id;
-  //   return (
-  //     <RegularSwitch
-  //       controlId={fieldId}
-  //       label={element.field}
-  //       onChange={() => { updateFiedlsStatesBoolean(fieldId) }}
-  //       overlay={renderTooltip(element.comment)}
-  //     />
-  //   )
-  // };
-
-  // const handleSlider = (element) => {
-  //   const fieldId = element.field_id;
-  //   return (
-  //     <Form.Group key={nanoid()}>
-  //       <OverlayTrigger placement="top" overlay={renderTooltip(element.comment)} key={nanoid()}>
-  //         <Form.Range
-  //           type="range"
-  //           id={fieldId}
-  //           label={element.field}
-  //           value={fields[fieldId]}
-  //           min={element.range_min}
-  //           max={element.range_max}
-  //           onChange={(e) => { updateFieldsStates(fieldId, e.target.value) }}
-  //         />
-  //       </OverlayTrigger>
-  //     </Form.Group>
-  //   )
-  // };
-
-  // const handleDropdownMultiselect = (element) => {
-  //   const fieldId = element.field_id;
-  //   fields[fieldId] = fields[fieldId] ? fields[fieldId] : [];
-  //   return (
-  //     <RegularMultipleDropdown
-  //       controlId={fieldId}
-  //       label={element.field}
-  //       selectedOptions={fields[fieldId]}
-  //       setSelectedOptions={(values) => { updateFieldsStates(fieldId, values) }}
-  //       overlay={renderTooltip(element.comment)}
-  //       innerData={element.options}
-  //     />
-  //   )
-  // };
-
-   // const handleInnerElements = (element) => {
-  //   const type = element.type;
-  //   switch (type) {
-  //     case 'dropdown':
-  //       return handleDropdown(element);
-  //     case 'input':
-  //       return handleInput(element);
-  //     case "dropdown_multiselect":
-  //       return handleDropdownMultiselect(element);
-  //     case 'checkbox':
-  //       return handleCheckbox(element);
-  //     case 'range':
-  //       return handleSlider(element);
-  //     default:
-  //       return null;
-  //   }
-  // }
-
-  // const handleCategory = (category) => {
-  //   const hidden = isHidden(category.category_id);
-  //   if (hidden) {
-  //     return (<div key={nanoid()}></div>);
-  //   } else {
-  //     return (
-  //       <Form
-  //         className='calculator-category'
-  //         key={nanoid()}
-  //         id={category.category_id}
-  //       >
-  //         <h2>{category.category}</h2>
-  //         <div className='calculator-div-categories' key={nanoid()}>
-  //           {category.elements.map((element) => handleInnerElements(element))}
-  //         </div>
-
-  //         <div className='calculator-control-block'>
-  //           {currentStep === categories.length ? <p className='p-logo calculator-sign'>
-  //             Нажимая на кнопку вы принимайте условия <a href="/documents">пользовательского соглашения</a>
-  //           </p> : <></>}
-  //           <RegularButton
-  //             className='mt-2'
-  //             text={currentStep === categories.length ? 'Получить результат' : 'Далее'}
-  //             onClick={handleNextStep}
-  //           />
-  //         </div>
-  //       </Form>
-  //     );
-  //   }
-  // }

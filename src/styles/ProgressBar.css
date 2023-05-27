@@ -1,5 +1,5 @@
 .pbar-main {
-  height: 1px !important;
+  height: 2px !important;
   background-color: var(--secondary-gray-2) !important;
 }
 
@@ -27,7 +27,7 @@
 
 .pbar-main-modal {
   width: calc(var(--index)*15.2);
-  height: 1px !important;
+  height: 2px !important;
   background-color: var(--main-grey) !important;
 }
 

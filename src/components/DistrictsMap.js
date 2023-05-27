@@ -4,7 +4,7 @@ import { YMaps, Map, Polygon, ListBox, ListBoxItem } from '@pbe/react-yandex-map
 import data from '../asserts/ao.json';
 import { nanoid } from 'nanoid';
 
-const DistrictsMap = () => {
+const DistrictsMap = ({ choosenDistrict, setChoosenDistrict }) => {
 
   const districtsColors = {
     'Центральный': '#B5DEFF',
@@ -23,7 +23,6 @@ const DistrictsMap = () => {
 
   const [districtsColorsState, setDistrictsColorsState] = useState(districtsColors);
   const [clickedCoords, setClickedCoords] = useState(null);
-  const [choosenDistrict, setChoosenDistrict] = useState(null);
 
   function transformData(jsonData) {
     const result = [];
@@ -93,9 +92,9 @@ const DistrictsMap = () => {
         openHintOnHover={true}
         options={{
           strokeColor: '#000',
-          opacity: coord.name === choosenDistrict ? 0.8 : 0.5,
+          opacity: coord.name === choosenDistrict ? 0.8 : 0.4,
           fillColor: districtsColorsState[coord.name],
-          strokeOpacity: 0.5,
+          strokeOpacity: coord.name === choosenDistrict ? 0.8 : 0.4,
           strokeWidth: 2,
           cursor: 'pointer',
         }}

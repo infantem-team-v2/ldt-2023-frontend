@@ -9,7 +9,6 @@ const RegularMultipleDropdown = ({ selectedOptions, setSelectedOptions, controlI
   overlayPosition = "top", formLabel = undefined, formClass = undefined, }) => {
 
 
-
   const handleOptionChange = (optionValue) => {
     const newSelectedOptions = [...selectedOptions];
     if (newSelectedOptions.includes(optionValue)) {
@@ -21,10 +20,10 @@ const RegularMultipleDropdown = ({ selectedOptions, setSelectedOptions, controlI
   };
 
   return (
-    <OverlayTrigger placement={overlayPosition} overlay={overlay} key={nanoid()}>
-      <Form.Group controlId={controlId} className={"regular-multiple-dropdown-form-group" + (formClass ? formClass : "")} key={nanoid()}>
+    <OverlayTrigger placement={overlayPosition} overlay={overlay}  >
+      <Form.Group controlId={controlId} className={"regular-multiple-dropdown-form-group"} >
         <Dropdown as={ButtonGroup}>
-          <Dropdown.Toggle variant="primary" id="dropdown-basic" className='multi-dropdown-toggle'>
+          <Dropdown.Toggle id="dropdown-basic" className='multi-dropdown-toggle'>
             {formLabel ? formLabel : "Выберите из списка"}
           </Dropdown.Toggle>
           <Dropdown.Menu>
@@ -34,10 +33,8 @@ const RegularMultipleDropdown = ({ selectedOptions, setSelectedOptions, controlI
                   key={index}
                   type="checkbox"
                   label={option}
-                  //selectedOptions.includes(option)
                   checked={selectedOptions.includes(option)}
-                  //() => handleOptionChange(option)
-                  onChange={handleOptionChange}
+                  onChange={() => handleOptionChange(option)}
                   className='regular-multiple-dropdown-checkbox'
                 />
               ))}
