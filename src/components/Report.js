@@ -58,8 +58,8 @@ const Report = ({ isLogedIn }) => {
       </div> :
         isDataLoaded ?
           <>
-            <h1>Общий размер инвестиций</h1>
-            <h2>{totalExpenses}₽</h2>
+            <h1 className='report-h'>Общий размер инвестиций</h1>
+            <h2 className='report-h'>{totalExpenses}₽</h2>
             <hr />
             {
               Object.keys(report.output).map((category, index) => {
