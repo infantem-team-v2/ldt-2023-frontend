@@ -102,7 +102,7 @@ function App() {
         <Route path='/admin' element={<AdminForm />} />
         <Route path='/account' element={<AccountPage />} />
         <Route path='/documents' element={<DocumentsPage />} />
-        <Route path='/report/:id' element={<ReportPage />} />
+        <Route path='/report/:id' element={<ReportPage isLogedIn={isLogedIn} />} />
         <Route path='*' element={<F404Page />} />
       </Routes>
       <Footer />

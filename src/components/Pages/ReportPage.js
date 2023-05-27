@@ -7,7 +7,7 @@ import Report from '../Report';
 import CopyToClipboardButton from '../ui-kit/CopyToClickboardButton';
 
 
-const ReportPage = () => {
+const ReportPage = ({ isLogedIn }) => {
 
   const [link, setLink] = useState('');
 
@@ -24,7 +24,7 @@ const ReportPage = () => {
           <h1 className='h1-report'>Результат расчёта</h1>
         </aside>
         <div className="main-section">
-          <Report />
+          <Report isLogedIn={isLogedIn} />
         </div>
       </div>
       <div className='d-flex justify-content-between mt-4 mb-4'>
@@ -35,7 +35,7 @@ const ReportPage = () => {
           </div>
 
         </aside>
-        <div className="main-footer-section">
+        <div className="main-footer-section" hidden={isLogedIn}>
           <p>Зарегистрируйтесь чтобы получить более надежную и полную метрику</p>
         </div>
       </div>

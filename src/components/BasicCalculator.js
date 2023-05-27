@@ -28,7 +28,7 @@ const BasicCalculator = () => {
     building_area: undefined,
     machine_names: [],
     machine_quantities: [],
-    patent_type: "Нет патента",
+    patents: undefined,
     bookkeeping: false,
     tax_system: undefined,
     operations: undefined,
@@ -41,6 +41,7 @@ const BasicCalculator = () => {
     machine_names: [],
     industry: [],
     other_needs: [],
+    patents: [],
   });
 
 
@@ -256,6 +257,16 @@ const BasicCalculator = () => {
                 formLabel={"Количество бухгалтерских операций: "}
                 hidden={(!fields.bookkeeping)}
               />
+              <RegularDropdown
+                controlId='patents'
+                label='Тип патента'
+                value={fields.patents}
+                onChange={(e) => { setFields({ ...fields, patents: e.target.value }) }}
+                innerData={innerData.patents}
+                overlay={renderTooltip('Если вы работаете по патенту, выберите тип патента')}
+                formLabel={"Тип патента"}
+              />
+
 
               <RegularButton
                 text={"Рассчитать инвестиции"}
