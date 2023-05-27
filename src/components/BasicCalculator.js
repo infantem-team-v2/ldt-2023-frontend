@@ -75,8 +75,8 @@ const BasicCalculator = () => {
       }
     }
     newFields["bookkeeping"] = Boolean(newFields["bookkeeping"]);
-    newFields["machine_names"] = newFields["machine_names"].typeOf(Array) ? newFields["machine_names"] : [];
-    newFields["other_needs"] = newFields["other_needs"].typeOf(Array) ? newFields["other_needs"] : [];
+    newFields["machine_names"] = Array.isArray(newFields["machine_names"]) ? newFields["machine_names"] : [];
+    newFields["other_needs"] = Array.isArray(newFields["other_needs"]) ? newFields["other_needs"] : [];
     newFields["machine_quantities"] = machine_quantities;
     return newFields;
   }
