@@ -299,7 +299,6 @@ const BasicCalculator = () => {
   };
 
   // --------------------------------------------------
-  console.log("RERENDER", dataCategories.length)
 
   return (
     <>
