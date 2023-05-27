@@ -52,9 +52,8 @@ const BasicCalculator = () => {
   useEffect(() => {
     if (data) {
       setDataCategories(data.categories);
-      console.log(dataCategories);
     }
-  }, [currentStep, categories, fields]);
+  }, [currentStep, categories]);
 
 
 
@@ -93,14 +92,6 @@ const BasicCalculator = () => {
       return {
         ...prevState,
         [fieldId]: !prevState[fieldId]
-      }
-    });
-  };
-  const updateFiedlsStatesMultipleDropdown = (fieldId, newValue) => {
-    setFields(prevState => {
-      return {
-        ...prevState,
-        [fieldId]: newValue
       }
     });
   };
