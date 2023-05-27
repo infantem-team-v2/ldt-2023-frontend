@@ -308,39 +308,37 @@ const BasicCalculator = () => {
                 <div className='calculator-div-categories' key={nanoid()}>
                   {category.elements.map((element) => {
                     const type = element.type;
-                    const fieldId = element.field_id;
-                    const inputType = (element.options && element.options[0]) ? element.options[0] : 'text';
                     switch (type) {
                       case 'dropdown':
-                        return (
-                          <RegularDropdown
-                            controlId={fieldId}
-                            label={element.field}
-                            value={fields[fieldId]}
-                            onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, e.target.value) }}
-                            overlay={renderTooltip(element.comment)}
-                            innerData={element.options}
-                          />
-                        )
+
+                        <RegularDropdown
+                          controlId={element.field_id}
+                          label={element.field}
+                          value={fields[element.field_id]}
+                          onChange={(e) => { e.preventDefault(); updateFieldsStates(element.field_id, e.target.value) }}
+                          overlay={renderTooltip(element.comment)}
+                          innerData={element.options}
+                        />
+
                       case 'input':
-                        return (
-                          <RegularInput
-                            controlId={fieldId}
-                            label={element.field}
-                            type={inputType}
-                            value={fields[fieldId]}
-                            onChange={(e) => { updateFieldsStates(fieldId, e.target.value) }}
-                            overlay={renderTooltip(element.comment)}
-                          />
-                        )
+
+                        <RegularInput
+                          controlId={element.field_id}
+                          label={element.field}
+                          type={element.options[0] ? element.options[0] : 'text'}
+                          value={fields[element.field_id]}
+                          onChange={(e) => { updateFieldsStates(element.field_id, e.target.value) }}
+                          overlay={renderTooltip(element.comment)}
+                        />
+
                       case "dropdown_multiselect":
-                        return handleDropdownMultiselect(element);
+                        <div></div>;
                       case 'checkbox':
-                        return handleCheckbox(element);
+                        <div></div>;
                       case 'range':
-                        return handleSlider(element);
+                        <div></div>;
                       default:
-                        return null;
+                        <></>;
                     }
                   })}
                 </div>
