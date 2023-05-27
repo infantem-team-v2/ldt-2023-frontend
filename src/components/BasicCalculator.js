@@ -253,7 +253,7 @@ const BasicCalculator = () => {
         label={element.field}
         type={type}
         value={fields[fieldId]}
-        onChange={(e) => { e.preventDefault(); console.log(fields[fieldId]); updateFieldsStates(fieldId, e.target.value) }}
+        onChange={(e) => { e.preventDefault(); tryGetData(fields, fieldId); updateFieldsStates(fieldId, e.target.value) }}
         overlay={renderTooltip(element.comment)}
       />
     )
