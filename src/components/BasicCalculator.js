@@ -63,6 +63,8 @@ const BasicCalculator = () => {
   useEffect(() => {
     console.log("FirstCheck", innerData);
     if (innerData && !isDataLoaded && Object.keys(innerData).length > 0) {
+      console.log("SecondCheck", innerData["industry"]);
+      console.log("SecondCheck2", innerData.industry);
       setIsDataLoaded(true);
     }
   }, [innerData]);
