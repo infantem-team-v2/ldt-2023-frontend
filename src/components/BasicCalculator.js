@@ -15,6 +15,7 @@ import RegularDropdown from './ui-kit/RegularDropdown';
 import '../styles/BasicCalculator.css';
 import api from '../services/api';
 import Swal from 'sweetalert2';
+import HandleElementComponent from './HandleElementComponent';
 
 
 const BasicCalculator = () => {
@@ -307,39 +308,7 @@ const BasicCalculator = () => {
                 <h2>{category.category}</h2>
                 <div className='calculator-div-categories' key={nanoid()}>
                   {category.elements.map((element) => {
-                    const type = element.type;
-                    switch (type) {
-                      case 'dropdown':
-                        return (
-                          <RegularDropdown
-                            controlId={element.field_id}
-                            label={element.field}
-                            value={fields[element.field_id]}
-                            onChange={(e) => { e.preventDefault(); updateFieldsStates(element.field_id, e.target.value) }}
-                            overlay={renderTooltip(element.comment)}
-                            innerData={element.options}
-                          />
-                        )
-                      case 'input':
-                        return (
-                          <RegularInput
-                            controlId={element.field_id}
-                            label={element.field}
-                            type={element.options[0] ? element.options[0] : 'text'}
-                            value={fields[element.field_id]}
-                            onChange={(e) => { updateFieldsStates(element.field_id, e.target.value) }}
-                            overlay={renderTooltip(element.comment)}
-                          />
-                        )
-                      case "dropdown_multiselect":
-                        return <div></div>;
-                      case 'checkbox':
-                        return <div></div>;
-                      case 'range':
-                        return <div></div>;
-                      default:
-                        return <></>;
-                    }
+                    <HandleElementComponent element={element} renderTooltip={renderTooltip} updateFieldsStates={updateFieldsStates} fields={fields} />
                   })}
                 </div>
 
