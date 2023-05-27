@@ -138,66 +138,55 @@ const BasicCalculator = () => {
     }
   }
 
-  const handleInnerElements = (element) => {
-    const type = element.type;
-    switch (type) {
-      case 'dropdown':
-        return handleDropdown(element);
-      case 'input':
-        return handleInput(element);
-      case "dropdown_multiselect":
-        return handleDropdownMultiselect(element);
-      case 'checkbox':
-        return handleCheckbox(element);
-      case 'range':
-        return handleSlider(element);
-      default:
-        return null;
-    }
-  }
+  // const handleInnerElements = (element) => {
+  //   const type = element.type;
+  //   switch (type) {
+  //     case 'dropdown':
+  //       return handleDropdown(element);
+  //     case 'input':
+  //       return handleInput(element);
+  //     case "dropdown_multiselect":
+  //       return handleDropdownMultiselect(element);
+  //     case 'checkbox':
+  //       return handleCheckbox(element);
+  //     case 'range':
+  //       return handleSlider(element);
+  //     default:
+  //       return null;
+  //   }
+  // }
 
-  const handleCategory = (category) => {
-    const hidden = isHidden(category.category_id);
-    if (hidden) {
-      return (<div key={nanoid()}></div>);
-    } else {
-      return (
-        <Form
-          className='calculator-category'
-          key={nanoid()}
-          id={category.category_id}
-        >
-          <h2>{category.category}</h2>
-          <div className='calculator-div-categories' key={nanoid()}>
-            {category.elements.map((element) => handleInnerElements(element))}
-          </div>
+  // const handleCategory = (category) => {
+  //   const hidden = isHidden(category.category_id);
+  //   if (hidden) {
+  //     return (<div key={nanoid()}></div>);
+  //   } else {
+  //     return (
+  //       <Form
+  //         className='calculator-category'
+  //         key={nanoid()}
+  //         id={category.category_id}
+  //       >
+  //         <h2>{category.category}</h2>
+  //         <div className='calculator-div-categories' key={nanoid()}>
+  //           {category.elements.map((element) => handleInnerElements(element))}
+  //         </div>
 
-          <div className='calculator-control-block'>
-            {currentStep === categories.length ? <p className='p-logo calculator-sign'>
-              Нажимая на кнопку вы принимайте условия <a href="/documents">пользовательского соглашения</a>
-            </p> : <></>}
-            <RegularButton
-              className='mt-2'
-              text={currentStep === categories.length ? 'Получить результат' : 'Далее'}
-              onClick={handleNextStep}
-            />
-          </div>
-        </Form>
-      );
-    }
-  }
+  //         <div className='calculator-control-block'>
+  //           {currentStep === categories.length ? <p className='p-logo calculator-sign'>
+  //             Нажимая на кнопку вы принимайте условия <a href="/documents">пользовательского соглашения</a>
+  //           </p> : <></>}
+  //           <RegularButton
+  //             className='mt-2'
+  //             text={currentStep === categories.length ? 'Получить результат' : 'Далее'}
+  //             onClick={handleNextStep}
+  //           />
+  //         </div>
+  //       </Form>
+  //     );
+  //   }
+  // }
 
-  const tryGetData = (fields, fieldId) => {
-    console.log("CURRENT FIELDS", fields)
-    console.log("CURRENT FIELD ID", fieldId)
-    console.log("CURRENT FIELDS KEYS", Object.keys(fields))
-    console.log("CURRENT FIELDS KEYS INCLUDES", Object.keys(fields).includes(fieldId))
-    const newFields = JSON.parse(JSON.stringify(fields));
-    const currentField = newFields[fieldId];
-    console.log(JSON.stringify(fields))
-    console.log("CURRENT FIELD ", currentField);
-    return currentField;
-  }
 
   // --------------------------------------------------
   // handlers for different types of elements
@@ -209,34 +198,34 @@ const BasicCalculator = () => {
     </Tooltip>
   );
 
-  const handleDropdown = (element) => {
-    const fieldId = element.field_id;
-    return (
-      <RegularDropdown
-        controlId={fieldId}
-        label={element.field}
-        value={fields[fieldId]}
-        onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, e.target.value) }}
-        overlay={renderTooltip(element.comment)}
-        innerData={element.options}
-      />
-    )
-  };
+  // const handleDropdown = (element) => {
+  //   const fieldId = element.field_id;
+  //   return (
+  //     <RegularDropdown
+  //       controlId={fieldId}
+  //       label={element.field}
+  //       value={fields[fieldId]}
+  //       onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, e.target.value) }}
+  //       overlay={renderTooltip(element.comment)}
+  //       innerData={element.options}
+  //     />
+  //   )
+  // };
 
-  const handleInput = (element) => {
-    const fieldId = element.field_id;
-    const type = element.options[0] ? element.options[0] : 'text';
-    return (
-      <RegularInput
-        controlId={fieldId}
-        label={element.field}
-        type={type}
-        value={fields[fieldId]}
-        onChange={(e) => { e.preventDefault(); tryGetData(fields, fieldId); updateFieldsStates(fieldId, e.target.value) }}
-        overlay={renderTooltip(element.comment)}
-      />
-    )
-  };
+  // const handleInput = (element) => {
+  //   const fieldId = element.field_id;
+  //   const type = element.options[0] ? element.options[0] : 'text';
+  //   return (
+  //     <RegularInput
+  //       controlId={fieldId}
+  //       label={element.field}
+  //       type={type}
+  //       value={fields[fieldId]}
+  //       onChange={(e) => { updateFieldsStates(fieldId, e.target.value) }}
+  //       overlay={renderTooltip(element.comment)}
+  //     />
+  //   )
+  // };
 
   const handleCheckbox = (element) => {
     const fieldId = element.field_id;
@@ -276,7 +265,7 @@ const BasicCalculator = () => {
             value={fields[fieldId]}
             min={element.range_min}
             max={element.range_max}
-            onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, e.target.value) }}
+            onChange={(e) => { updateFieldsStates(fieldId, e.target.value) }}
           />
         </OverlayTrigger>
       </Form.Group>
@@ -317,7 +306,43 @@ const BasicCalculator = () => {
               >
                 <h2>{category.category}</h2>
                 <div className='calculator-div-categories' key={nanoid()}>
-                  {category.elements.map((element) => handleInnerElements(element))}
+                  {category.elements.map((element) => {
+                    const type = element.type;
+                    const fieldId = element.field_id;
+                    const inputType = (element.options && element.options[0]) ? element.options[0] : 'text';
+                    switch (type) {
+                      case 'dropdown':
+                        return (
+                          <RegularDropdown
+                            controlId={fieldId}
+                            label={element.field}
+                            value={fields[fieldId]}
+                            onChange={(e) => { e.preventDefault(); updateFieldsStates(fieldId, e.target.value) }}
+                            overlay={renderTooltip(element.comment)}
+                            innerData={element.options}
+                          />
+                        )
+                      case 'input':
+                        return (
+                          <RegularInput
+                            controlId={fieldId}
+                            label={element.field}
+                            type={inputType}
+                            value={fields[fieldId]}
+                            onChange={(e) => { updateFieldsStates(fieldId, e.target.value) }}
+                            overlay={renderTooltip(element.comment)}
+                          />
+                        )
+                      case "dropdown_multiselect":
+                        return handleDropdownMultiselect(element);
+                      case 'checkbox':
+                        return handleCheckbox(element);
+                      case 'range':
+                        return handleSlider(element);
+                      default:
+                        return null;
+                    }
+                  })}
                 </div>
 
                 <div className='calculator-control-block'>
