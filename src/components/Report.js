@@ -49,12 +49,13 @@ const Report = ({ isLogedIn }) => {
   }
 
   const convertText = (text) => {
-    if (text.includes('_')) {
-      const words = text.split('_');
+    const newText = String(text);
+    if (newText.includes('_')) {
+      const words = newText.split('_');
       const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
       return capitalizedWords.join(' ');
     } else {
-      return text.charAt(0).toUpperCase() + text.slice(1);
+      return newText.charAt(0).toUpperCase() + newText.slice(1);
     }
 
   }
