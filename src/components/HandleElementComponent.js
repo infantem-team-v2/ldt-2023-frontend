@@ -19,14 +19,15 @@ const HandleElementComponent = ({ element, updateFieldsStates, renderTooltip, fi
         /> : <></>
       }
       {
-        type === 'input' ? <RegularInput
+        type === 'input' ? <input
+          className="regular-input-form-control"
           controlId={element.field_id}
           label={element.field}
           type={element.options[0] ? element.options[0] : 'text'}
           value={fields[element.field_id]}
           onChange={(e) => { updateFieldsStates(element.field_id, e.target.value) }}
-          overlay={renderTooltip(element.comment)}
-        /> : <></>
+        />
+          : <></>
       }
     </>
 
@@ -35,3 +36,11 @@ const HandleElementComponent = ({ element, updateFieldsStates, renderTooltip, fi
 };
 
 export default HandleElementComponent;
+{/* <RegularInput
+  controlId={element.field_id}
+  label={element.field}
+  type={element.options[0] ? element.options[0] : 'text'}
+  value={fields[element.field_id]}
+  onChange={(e) => { updateFieldsStates(element.field_id, e.target.value) }}
+  overlay={renderTooltip(element.comment)}
+/> */}
