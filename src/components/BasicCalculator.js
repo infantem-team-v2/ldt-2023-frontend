@@ -22,7 +22,9 @@ import HandleCategoryComponent from './HandleCategoryComponent';
 const BasicCalculator = () => {
 
   const [categories, setCategories] = useState([]);
-  const [fields, setFields] = useState({});
+  const [fields, setFields] = useState({
+
+  });
   const [isCategories, setIsCategories] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [data, setData] = useState();

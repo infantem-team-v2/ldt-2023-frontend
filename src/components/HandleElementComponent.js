@@ -20,7 +20,6 @@ const HandleElementComponent = ({ element, updateFieldsStates, renderTooltip, fi
       }
       {
         type === 'input' ? <input
-          className="regular-input-form-control"
           controlId={element.field_id}
           label={element.field}
           type={element.options[0] ? element.options[0] : 'text'}
