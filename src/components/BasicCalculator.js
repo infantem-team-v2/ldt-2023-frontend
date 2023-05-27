@@ -52,10 +52,9 @@ const BasicCalculator = () => {
   const fetchInnerData = async () => {
     try {
       const response = await api.get("/calc/fields");
-      const dataJson = await response.json();
+      const dataJson = await response.data.data;
       console.log("DATAJSON", dataJson);
-      const data = dataJson.data;
-      await setInnerData(data);
+      await setInnerData(dataJson);
     } catch (err) {
       console.log(err);
     }
