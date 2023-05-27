@@ -85,6 +85,7 @@ const BasicCalculator = () => {
     const newStep = currentStep + 1
     if (newStep > 4) {
       const newFields = convertDataToApiFormat();
+      console.log(newFields);
       api.post("/calc/base", newFields).then((response) => {
         if (response.status >= 200 && response.status < 300) {
           const id = response.data.tracker_id;
