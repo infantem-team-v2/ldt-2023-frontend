@@ -5,6 +5,7 @@ const Report = () => {
 
   const [report, setReport] = useState({});
   // const [totalExpenses, setTotalExpenses] = useState(0);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
 
   const reportId = window.location.href.split('/')[4];
@@ -20,6 +21,12 @@ const Report = () => {
       }
     }).catch((err) => { })
   }, [report, reportId]);
+
+  useEffect(() => {
+    if (report) {
+      setIsDataLoaded(true);
+    }
+  }, [report]);
 
 
   // const handleData = () => {
@@ -52,10 +59,15 @@ const Report = () => {
   // }
 
 
-  return (
-    <div className='container'>
+  return (<>
+    {isDataLoaded ? <div className='container'>
       <h1>Report</h1>
-    </div>
+    </div> :
+      <div className='mt-5 d-flex justify-content-center align-items-center' >
+        <div className="spinner-border regular-spinner" role="status" />
+      </div>}
+  </>
+
   );
 };
 

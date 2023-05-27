@@ -12,6 +12,7 @@ const UserDataBlock = () => {
   const [userData, setUserData] = useState([]);
   const [error, setError] = useState(false);
   const [isChanges, setIsChanges] = useState(false);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
 
   const [economic_activity, setEconomic_activity] = useState('');
@@ -40,6 +41,7 @@ const UserDataBlock = () => {
   useEffect(() => {
     if (userData) {
       handleData(userData);
+      setIsDataLoaded(true);
     }
   }, [userData]);
 
@@ -121,83 +123,90 @@ const UserDataBlock = () => {
   };
 
 
-  if (error) {
-    return (<>
-      <div className="alert alert-danger data m-3" role="alert">
-        Произошла ошибка при загрузке результатов.
-        Возможно вы не авторизованы?
+  return (<>{
+    isDataLoaded ?
+      error ? <>
+        <div className="alert alert-danger data m-3" role="alert">
+          Произошла ошибка при загрузке результатов.
+          Возможно вы не авторизованы?
+        </div>
+      </>
+        :
+        <div className="container">
+          < div className="user-block-div" >
+            <h2 className="user-block-head">Персональные данные</h2>
+            <form className="form user-block-form">
+              <RegularModalFormControl
+                label="Email"
+                type="email"
+                placeholder="Введите email"
+                value={email}
+                onChange={(e) => { setIsChanges(true); setEmail(e.target.value) }}
+              />
+              <RegularModalFormControl
+                label="ФИО"
+                type="text"
+                placeholder="Введите ФИО"
+                value={fullName}
+                onChange={(e) => { setIsChanges(true); setFullName(e.target.value) }}
+              />
+              <RegularModalFormControl
+                label="Местоположение"
+                type="text"
+                placeholder="Введите местоположение"
+                value={geography}
+                onChange={(e) => { setIsChanges(true); setGeography(e.target.value) }}
+              />
+              <RegularModalFormControl
+                label="Должность"
+                type="text"
+                placeholder="Введите должность"
+                value={jobPosition}
+                onChange={(e) => { setIsChanges(true); setJobPosition(e.target.value) }}
+              />
+            </form>
+          </div >
+          <div className="user-block-div">
+            <h2 className="user-block-head">Данные о предприятии</h2>
+            <form className="form user-block-form">
+              <RegularModalFormControl
+                label="Вид деятельности"
+                type="text"
+                placeholder="Введите вид деятельности"
+                value={economic_activity}
+                onChange={(e) => { setIsChanges(true); setEconomic_activity(e.target.value) }}
+              />
+              <RegularModalFormControl
+                label="ИНН"
+                type="text"
+                placeholder="Введите ИНН"
+                value={inn}
+                onChange={(e) => { setIsChanges(true); setInn(e.target.value) }}
+              />
+              <RegularModalFormControl
+                label="Название предприятия"
+                type="text"
+                placeholder="Введите название предприятия"
+                value={name}
+                onChange={(e) => { setIsChanges(true); setName(e.target.value) }}
+              />
+              <RegularModalFormControl
+                label="Сайт предприятия"
+                type="text"
+                placeholder="Введите сайт предприятия"
+                value={website}
+                onChange={(e) => { setIsChanges(true); setWebsite(e.target.value) }}
+              />
+            </form>
+          </div>
+          {controlBlock()}
+        </div > :
+      <div className='mt-5 d-flex justify-content-center align-items-center' >
+        <div className="spinner-border regular-spinner" role="status" />
       </div>
-    </>)
   }
-  return (<div className="container">
-    <div className="user-block-div">
-      <h2 className="user-block-head">Персональные данные</h2>
-      <form className="form user-block-form">
-        <RegularModalFormControl
-          label="Email"
-          type="email"
-          placeholder="Введите email"
-          value={email}
-          onChange={(e) => { setIsChanges(true); setEmail(e.target.value) }}
-        />
-        <RegularModalFormControl
-          label="ФИО"
-          type="text"
-          placeholder="Введите ФИО"
-          value={fullName}
-          onChange={(e) => { setIsChanges(true); setFullName(e.target.value) }}
-        />
-        <RegularModalFormControl
-          label="Местоположение"
-          type="text"
-          placeholder="Введите местоположение"
-          value={geography}
-          onChange={(e) => { setIsChanges(true); setGeography(e.target.value) }}
-        />
-        <RegularModalFormControl
-          label="Должность"
-          type="text"
-          placeholder="Введите должность"
-          value={jobPosition}
-          onChange={(e) => { setIsChanges(true); setJobPosition(e.target.value) }}
-        />
-      </form>
-    </div>
-    <div className="user-block-div">
-      <h2 className="user-block-head">Данные о предприятии</h2>
-      <form className="form user-block-form">
-        <RegularModalFormControl
-          label="Вид деятельности"
-          type="text"
-          placeholder="Введите вид деятельности"
-          value={economic_activity}
-          onChange={(e) => { setIsChanges(true); setEconomic_activity(e.target.value) }}
-        />
-        <RegularModalFormControl
-          label="ИНН"
-          type="text"
-          placeholder="Введите ИНН"
-          value={inn}
-          onChange={(e) => { setIsChanges(true); setInn(e.target.value) }}
-        />
-        <RegularModalFormControl
-          label="Название предприятия"
-          type="text"
-          placeholder="Введите название предприятия"
-          value={name}
-          onChange={(e) => { setIsChanges(true); setName(e.target.value) }}
-        />
-        <RegularModalFormControl
-          label="Сайт предприятия"
-          type="text"
-          placeholder="Введите сайт предприятия"
-          value={website}
-          onChange={(e) => { setIsChanges(true); setWebsite(e.target.value) }}
-        />
-      </form>
-    </div>
-    {controlBlock()}
-  </div>)
+  </>
+  )
 };
 
 export default UserDataBlock;

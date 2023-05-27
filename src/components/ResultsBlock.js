@@ -7,6 +7,7 @@ const ResultsBlock = (props) => {
 
   const [results, setResults] = useState([]);
   const [error, setError] = useState(false);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
 
   useEffect(() => {
@@ -17,11 +18,18 @@ const ResultsBlock = (props) => {
       if (res && res.status >= 200 && res.status < 300) {
         if (res.data.results) {
           setResults(res.data.results);
+
         }
       }
 
     });
   }, []);
+
+  useEffect(() => {
+    if (results) {
+      setIsDataLoaded(true);
+    }
+  }, [results]);
 
   const renderComponent = () => {
     if (results && results.length > 0) {
@@ -51,9 +59,12 @@ const ResultsBlock = (props) => {
     </>)
   }
   return (<>
-    <div className='card-container'>
-      {renderComponent()}
-    </div>
+    {isDataLoaded ?
+      <div className='card-container'>
+        {renderComponent()}
+      </div> : <div className='mt-5 d-flex justify-content-center align-items-center' >
+        <div className="spinner-border regular-spinner" role="status" />
+      </div>}
   </>)
 };
 
