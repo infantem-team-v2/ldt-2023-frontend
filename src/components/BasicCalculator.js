@@ -45,14 +45,13 @@ const BasicCalculator = () => {
     if (data) {
       setInitialCategories(data);
       setInitialFields(data);
-      setComponents(data);
     }
   }, [data]);
 
   // rerendering components
   useEffect(() => {
     if (data) {
-      setComponents(data);
+      console.log(fields)
     }
   }, [currentStep, categories, fields]);
 
