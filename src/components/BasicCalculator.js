@@ -17,7 +17,7 @@ import RegularSlider from './ui-kit/RegularSlider';
 import RegularInput from './ui-kit/RegularInput';
 
 
-const BasicCalculator = () => {
+const BasicCalculator = ({ isLogedIn }) => {
 
   const [fields, setFields] = useState({
     organization_type: undefined,
@@ -88,8 +88,8 @@ const BasicCalculator = () => {
     const newStep = currentStep + 1
     if (newStep > 4) {
       const newFields = convertDataToApiFormat();
-      console.log(newFields);
-      api.post("/calc/base", newFields).then((response) => {
+      const getUrl = isLogedIn ? "/calc" : "/calc/base";
+      api.post(getUrl, newFields).then((response) => {
         if (response.status >= 200 && response.status < 300) {
           const id = response.data.tracker_id;
           navigate(`/report/${id}`);

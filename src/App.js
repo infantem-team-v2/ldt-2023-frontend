@@ -98,7 +98,7 @@ function App() {
 
       <Header showSignInModal={showModal['signInModal']} isLogedIn={isLogedIn} logOut={logOut} showSignUpModal={showModal['signUpModal']} />
       <Routes>
-        <Route path='/' element={<MainPage />} />
+        <Route path='/' element={<MainPage isLogedIn={isLogedIn} />} />
         <Route path='/admin' element={<AdminForm />} />
         <Route path='/account' element={<AccountPage />} />
         <Route path='/documents' element={<DocumentsPage />} />
