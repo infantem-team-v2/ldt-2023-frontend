@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Tooltip, Form } from 'react-bootstrap';
+import { Tooltip } from 'react-bootstrap';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -7,7 +7,6 @@ import RegularButton from './ui-kit/RegularButton';
 import ProgressBar from './ui-kit/ProgressBar';
 import RegularMultipleDropdown from './ui-kit/RegularMultipleDropdown';
 import RegularCheckbox from './ui-kit/RegularCheckbox';
-import RegularSwitch from './ui-kit/RegularSwitch';
 import RegularDropdown from './ui-kit/RegularDropdown';
 import DistrictsMap from './DistrictsMap';
 
@@ -108,8 +107,8 @@ const BasicCalculator = () => {
     <>
 
       <ProgressBar range={4} current={currentStep} />
-      {true ? <>
-        <div className='mb-4' hidden={data !== undefined}>
+      {isDataLoaded ? <>
+        <div className='mb-4' >
           <div className='calculator-category-container' hidden={!(currentStep === 1)}>
             <h1 className='calculator-category-title'>Общее</h1>
             <div className='calculator-category-content'>
