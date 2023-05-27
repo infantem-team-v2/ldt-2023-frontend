@@ -49,6 +49,7 @@ const BasicCalculator = () => {
     api.get("/calc/fields").then((response) => {
       if (response.status >= 200 && response.status < 300) {
         const dataJson = response.json();
+        console.log(dataJson);
         const data = dataJson.data;
         setInnerData(data);
       }
