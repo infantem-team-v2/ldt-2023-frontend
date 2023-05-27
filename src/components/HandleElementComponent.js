@@ -19,13 +19,13 @@ const HandleElementComponent = ({ element, updateFieldsStates, renderTooltip, fi
         /> : <></>
       }
       {
-        type === 'input' ? <input
+        type === 'input' ? <RegularInput
           controlId={element.field_id}
           label={element.field}
           type={element.options[0] ? element.options[0] : 'text'}
           value={fields[element.field_id]}
           onChange={(e) => { updateFieldsStates(element.field_id, e.target.value) }}
-        />
+          overlay={renderTooltip(element.comment)} />
           : <></>
       }
     </>

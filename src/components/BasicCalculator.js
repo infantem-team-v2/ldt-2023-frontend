@@ -22,22 +22,27 @@ const BasicCalculator = () => {
   const [fields, setFields] = useState({
     organization_type: undefined,
     industry: undefined,
-    employees: undefined,
-    district: undefined,
-    area: undefined,
-    construction_area: undefined,
-    machines: [],
+    workers_quantity: undefined,
+    county: undefined,
+    land_area: undefined,
+    building_area: undefined,
+    machine_names: [],
     machine_quantities: [],
-    patent_activity: "Нет патента",
-    accounting: false,
+    patent_type: "Нет патента",
+    bookkeeping: false,
     tax_system: undefined,
-    accounting_operations: 50,
+    operations: undefined,
     other_needs: [],
   });
 
   const [currentStep, setCurrentStep] = useState(1);
   const [data, setData] = useState();
   const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [innerData, setInnerData] = useState({
+    machine_names: [],
+    industry: [],
+    other_needs: [],
+  });
 
 
   const navigate = useNavigate();
@@ -48,8 +53,7 @@ const BasicCalculator = () => {
   useEffect(() => {
     api.get("/ui/calc/element/active").then((response) => {
       if (response.status >= 200 && response.status < 300) {
-        setData(response.data);
-        setIsDataLoaded(true);
+        setInnerData(response.data.data);
       }
     }).catch((err) => { return err; });
   }, []);
@@ -60,15 +64,8 @@ const BasicCalculator = () => {
     e.preventDefault();
     const newStep = currentStep + 1
     if (newStep > 4) {
-      let postedData = {};
-      Object.keys(fields).forEach((key) => {
-        if (fields[key] !== undefined) {
-          postedData[key] = fields[key];
-        } else {
-          postedData[key] = null;
-        }
-      });
-      api.post("/calc/base", postedData).then((response) => {
+      console.log(fields)
+      api.post("/calc/base", fields).then((response) => {
         if (response.status >= 200 && response.status < 300) {
           const id = response.data.id ? response.data.id : '1';
           navigate(`/report/${id}`);
@@ -126,16 +123,16 @@ const BasicCalculator = () => {
                 label='Отрасль'
                 value={fields.industry}
                 onChange={(e) => { setFields({ ...fields, industry: e.target.value }) }}
-                innerData={["Производство хлебобулочных изделий", "Производство напитков", "Производство макаронных изделий"]}
+                innerData={innerData.industry}
                 overlay={renderTooltip('Отрасль')}
                 formLabel={"Отрасль"}
               />
               <RegularInput
                 controlId='employees'
                 label='Количество сотрудников'
-                value={fields.employees ? fields.employees : ""}
+                value={fields.workers_quantity ? fields.workers_quantity : ""}
                 placeholder={"Введите количество сотрудников (чел)"}
-                onChange={(e) => { setFields({ ...fields, employees: e.target.value }) }}
+                onChange={(e) => { setFields({ ...fields, workers_quantity: e.target.value }) }}
                 overlay={renderTooltip('Количество сотрудников')}
                 formLabel={"Количество сотрудников"}
                 className={"calculator-input"}
@@ -154,26 +151,17 @@ const BasicCalculator = () => {
             <div className='calculator-category-content'>
               <RegularDropdown
                 controlId='district'
-                value={fields.district}
-                onChange={(e) => { setFields({ ...fields, district: e.target.value }) }}
+                value={fields.county}
+                onChange={(e) => { setFields({ ...fields, county: e.target.value }) }}
                 innerData={[
-                  "Центральный",
-                  "Северный",
-                  "Северо-Восточный",
-                  "Восточный",
-                  "Юго-Восточный",
-                  "Южный",
-                  "Юго-Западный",
-                  "Западный",
-                  "Северо-Западный",
-                  "Зеленоградский",
-                  "Троицкий",
-                  "Новомосковский",
+                  "Центральный", "Северный", "Северо-Восточный", "Восточный",
+                  "Юго-Восточный", "Южный", "Юго-Западный", "Западный",
+                  "Северо-Западный", "Зеленоградский", "Троицкий", "Новомосковский",
                 ]}
-                overlay={renderTooltip('Административный округ')}
+                overlay={renderTooltip('Вы можете выбрать округ из списка или кликнуть на карте')}
                 formLabel={"Административный округ"}
               />
-              <DistrictsMap choosenDistrict={fields.district} setChoosenDistrict={(value) => setFields({ ...fields, district: value })} />
+              <DistrictsMap choosenDistrict={fields.county} setChoosenDistrict={(value) => setFields({ ...fields, county: value })} />
               <RegularButton
                 text={"Далее"}
                 onClick={handleNextStep}
@@ -186,9 +174,9 @@ const BasicCalculator = () => {
               <RegularInput
                 controlId='building_area'
                 label='Площадь здания'
-                value={fields.area ? fields.area : ""}
+                value={fields.land_area ? fields.land_area : ""}
                 placeholder={"Введите площадь здания (м2)"}
-                onChange={(e) => { setFields({ ...fields, area: e.target.value }) }}
+                onChange={(e) => { setFields({ ...fields, land_area: e.target.value }) }}
                 overlay={renderTooltip('')}
                 formLabel={"Площадь здания"}
                 className={"calculator-input"}
@@ -197,9 +185,9 @@ const BasicCalculator = () => {
               <RegularInput
                 controlId='construction_area'
                 label='Площадь застройки'
-                value={fields.construction_area ? fields.construction_area : ""}
+                value={fields.building_area ? fields.building_area : ""}
                 placeholder={"Введите площадь застройки (м2)"}
-                onChange={(e) => { setFields({ ...fields, construction_area: e.target.value }) }}
+                onChange={(e) => { setFields({ ...fields, building_area: e.target.value }) }}
                 overlay={renderTooltip('')}
                 formLabel={"Площадь застройки"}
                 className={"calculator-input"}
@@ -210,18 +198,9 @@ const BasicCalculator = () => {
               <RegularMultipleDropdown
                 controlId='machines'
                 label='Оборудование'
-                selectedOptions={fields.machines}
-                setSelectedOptions={(value) => setFields({ ...fields, machines: value })}
-                innerData={[
-                  "Системы теплоснабжения",
-                  "Системы вентиляции",
-                  "Системы кондиционирования",
-                  "Системы водоснабжения",
-                  "Системы канализации",
-                  "Системы электроснабжения",
-                  "Системы освещения",
-
-                ]}
+                selectedOptions={fields.machine_names}
+                setSelectedOptions={(value) => setFields({ ...fields, machine_names: value })}
+                innerData={innerData.machine_names}
                 overlay={renderTooltip('вы можете выбрать несколько вариантов оборудования')}
                 formLabel={"Оборудование"}
               />
@@ -253,26 +232,26 @@ const BasicCalculator = () => {
                 label='Налоговая система'
                 value={fields.tax_system}
                 onChange={(e) => { setFields({ ...fields, tax_system: e.target.value }) }}
-                innerData={["УСН6%", "УСН15%", "ОСНО"]}
+                innerData={['ОСН', 'УСН6%', 'УСН15%', 'ЕСНХ']}
                 overlay={renderTooltip('Налоговая система')}
                 formLabel={"Налоговая система"}
               />
               <RegularCheckbox
                 controlId='accounting'
                 label='Бухгалтерия'
-                value={fields.accounting}
-                onChange={(e) => { setFields({ ...fields, accounting: e.target.checked }) }}
+                value={fields.bookkeeping}
+                onChange={(e) => { setFields({ ...fields, bookkeeping: e.target.checked }) }}
                 overlay={renderTooltip('Нужна ли вам бухгалтерия (да/нет)')}
                 formLabel={"Бухгалтерия"}
               />
               <RegularSlider
                 controlId='accounting-operations'
                 label='Количество бухгалтерских операций'
-                value={fields.accounting_operations}
-                onChange={(e) => { setFields({ ...fields, accounting_operations: e.target.value }) }}
+                value={fields.operations}
+                onChange={(e) => { setFields({ ...fields, operations: e.target.value }) }}
                 overlay={renderTooltip('Количество бухгалтерских операций в месяц')}
                 formLabel={"Количество бухгалтерских операций: "}
-                hidden={(!fields.accounting)}
+                hidden={(!fields.bookkeeping)}
               />
 
               <RegularButton
@@ -286,7 +265,9 @@ const BasicCalculator = () => {
 
         </div>
 
-      </> : <div className="spinner-border text-primary" role="status" />}
+      </> : <div className='mt-5 d-flex justify-content-center align-items-center' >
+        <div className="spinner-border text-primary" role="status" />
+      </div>}
 
     </>
   );

@@ -21,6 +21,7 @@ const Report = () => {
     }).catch((err) => { })
   }, [report, reportId]);
 
+
   // const handleData = () => {
   //   if (report && report.total_expenses) {
   //     setTotalExpenses(report.total_expenses);
