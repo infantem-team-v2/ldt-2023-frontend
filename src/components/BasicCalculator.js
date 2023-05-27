@@ -51,7 +51,7 @@ const BasicCalculator = () => {
   // getting initial data
 
   useEffect(() => {
-    api.get("/ui/calc/element").then((response) => {
+    api.get("/ui//calc/fields").then((response) => {
       if (response.status >= 200 && response.status < 300) {
         setInnerData(response.data.data);
       }
@@ -71,7 +71,7 @@ const BasicCalculator = () => {
       console.log(fields)
       api.post("/calc/base", fields).then((response) => {
         if (response.status >= 200 && response.status < 300) {
-          const id = response.data.id ? response.data.id : '1';
+          const id = response.data.tracker_id;
           navigate(`/report/${id}`);
         }
       }).catch((err) => {
