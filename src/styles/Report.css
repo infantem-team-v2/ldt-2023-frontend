@@ -18,10 +18,16 @@
   color: var(--main-white) !important;
 }
 
+.report-control-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .report-control-block button {
   margin: 0 calc(var(--index)*2);
 }
 
 .report-control-block button.disabled {
-  background-color: #4A41CB !important;
+  background-color: #2219A3 !important;
 }
