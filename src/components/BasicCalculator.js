@@ -36,7 +36,6 @@ const BasicCalculator = () => {
   });
 
   const [currentStep, setCurrentStep] = useState(1);
-  const [data, setData] = useState();
   const [isDataLoaded, setIsDataLoaded] = useState(false);
   const [innerData, setInnerData] = useState({
     machine_names: [],
@@ -57,6 +56,10 @@ const BasicCalculator = () => {
       }
     }).catch((err) => { return err; });
   }, []);
+
+  useEffect(() => {
+    setIsDataLoaded(true);
+  }, [innerData]);
 
 
 
