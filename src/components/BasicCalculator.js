@@ -104,184 +104,188 @@ const BasicCalculator = () => {
 
   return (
     <>
-      <ProgressBar range={data ? data.categories.length : 6} current={currentStep} />
-      <div className='mb-4' hidden={data !== undefined}>
-        <div className='calculator-category-container' hidden={!(currentStep === 1)}>
-          <h1 className='calculator-category-title'>Общее</h1>
-          <div className='calculator-category-content'>
-            <RegularDropdown
-              controlId='organization_type'
-              label='Тип организации'
-              value={fields.organization_type}
-              onChange={(e) => { setFields({ ...fields, organization_type: e.target.value }) }}
-              innerData={["OOO", "ИП"]}
-              overlay={renderTooltip('Тип организации')}
-              formLabel={"Тип организации"}
-            />
-            <RegularDropdown
-              controlId='industry'
-              label='Отрасль'
-              value={fields.industry}
-              onChange={(e) => { setFields({ ...fields, industry: e.target.value }) }}
-              innerData={["Производство хлебобулочных изделий", "Производство напитков", "Производство макаронных изделий"]}
-              overlay={renderTooltip('Отрасль')}
-              formLabel={"Отрасль"}
-            />
-            <RegularInput
-              controlId='employees'
-              label='Количество сотрудников'
-              value={fields.employees ? fields.employees : ""}
-              placeholder={"Введите количество сотрудников (чел)"}
-              onChange={(e) => { setFields({ ...fields, employees: e.target.value }) }}
-              overlay={renderTooltip('Количество сотрудников')}
-              formLabel={"Количество сотрудников"}
-              className={"calculator-input"}
-            />
 
-            <RegularButton
-              text={"Далее"}
-              onClick={handleNextStep}
-              className="calculator-next-button"
+      <ProgressBar range={4} current={currentStep} />
+      {data !== undefined ? <>
+        <div className='mb-4' hidden={data !== undefined}>
+          <div className='calculator-category-container' hidden={!(currentStep === 1)}>
+            <h1 className='calculator-category-title'>Общее</h1>
+            <div className='calculator-category-content'>
+              <RegularDropdown
+                controlId='organization_type'
+                label='Тип организации'
+                value={fields.organization_type}
+                onChange={(e) => { setFields({ ...fields, organization_type: e.target.value }) }}
+                innerData={["OOO", "ИП"]}
+                overlay={renderTooltip('Тип организации')}
+                formLabel={"Тип организации"}
+              />
+              <RegularDropdown
+                controlId='industry'
+                label='Отрасль'
+                value={fields.industry}
+                onChange={(e) => { setFields({ ...fields, industry: e.target.value }) }}
+                innerData={["Производство хлебобулочных изделий", "Производство напитков", "Производство макаронных изделий"]}
+                overlay={renderTooltip('Отрасль')}
+                formLabel={"Отрасль"}
+              />
+              <RegularInput
+                controlId='employees'
+                label='Количество сотрудников'
+                value={fields.employees ? fields.employees : ""}
+                placeholder={"Введите количество сотрудников (чел)"}
+                onChange={(e) => { setFields({ ...fields, employees: e.target.value }) }}
+                overlay={renderTooltip('Количество сотрудников')}
+                formLabel={"Количество сотрудников"}
+                className={"calculator-input"}
+              />
 
-            />
+              <RegularButton
+                text={"Далее"}
+                onClick={handleNextStep}
+                className="calculator-next-button"
+
+              />
+            </div>
           </div>
-        </div>
-        <div className='calculator-category-container' hidden={!(currentStep === 2)}>
-          <h1 className='calculator-category-title'>Территория</h1>
-          <div className='calculator-category-content'>
-            <RegularDropdown
-              controlId='district'
-              value={fields.district}
-              onChange={(e) => { setFields({ ...fields, district: e.target.value }) }}
-              innerData={[
-                "Центральный",
-                "Северный",
-                "Северо-Восточный",
-                "Восточный",
-                "Юго-Восточный",
-                "Южный",
-                "Юго-Западный",
-                "Западный",
-                "Северо-Западный",
-                "Зеленоградский",
-                "Троицкий",
-                "Новомосковский",
-              ]}
-              overlay={renderTooltip('Административный округ')}
-              formLabel={"Административный округ"}
-            />
-            <DistrictsMap choosenDistrict={fields.district} setChoosenDistrict={(value) => setFields({ ...fields, district: value })} />
-            <RegularButton
-              text={"Далее"}
-              onClick={handleNextStep}
-            />
+          <div className='calculator-category-container' hidden={!(currentStep === 2)}>
+            <h1 className='calculator-category-title'>Территория</h1>
+            <div className='calculator-category-content'>
+              <RegularDropdown
+                controlId='district'
+                value={fields.district}
+                onChange={(e) => { setFields({ ...fields, district: e.target.value }) }}
+                innerData={[
+                  "Центральный",
+                  "Северный",
+                  "Северо-Восточный",
+                  "Восточный",
+                  "Юго-Восточный",
+                  "Южный",
+                  "Юго-Западный",
+                  "Западный",
+                  "Северо-Западный",
+                  "Зеленоградский",
+                  "Троицкий",
+                  "Новомосковский",
+                ]}
+                overlay={renderTooltip('Административный округ')}
+                formLabel={"Административный округ"}
+              />
+              <DistrictsMap choosenDistrict={fields.district} setChoosenDistrict={(value) => setFields({ ...fields, district: value })} />
+              <RegularButton
+                text={"Далее"}
+                onClick={handleNextStep}
+              />
+            </div>
           </div>
-        </div>
-        <div className='calculator-category-container' hidden={!(currentStep === 3)}>
-          <h1 className='calculator-category-title'>Здание</h1>
-          <div className='calculator-category-content'>
-            <RegularInput
-              controlId='building_area'
-              label='Площадь здания'
-              value={fields.area ? fields.area : ""}
-              placeholder={"Введите площадь здания (м2)"}
-              onChange={(e) => { setFields({ ...fields, area: e.target.value }) }}
-              overlay={renderTooltip('')}
-              formLabel={"Площадь здания"}
-              className={"calculator-input"}
-              type={"number"}
-            />
-            <RegularInput
-              controlId='construction_area'
-              label='Площадь застройки'
-              value={fields.construction_area ? fields.construction_area : ""}
-              placeholder={"Введите площадь застройки (м2)"}
-              onChange={(e) => { setFields({ ...fields, construction_area: e.target.value }) }}
-              overlay={renderTooltip('')}
-              formLabel={"Площадь застройки"}
-              className={"calculator-input"}
-              type={"number"}
-            />
+          <div className='calculator-category-container' hidden={!(currentStep === 3)}>
+            <h1 className='calculator-category-title'>Здание</h1>
+            <div className='calculator-category-content'>
+              <RegularInput
+                controlId='building_area'
+                label='Площадь здания'
+                value={fields.area ? fields.area : ""}
+                placeholder={"Введите площадь здания (м2)"}
+                onChange={(e) => { setFields({ ...fields, area: e.target.value }) }}
+                overlay={renderTooltip('')}
+                formLabel={"Площадь здания"}
+                className={"calculator-input"}
+                type={"number"}
+              />
+              <RegularInput
+                controlId='construction_area'
+                label='Площадь застройки'
+                value={fields.construction_area ? fields.construction_area : ""}
+                placeholder={"Введите площадь застройки (м2)"}
+                onChange={(e) => { setFields({ ...fields, construction_area: e.target.value }) }}
+                overlay={renderTooltip('')}
+                formLabel={"Площадь застройки"}
+                className={"calculator-input"}
+                type={"number"}
+              />
 
 
-            <RegularMultipleDropdown
-              controlId='machines'
-              label='Оборудование'
-              selectedOptions={fields.machines}
-              setSelectedOptions={(value) => setFields({ ...fields, machines: value })}
-              innerData={[
-                "Системы теплоснабжения",
-                "Системы вентиляции",
-                "Системы кондиционирования",
-                "Системы водоснабжения",
-                "Системы канализации",
-                "Системы электроснабжения",
-                "Системы освещения",
+              <RegularMultipleDropdown
+                controlId='machines'
+                label='Оборудование'
+                selectedOptions={fields.machines}
+                setSelectedOptions={(value) => setFields({ ...fields, machines: value })}
+                innerData={[
+                  "Системы теплоснабжения",
+                  "Системы вентиляции",
+                  "Системы кондиционирования",
+                  "Системы водоснабжения",
+                  "Системы канализации",
+                  "Системы электроснабжения",
+                  "Системы освещения",
 
-              ]}
-              overlay={renderTooltip('вы можете выбрать несколько вариантов оборудования')}
-              formLabel={"Оборудование"}
-            />
-            <RegularMultipleDropdown
-              controlId='other-needs'
-              label='Иные потребности'
-              selectedOptions={fields.other_needs}
-              setSelectedOptions={(value) => setFields({ ...fields, other_needs: value })}
-              innerData={[
-                "Системы теплоснабжения",
-                "Системы вентиляции",
-                "Системы кондиционирования",
-                "Системы водоснабжения",
-                "Системы канализации"]}
-              overlay={renderTooltip('вы можете выбрать несколько дополнительных потребностей')}
-              formLabel={"Иные потребности"}
-            />
-            <RegularButton
-              text={"Далее"}
-              onClick={handleNextStep}
-            />
+                ]}
+                overlay={renderTooltip('вы можете выбрать несколько вариантов оборудования')}
+                formLabel={"Оборудование"}
+              />
+              <RegularMultipleDropdown
+                controlId='other-needs'
+                label='Иные потребности'
+                selectedOptions={fields.other_needs}
+                setSelectedOptions={(value) => setFields({ ...fields, other_needs: value })}
+                innerData={[
+                  "Системы теплоснабжения",
+                  "Системы вентиляции",
+                  "Системы кондиционирования",
+                  "Системы водоснабжения",
+                  "Системы канализации"]}
+                overlay={renderTooltip('вы можете выбрать несколько дополнительных потребностей')}
+                formLabel={"Иные потребности"}
+              />
+              <RegularButton
+                text={"Далее"}
+                onClick={handleNextStep}
+              />
+            </div>
           </div>
-        </div>
-        <div className='calculator-category-container' hidden={!(currentStep === 4)}>
-          <h1 className='calculator-category-title'>Отчисления</h1>
-          <div className='calculator-category-content'>
-            <RegularDropdown
-              controlId='tax-system'
-              label='Налоговая система'
-              value={fields.tax_system}
-              onChange={(e) => { setFields({ ...fields, tax_system: e.target.value }) }}
-              innerData={["УСН6%", "УСН15%", "ОСНО"]}
-              overlay={renderTooltip('Налоговая система')}
-              formLabel={"Налоговая система"}
-            />
-            <RegularCheckbox
-              controlId='accounting'
-              label='Бухгалтерия'
-              value={fields.accounting}
-              onChange={(e) => { setFields({ ...fields, accounting: e.target.checked }) }}
-              overlay={renderTooltip('Нужна ли вам бухгалтерия (да/нет)')}
-              formLabel={"Бухгалтерия"}
-            />
-            <RegularSlider
-              controlId='accounting-operations'
-              label='Количество бухгалтерских операций'
-              value={fields.accounting_operations}
-              onChange={(e) => { setFields({ ...fields, accounting_operations: e.target.value }) }}
-              overlay={renderTooltip('Количество бухгалтерских операций в месяц')}
-              formLabel={"Количество бухгалтерских операций: "}
-              hidden={(!fields.accounting)}
-            />
+          <div className='calculator-category-container' hidden={!(currentStep === 4)}>
+            <h1 className='calculator-category-title'>Отчисления</h1>
+            <div className='calculator-category-content'>
+              <RegularDropdown
+                controlId='tax-system'
+                label='Налоговая система'
+                value={fields.tax_system}
+                onChange={(e) => { setFields({ ...fields, tax_system: e.target.value }) }}
+                innerData={["УСН6%", "УСН15%", "ОСНО"]}
+                overlay={renderTooltip('Налоговая система')}
+                formLabel={"Налоговая система"}
+              />
+              <RegularCheckbox
+                controlId='accounting'
+                label='Бухгалтерия'
+                value={fields.accounting}
+                onChange={(e) => { setFields({ ...fields, accounting: e.target.checked }) }}
+                overlay={renderTooltip('Нужна ли вам бухгалтерия (да/нет)')}
+                formLabel={"Бухгалтерия"}
+              />
+              <RegularSlider
+                controlId='accounting-operations'
+                label='Количество бухгалтерских операций'
+                value={fields.accounting_operations}
+                onChange={(e) => { setFields({ ...fields, accounting_operations: e.target.value }) }}
+                overlay={renderTooltip('Количество бухгалтерских операций в месяц')}
+                formLabel={"Количество бухгалтерских операций: "}
+                hidden={(!fields.accounting)}
+              />
 
-            <RegularButton
-              text={"Рассчитать инвестиции"}
-              onClick={handleNextStep}
-            />
+              <RegularButton
+                text={"Рассчитать инвестиции"}
+                onClick={handleNextStep}
+              />
 
 
+            </div>
           </div>
+
         </div>
 
-      </div>
+      </> : <div className="spinner-border text-primary" role="status" />}
 
     </>
   );
