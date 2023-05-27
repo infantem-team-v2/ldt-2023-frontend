@@ -16,6 +16,7 @@ import '../styles/BasicCalculator.css';
 import api from '../services/api';
 import Swal from 'sweetalert2';
 import HandleElementComponent from './HandleElementComponent';
+import handleCategoryComponent from './HandleCategoryComponent';
 
 
 const BasicCalculator = () => {
@@ -294,36 +295,16 @@ const BasicCalculator = () => {
     <>
       <ProgressBar range={data ? data.categories.length : 6} current={currentStep} />
       <div className='mb-4 '>
-        {isCategories ? data.categories.map((category) => {
-          const hidden = isHidden(category.category_id);
-          if (hidden) {
-            return (<div key={nanoid()}></div>);
-          } else {
-            return (
-              <Form
-                className='calculator-category'
-                key={nanoid()}
-                id={category.category_id}
-              >
-                <h2>{category.category}</h2>
-                <div className='calculator-div-categories' key={nanoid()}>
-                  {category.elements.map((element) => (<HandleElementComponent element={element} renderTooltip={renderTooltip} updateFieldsStates={updateFieldsStates} fields={fields} />))}
-                </div>
-
-                <div className='calculator-control-block'>
-                  {currentStep === categories.length ? <p className='p-logo calculator-sign'>
-                    Нажимая на кнопку вы принимайте условия <a href="/documents">пользовательского соглашения</a>
-                  </p> : <></>}
-                  <RegularButton
-                    className='mt-2'
-                    text={currentStep === categories.length ? 'Получить результат' : 'Далее'}
-                    onClick={handleNextStep}
-                  />
-                </div>
-              </Form>
-            );
-          }
-        }) : <></>}
+        {isCategories ? data.categories.map((category) => (<handleCategoryComponent
+          handleNextStep={handleNextStep}
+          currentStep={currentStep}
+          categories={categories}
+          category={category}
+          fields={fields}
+          isHidden={isHidden}
+          renderTooltip={renderTooltip}
+          updateFieldsStates={updateFieldsStates}
+        />)) : <></>}
       </div>
 
     </>
