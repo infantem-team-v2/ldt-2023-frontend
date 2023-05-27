@@ -13,3 +13,11 @@
   margin: calc(var(--index)*1.4) 0;
   font-size: calc(var(--index)*1.7);
 }
+
+.report-control-block button {
+  margin: 0 calc(var(--index)*2);
+}
+
+.report-control-block button.disabled {
+  background-color: #4A41CB !important;
+}

@@ -81,12 +81,14 @@ const Report = ({ isLogedIn }) => {
                       <RegularButton
                         text='<'
                         onClick={() => { setStep(step - 1) }}
-                        disabled={step === 0}
+                        disabled={step === 1}
+                        className={step === 1 ? ' disabled' : ''}
                       />
                       <RegularButton
                         text='>'
                         onClick={() => { setStep(step + 1) }}
                         disabled={step === Object.keys(report.output).length}
+                        className={step === Object.keys(report.output).length ? ' disabled' : ''}
                       />
                     </div>
                   </div>
