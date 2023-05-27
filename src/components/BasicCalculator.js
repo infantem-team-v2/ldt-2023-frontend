@@ -16,7 +16,7 @@ import '../styles/BasicCalculator.css';
 import api from '../services/api';
 import Swal from 'sweetalert2';
 import HandleElementComponent from './HandleElementComponent';
-import handleCategoryComponent from './HandleCategoryComponent';
+import HandleCategoryComponent from './HandleCategoryComponent';
 
 
 const BasicCalculator = () => {
@@ -295,7 +295,7 @@ const BasicCalculator = () => {
     <>
       <ProgressBar range={data ? data.categories.length : 6} current={currentStep} />
       <div className='mb-4 '>
-        {isCategories ? data.categories.map((category) => (<handleCategoryComponent
+        {isCategories ? data.categories.map((category) => (<HandleCategoryComponent
           handleNextStep={handleNextStep}
           currentStep={currentStep}
           categories={categories}

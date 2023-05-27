@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid';
 
 
 
-const handleCategoryComponent = ({ handleNextStep, currentStep, categories, category, fields, isHidden, renderTooltip, updateFieldsStates }) => {
+const HandleCategoryComponent = ({ handleNextStep, currentStep, categories, category, fields, isHidden, renderTooltip, updateFieldsStates }) => {
   const hidden = isHidden(category.category_id);
 
   return (
@@ -42,4 +42,4 @@ const handleCategoryComponent = ({ handleNextStep, currentStep, categories, cate
 
   );
 };
-export default handleCategoryComponent;
+export default HandleCategoryComponent;
