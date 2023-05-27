@@ -37,7 +37,7 @@ const ResultsBlock = (props) => {
         return (
           <div className="card bg-dark card-result-block" >
             <div className="card-body">
-              <h5 className="card-title text-white">{result.name}<span></span></h5>
+              <h5 className="card-title text-white">{result.name.slice(0, 10)}<span></span></h5>
               <h6 className="card-subtitle mb-2 text-muted">Сумма инвестиции: {result.summary}₽</h6>
               <p className="card-text text-muted">Дата: {result.time_stamp.slice(0, 10)}</p>
               <a href={"/report/" + result.report_id} className="card-link">Подробнее</a>

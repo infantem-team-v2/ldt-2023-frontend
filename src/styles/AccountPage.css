@@ -77,6 +77,11 @@
 
 /* card block css */
 
+.card-container {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 .card-result-block {
   border-color: var(--main-acsent) !important;
   border-radius: 16px !important;
