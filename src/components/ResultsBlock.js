@@ -18,7 +18,6 @@ const ResultsBlock = (props) => {
       if (res && res.status >= 200 && res.status < 300) {
         if (res.data.results) {
           setResults(res.data.results);
-
         }
       }
 
@@ -26,7 +25,7 @@ const ResultsBlock = (props) => {
   }, []);
 
   useEffect(() => {
-    if (results) {
+    if (results && results.length > 0) {
       setIsDataLoaded(true);
     }
   }, [results]);
