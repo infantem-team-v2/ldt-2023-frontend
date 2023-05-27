@@ -68,8 +68,8 @@ const BasicCalculator = () => {
   const convertDataToApiFormat = () => {
     const newFields = { ...fields };
     const machine_names = newFields.machine_names.length;
-    const machine_quantities = Array(machine_names).fill(1).typeOf(Number) ? [] : Array(machine_names).fill(1);
-    newFields.machine_quantities = machine_quantities;
+    const machine_quantities = Array(machine_names).fill(1);
+    newFields["machine_quantities"] = machine_quantities;
     for (const [key, value] of Object.entries(fields)) {
       if (!isNaN(value)) {
         newFields[key] = Number(value);
