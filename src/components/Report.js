@@ -21,6 +21,7 @@ const Report = ({ isLogedIn }) => {
   const fetchData = async () => {
     try {
       const res = await api.get(`calc/report/${reportId}`);
+      console.log(res);
       setReport(res.data);
 
     } catch (err) {
