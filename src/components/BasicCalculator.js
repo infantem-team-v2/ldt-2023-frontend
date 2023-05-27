@@ -74,6 +74,9 @@ const BasicCalculator = () => {
         newFields[key] = Number(value);
       }
     }
+    newFields["bookkeeping"] = Boolean(newFields["bookkeeping"]);
+    newFields["machine_names"] = newFields["machine_names"].typeOf(Array) ? newFields["machine_names"] : [];
+    newFields["other_needs"] = newFields["other_needs"].typeOf(Array) ? newFields["other_needs"] : [];
     newFields["machine_quantities"] = machine_quantities;
     return newFields;
   }
