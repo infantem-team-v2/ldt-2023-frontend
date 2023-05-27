@@ -21,7 +21,7 @@ const BasicCalculator = () => {
 
   const [categories, setCategories] = useState([]);
   const [fields, setFields] = useState({});
-  const [dataCategories, setDataCategories] = useState();
+  const [isCategories, setIsCategories] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [data, setData] = useState();
 
@@ -51,7 +51,7 @@ const BasicCalculator = () => {
   // rerendering components
   useEffect(() => {
     if (data) {
-      setDataCategories(data.categories);
+      setIsCategories(true);
     }
   }, [currentStep, categories]);
 
@@ -304,7 +304,7 @@ const BasicCalculator = () => {
     <>
       <ProgressBar range={data ? data.categories.length : 6} current={currentStep} />
       <div className='mb-4 '>
-        {dataCategories ? dataCategories.map((category) => {
+        {isCategories ? data.categories.map((category) => {
           const hidden = isHidden(category.category_id);
           if (hidden) {
             return (<div key={nanoid()}></div>);
