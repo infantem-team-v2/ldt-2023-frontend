@@ -84,7 +84,8 @@ const BasicCalculator = () => {
     e.preventDefault();
     const newStep = currentStep + 1
     if (newStep > 4) {
-      api.post("/calc/base", convertDataToApiFormat()).then((response) => {
+      const newFields = convertDataToApiFormat();
+      api.post("/calc/base", newFields).then((response) => {
         if (response.status >= 200 && response.status < 300) {
           const id = response.data.tracker_id;
           navigate(`/report/${id}`);
