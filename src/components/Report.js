@@ -77,8 +77,8 @@ const Report = ({ isLogedIn }) => {
                       {Object.entries(categoryData).map((item) => {
                         return (
                           <div key={nanoid()} className='d-flex justify-content-between'>
-                            <p>{item[0]}</p>
-                            <p>{item[1]}₽</p>
+                            <p>{convertText(item[0])}</p>
+                            <p>{convertText(item[1])}₽</p>
                           </div>
                         )
                       })}
