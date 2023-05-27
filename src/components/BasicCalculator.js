@@ -96,6 +96,7 @@ const BasicCalculator = () => {
     setFields(prevState => {
       console.log("PREV STATE", prevState);
       console.log("VALUE FROM FIELDS", fields.fieldId)
+      console.log("VALUE FROM PREVSTATE", prevState.fieldId)
       console.log("VALUE FOR HUINA", fields.huina)
       console.log("KEYS FROM FIELDS", Object.keys(fields))
       console.log("KEYS FROM PREVSTATE", Object.keys(prevState))
