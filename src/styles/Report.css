@@ -10,4 +10,6 @@
 
 .report-h3 {
   color: var(--main-white) !important;
+  margin: calc(var(--index)*1.4) 0;
+  font-size: calc(var(--index)*1.7);
 }

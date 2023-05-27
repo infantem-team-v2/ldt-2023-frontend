@@ -14,8 +14,8 @@ const Footer = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, [screenSize]);
 
-  const colClassName = screenSize < 768 ? 'footer-col' : "col-md-3 col-sm-6 footer-col";
-  const mainRowClassName = screenSize < 768 ? 'footer-main-div' : "row d-flex align-items-space-around text-center footer-main-div";
+  const colClassName = screenSize < 768 ? 'footer-col' : "footer-col";
+  const mainRowClassName = screenSize < 768 ? 'footer-main-div' : "footer-main-div-desc";
 
   return (
     <footer className="bg-dark text-light py-3 ">

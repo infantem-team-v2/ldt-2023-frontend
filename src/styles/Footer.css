@@ -12,6 +12,12 @@ footer {
   font-size: 1.2rem !important;
   line-height: 150%;
   letter-spacing: -0.023em;
+  color: var(--main-white) !important;
+
+}
+
+.footer-col {
+  color: var(--main-white) !important;
 }
 
 .footer-logo h5 {
@@ -21,6 +27,13 @@ footer {
 
 .footer-logo h5 span {
   color: var(--main-acsent) !important;
+}
+
+.footer-main-div-desc {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: calc(var(--index) * 1.2);
 }
 
 @media screen and (max-width: 768px) {

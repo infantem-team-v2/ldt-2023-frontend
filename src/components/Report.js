@@ -4,6 +4,7 @@ import api from '../services/api';
 import { nanoid } from 'nanoid';
 
 import '../styles/Report.css';
+import RegularButton from './ui-kit/RegularButton';
 
 const Report = ({ isLogedIn }) => {
 
@@ -11,6 +12,8 @@ const Report = ({ isLogedIn }) => {
   const [totalExpenses, setTotalExpenses] = useState(0);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
   const [error, setError] = useState(false);
+
+  const [step, setStep] = useState(1);
 
 
   const reportId = window.location.href.split('/')[4];
@@ -59,10 +62,10 @@ const Report = ({ isLogedIn }) => {
             <h2>{totalExpenses}₽</h2>
             <hr />
             {
-              Object.keys(report.output).map((category) => {
+              Object.keys(report.output).map((category, index) => {
                 const categoryData = report.output[category];
                 return (
-                  <div>
+                  <div hidden={index !== step - 1}>
                     <h3 className='report-h3'>{category}</h3>
                     <div>
                       {Object.entries(categoryData).map((item) => {
@@ -73,6 +76,18 @@ const Report = ({ isLogedIn }) => {
                           </div>
                         )
                       })}
+                    </div>
+                    <div className='report-control-block'>
+                      <RegularButton
+                        text='<'
+                        onClick={() => { setStep(step - 1) }}
+                        disabled={step === 0}
+                      />
+                      <RegularButton
+                        text='>'
+                        onClick={() => { setStep(step + 1) }}
+                        disabled={step === Object.keys(report.output).length}
+                      />
                     </div>
                   </div>
                 )
