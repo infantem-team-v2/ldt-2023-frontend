@@ -57,7 +57,6 @@ const BasicCalculator = () => {
   useEffect(() => {
     console.log("FirstCheck", innerData);
     if (innerData && !isDataLoaded && Object.keys(innerData).length > 0) {
-      console.log(innerData);
       setIsDataLoaded(true);
     }
   }, [innerData]);
@@ -127,7 +126,7 @@ const BasicCalculator = () => {
                 label='Отрасль'
                 value={fields.industry}
                 onChange={(e) => { setFields({ ...fields, industry: e.target.value }) }}
-                innerData={innerData.industry}
+                innerData={innerData.industry ? innerData.industry : []}
                 overlay={renderTooltip('Отрасль')}
                 formLabel={"Отрасль"}
               />
@@ -204,7 +203,7 @@ const BasicCalculator = () => {
                 label='Оборудование'
                 selectedOptions={fields.machine_names}
                 setSelectedOptions={(value) => setFields({ ...fields, machine_names: value })}
-                innerData={innerData.machine_names}
+                innerData={innerData.machine_names ? innerData.machine_names : ["1"]}
                 overlay={renderTooltip('вы можете выбрать несколько вариантов оборудования')}
                 formLabel={"Оборудование"}
               />
@@ -213,7 +212,7 @@ const BasicCalculator = () => {
                 label='Иные потребности'
                 selectedOptions={fields.other_needs}
                 setSelectedOptions={(value) => setFields({ ...fields, other_needs: value })}
-                innerData={innerData.other_needs}
+                innerData={innerData.other_needs ? innerData.other_needs : ["1"]}
                 overlay={renderTooltip('вы можете выбрать несколько дополнительных потребностей')}
                 formLabel={"Иные потребности"}
               />
@@ -257,7 +256,7 @@ const BasicCalculator = () => {
                 label='Тип патента'
                 value={fields.patents}
                 onChange={(e) => { setFields({ ...fields, patents: e.target.value }) }}
-                innerData={innerData.patents}
+                innerData={innerData.patents ? innerData.patents : ["1"]}
                 overlay={renderTooltip('Если вы работаете по патенту, выберите тип патента')}
                 formLabel={"Тип патента"}
               />
