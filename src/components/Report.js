@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import api from '../services/api';
 
+import { nanoid } from 'nanoid';
+
 import '../styles/Report.css';
 
 const Report = ({ isLogedIn }) => {
@@ -39,7 +41,7 @@ const Report = ({ isLogedIn }) => {
 
   const handleData = () => {
     if (report && report.total_expenses) {
-      setTotalExpenses(report.total_expenses);
+      setTotalExpenses(report.output.total_expenses);
     }
   }
 
@@ -62,16 +64,16 @@ const Report = ({ isLogedIn }) => {
                 return (
                   <div>
                     <h3>{category}</h3>
-                    <ul>
+                    <div>
                       {Object.entries(categoryData).map((item) => {
                         return (
-                          <li>
-                            <span>{item[0]}</span>
-                            <span>{item[1]}</span>
-                          </li>
+                          <div key={nanoid()} className='d-flex justify-content-between'>
+                            <p>{item[0]}</p>
+                            <p>{item[1]}₽</p>
+                          </div>
                         )
                       })}
-                    </ul>
+                    </div>
                   </div>
                 )
               })
