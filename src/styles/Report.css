@@ -7,3 +7,7 @@
   color: var(--main-white) !important;
   padding: calc(var(--index)*1.2);
 }
+
+.report-h3 {
+  color: var(--main-white) !important;
+}

@@ -63,7 +63,7 @@ const Report = ({ isLogedIn }) => {
                 const categoryData = report.output[category];
                 return (
                   <div>
-                    <h3>{category}</h3>
+                    <h3 className='report-h3'>{category}</h3>
                     <div>
                       {Object.entries(categoryData).map((item) => {
                         return (
