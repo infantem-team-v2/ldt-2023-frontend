@@ -77,18 +77,20 @@ const BasicCalculator = () => {
   }
 
 
-
-
-
-
   const updateFieldsStates = (fieldId, newValue) => {
-    setFields(prevState => {
-      return {
-        ...prevState,
-        [fieldId]: newValue
-      }
-    });
-  };
+    setFields({ ...fields, [fieldId]: newValue })
+  }
+
+
+
+  // const updateFieldsStates = (fieldId, newValue) => {
+  //   setFields(prevState => {
+  //     return {
+  //       ...prevState,
+  //       [fieldId]: newValue
+  //     }
+  //   });
+  // };
   const updateFiedlsStatesBoolean = (fieldId) => {
     setFields(prevState => {
       return {
