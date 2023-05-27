@@ -208,7 +208,12 @@ const BasicCalculator = () => {
     }
   }
 
-
+  const tryGetData = (fields, fieldId) => {
+    const newFields = JSON.parse(JSON.stringify(fields));
+    const currentField = newFields[fieldId];
+    console.log("CURRENT FIELD ", currentField);
+    return currentField;
+  }
 
   // --------------------------------------------------
   // handlers for different types of elements
@@ -243,7 +248,7 @@ const BasicCalculator = () => {
         label={element.field}
         type={type}
         value={fields[fieldId]}
-        onChange={(e) => { e.preventDefault(); console.log("INPUT FIELDS", fields[fieldId], fields); updateFieldsStates(fieldId, e.target.value) }}
+        onChange={(e) => { e.preventDefault(); tryGetData(fields, fieldId); updateFieldsStates(fieldId, e.target.value) }}
         overlay={renderTooltip(element.comment)}
       />
     )
