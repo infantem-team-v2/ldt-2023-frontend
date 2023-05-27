@@ -37,7 +37,7 @@ const BasicCalculator = () => {
 
   const [currentStep, setCurrentStep] = useState(1);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
-  const [innerData, setInnerData] = useState({});
+  const [innerData, setInnerData] = useState();
 
 
   const navigate = useNavigate();
@@ -55,7 +55,8 @@ const BasicCalculator = () => {
   }, []);
 
   useEffect(() => {
-    if (innerData.length > 0) {
+    console.log(innerData);
+    if (innerData && innerData.length > 0) {
       console.log(innerData);
       setIsDataLoaded(true);
     }
