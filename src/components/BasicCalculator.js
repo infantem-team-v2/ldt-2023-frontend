@@ -307,9 +307,7 @@ const BasicCalculator = () => {
               >
                 <h2>{category.category}</h2>
                 <div className='calculator-div-categories' key={nanoid()}>
-                  {category.elements.map((element) => {
-                    return <HandleElementComponent element={element} renderTooltip={renderTooltip} updateFieldsStates={updateFieldsStates} fields={fields} />
-                  })}
+                  {category.elements.map((element) => (<HandleElementComponent element={element} renderTooltip={renderTooltip} updateFieldsStates={updateFieldsStates} fields={fields} />))}
                 </div>
 
                 <div className='calculator-control-block'>
