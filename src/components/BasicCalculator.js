@@ -53,13 +53,16 @@ const BasicCalculator = () => {
   useEffect(() => {
     api.get("/calc/fields").then((response) => {
       if (response.status >= 200 && response.status < 300) {
+        console.log(response)
         setInnerData(response.data.data);
       }
     }).catch((err) => { return err; });
   }, []);
 
   useEffect(() => {
-    setIsDataLoaded(true);
+    if (innerData) {
+      setIsDataLoaded(true);
+    }
   }, [innerData]);
 
 
