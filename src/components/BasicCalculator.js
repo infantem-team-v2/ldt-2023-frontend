@@ -55,12 +55,7 @@ const BasicCalculator = () => {
       if (response.status >= 200 && response.status < 300) {
         const data = response.data.data;
         for (const [key, value] of Object.entries(data)) {
-          console.log("PARE", key, value)
-          if (value.length !== 0) {
-            setInnerData({ ...innerData, [key]: value })
-          } else {
-            console.log("EMPTY FIELDS", key)
-          }
+          setInnerData(prevState => ({ ...prevState, [key]: value }))
         }
       }
     }).catch((err) => { return err; });
