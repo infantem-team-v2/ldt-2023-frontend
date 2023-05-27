@@ -21,7 +21,7 @@ const BasicCalculator = () => {
 
   const [categories, setCategories] = useState([]);
   const [fields, setFields] = useState({});
-  const [resultsElements, setResultsElements] = useState();
+  const [dataCategories, setDataCategories] = useState();
   const [currentStep, setCurrentStep] = useState(1);
   const [data, setData] = useState();
 
@@ -51,7 +51,7 @@ const BasicCalculator = () => {
   // rerendering components
   useEffect(() => {
     if (data) {
-      console.log(fields)
+      setDataCategories(data.categories);
     }
   }, [currentStep, categories, fields]);
 
@@ -313,7 +313,7 @@ const BasicCalculator = () => {
     <>
       <ProgressBar range={data ? data.categories.length : 6} current={currentStep} />
       <div className='mb-4 '>
-        {data && data.categories ? data.categories.map((category) => {
+        {dataCategories && data.categories ? data.categories.map((category) => {
           return handleCategory(category)
         }) : <></>}
       </div>

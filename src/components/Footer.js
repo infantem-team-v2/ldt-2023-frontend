@@ -9,7 +9,6 @@ const Footer = () => {
   const [screenSize, setScreenSize] = React.useState(window.innerWidth);
 
   React.useEffect(() => {
-    console.log("screenSize", screenSize)
     const handleResize = () => setScreenSize(window.innerWidth);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
