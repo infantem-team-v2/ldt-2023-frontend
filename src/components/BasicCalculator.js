@@ -108,7 +108,7 @@ const BasicCalculator = () => {
     <>
 
       <ProgressBar range={4} current={currentStep} />
-      {isDataLoaded ? <>
+      {true ? <>
         <div className='mb-4' hidden={data !== undefined}>
           <div className='calculator-category-container' hidden={!(currentStep === 1)}>
             <h1 className='calculator-category-title'>Общее</h1>
