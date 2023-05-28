@@ -77,7 +77,7 @@ const ReportPage = ({ isLogedIn }) => {
         {isLogedIn && plots ?
           <>
             <div className="plot">
-              <PieChart data={plots.taxed_distripution} />
+              <PieChart data={plots.taxed_distribution} />
             </div>
             <div className="plot">
               <PieChart data={plots.expenses_distribution} />
@@ -85,7 +85,6 @@ const ReportPage = ({ isLogedIn }) => {
             <div className="plot">
               <LinearChart data={plots.popularity_chart} />
             </div>
-
           </>
           : <></>}
       </div>
