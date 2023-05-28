@@ -21,6 +21,13 @@ const ReportPage = ({ isLogedIn, pdfLink }) => {
   const [insights, setInsights] = useState();
   const [plots, setPlots] = useState();
 
+  const insightsImagesSrc = {
+    "best_tax_system_insight": '../../asserts/money.svg',
+    "usual_county_insight": '../../asserts/map.svg',
+    "usual_expenses_insight": '../../asserts/notebook.svg',
+    "workers_quantity_insight": '../../asserts/worker.svg',
+  }
+
 
   useEffect(() => {
     const link = window.location.href;
@@ -82,11 +89,11 @@ const ReportPage = ({ isLogedIn, pdfLink }) => {
           {isLogedIn && insights ?
             <>
               <div className="insights">
-                {Object.values(insights).map((element) => {
+                {Object.entries(insights).map((key, value) => {
                   return (
-                    <div class="card-insight" hidden={isIncludeEmpty(element["insight"])}>
-                      <img src="https://cdn.onlinewebfonts.com/svg/download_506219.png" class="img" alt="..." />
-                      <p className='small'>{addSpansToPercentages(element["insight"])}</p>
+                    <div class="card-insight" hidden={isIncludeEmpty(value["insight"])}>
+                      <img src={insightsImagesSrc[String(key)]} class="img" alt="..." />
+                      <p className='small'>{addSpansToPercentages(value["insight"])}</p>
                     </div>
                   )
                 })}
