@@ -124,7 +124,7 @@ const Report = ({ isLogedIn, reportId }) => {
               Object.keys(report.output).map((category, index) => {
                 const categoryData = report.output[category];
                 return (
-                  <div hidden={index !== step - 1}>
+                  <div hidden={index !== step - 1} key={nanoid()}>
                     <h3 className='report-h3'>{category}</h3>
                     <div>
                       {Object.entries(categoryData).map((item) => {

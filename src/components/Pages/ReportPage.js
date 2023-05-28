@@ -31,6 +31,7 @@ const ReportPage = ({ isLogedIn }) => {
   const getInsights = async () => {
     try {
       const res = await api.get(`calc/insights/${reportId}`);
+      console.log(res.data);
       setInsights(res.data.insights);
     } catch (err) {
       return;
@@ -40,6 +41,7 @@ const ReportPage = ({ isLogedIn }) => {
   const getPlots = async () => {
     try {
       const res = await api.get(`calc/plots/${reportId}`);
+      console.log(res.data);
       setPlots(res.data);
     } catch (err) {
       return;
@@ -68,7 +70,7 @@ const ReportPage = ({ isLogedIn }) => {
             : <></>}
           {isLogedIn && plots ?
             <div className="plots">
-              <LinearChart data={plots} />
+              {/* <LinearChart data={plots} /> */}
             </div>
             : <></>}
         </aside>
