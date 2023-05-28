@@ -12,7 +12,6 @@ import PostEmailCodeModal from './components/Modals/PostEmailCodeModal';
 import EnterEmailToResetModal from './components/Modals/EnterEmailToResetModal';
 
 import MainPage from './components/Pages/MainPage';
-import AdminForm from './components/Pages/AdminForm';
 import ReportPage from './components/Pages/ReportPage';
 import F404Page from './components/Pages/F404Page';
 import AccountPage from './components/Pages/AccountPage';
@@ -99,7 +98,6 @@ function App() {
       <Header showSignInModal={showModal['signInModal']} isLogedIn={isLogedIn} logOut={logOut} showSignUpModal={showModal['signUpModal']} />
       <Routes>
         <Route path='/' element={<MainPage isLogedIn={isLogedIn} />} />
-        <Route path='/admin' element={<AdminForm />} />
         <Route path='/account' element={<AccountPage />} />
         <Route path='/documents' element={<DocumentsPage />} />
         <Route path='/report/:id' element={<ReportPage isLogedIn={isLogedIn} />} />
