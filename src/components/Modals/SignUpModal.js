@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal, Form } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 
@@ -34,18 +34,22 @@ const SignUpModal = ({ show, onHide, setIsLogedIn }) => {
 
   const navigate = useNavigate();
 
-  const organizationTypes = [
-    'Пищевая промышленность',
-    'Производство строительных материалов',
-    'Производство металлургической продукции',
-    'Производство машин и оборудования',
-    'Производство электронной и оптической продукции',
-    'Производство автомобилей и автокомпонентов',
-    'Производство мебели',
-    'Производство одежды',
-    'Производство обуви',
-    'Производство игр и игрушек',
-  ]
+  const [organizationList, setOrganizationList] = useState();
+
+  useEffect(() => {
+    fetchInnerData();
+  }, [organizationList]);
+
+
+  const fetchInnerData = async () => {
+    try {
+      const response = await api.get("/calc/fields");
+      const dataJson = await response.data.data.industries;
+      setOrganizationList(dataJson);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   // Validation
   // -----------------------------
@@ -327,7 +331,7 @@ const SignUpModal = ({ show, onHide, setIsLogedIn }) => {
                 controlId={"organizationType"}
                 value={economicActivity}
                 onChange={(e) => setEconomicActivity(e.target.value)}
-                innerData={organizationTypes}
+                innerData={organizationList ? organizationList : []}
                 overlay={"Выберите тип организации"}
               />
               <RegularModalFormControl
