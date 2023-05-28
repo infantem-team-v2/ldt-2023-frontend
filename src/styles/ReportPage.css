@@ -40,8 +40,9 @@
 
 .report-plots-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-areas: 'b a' 'c c';
   gap: calc(var(--index)*1.2);
+
 }
 
 @media screen and (max-width: 768px) {

@@ -56,7 +56,7 @@ const ReportPage = ({ isLogedIn }) => {
       <div className='report-page-container'>
         <aside className="aside-main">
           <h1 className='h1-report'>Результат расчёта</h1>
-          {isLogedIn && insights && plots ?
+          {isLogedIn && insights ?
             <>
               <div className="insights">
                 {Object.values(insights).map((element) => {
@@ -68,10 +68,7 @@ const ReportPage = ({ isLogedIn }) => {
                   )
                 })}
               </div>
-              <div className="plot">
-                <h2>Распределение расходов по выбранной области</h2>
-                <PieChart data={plots.expenses_distribution} />
-              </div>
+
             </>
 
             : <></>}
@@ -80,20 +77,26 @@ const ReportPage = ({ isLogedIn }) => {
           <Report isLogedIn={isLogedIn} reportId={reportId} />
         </div>
       </div>
-      <div className='report-plots-container'>
-        {isLogedIn && plots ?
-          <>
+
+      {isLogedIn && plots ?
+        <>
+          <div className='report-plots-container'>
             <div className="plot">
-              <h2>Выбор налоговой системы в вашей отрасли</h2>
-              <PieChart data={plots.taxes_distribution} />
+              <h2>Распределение ваших инвестиций</h2>
+              <PieChart data={plots.expenses_distribution} />
             </div>
             <div className="plot">
+              <h2>Распределение налоговых систем в вашей отрасли</h2>
+              <PieChart data={plots.taxes_distribution} />
+            </div>
+            <div className="plot h-50">
               <h2>Динамика популярности по отраслям</h2>
               <LinearChart data={plots.popularity_chart} />
             </div>
-          </>
-          : <></>}
-      </div>
+          </div>
+
+        </>
+        : <></>}
       <div className='report-page-additional'>
         <aside className="aside-main">
           <div className="">
