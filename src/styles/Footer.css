@@ -1,5 +1,7 @@
 footer {
-  position: sticky bottom;
+  position: sticky;
+  background-color: var(--main-black) !important;
+  padding: calc(var(--index) * 0.5) 0;
 }
 
 .footer-main-div div h5 {
@@ -27,6 +29,7 @@ footer {
 
 .footer-logo h5 span {
   color: var(--main-acsent) !important;
+
 }
 
 .footer-main-div-desc {
@@ -36,13 +39,21 @@ footer {
   gap: calc(var(--index) * 1.2);
 }
 
+.footer-logo {
+  height: calc(var(--index)*2.5);
+  display: flex;
+  max-width: min-content;
+  margin-bottom: calc(var(--index) * 1);
+
+
+}
+
 @media screen and (max-width: 768px) {
-  .footer-logo h5 {
-    font-size: calc(var(--index) * 3);
-  }
 
   .footer-logo {
-    text-align: center;
+    height: auto;
+    align-self: center;
+    justify-self: center;
   }
 
   .footer-main-div {
@@ -57,9 +68,12 @@ footer {
 }
 
 @media screen and (max-width: 480px) {
-  footer {
-    bottom: -10px;
+  .footer-main-div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
   }
+
 
 
 }

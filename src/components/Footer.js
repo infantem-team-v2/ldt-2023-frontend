@@ -2,6 +2,7 @@ import React from "react";
 
 import "../styles/Footer.css";
 
+import { ReactComponent as Logo } from "../asserts/logo-big-black.svg";
 const Footer = () => {
 
 
@@ -18,10 +19,10 @@ const Footer = () => {
   const mainRowClassName = screenSize < 768 ? 'footer-main-div' : "footer-main-div-desc";
 
   return (
-    <footer className="bg-dark text-light py-3 ">
+    <footer>
       <div className="container">
         <div className="footer-logo">
-          <h5>LOGO<span>/INFANTEM</span></h5>
+          <Logo className='img footer-logo' />
         </div>
         <div className={mainRowClassName}>
 

@@ -9,7 +9,9 @@
 }
 
 .header-logo {
-  font-size: calc(var(--index)*2);
+  height: calc(var(--index)*2.5);
+  display: block;
+  max-width: min-content;
 }
 
 .header-control-block {
@@ -26,10 +28,5 @@
 @media screen and (max-width: 768px) {
   .header-control-block {
     display: block !important;
-  }
-
-
-  .header-logo {
-    font-size: calc(var(--index)*1.8);
   }
 }

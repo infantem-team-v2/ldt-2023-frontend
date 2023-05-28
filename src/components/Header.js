@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { ReactComponent as LogIn } from '../asserts/in.svg';
 import { ReactComponent as LogOut } from '../asserts/out.svg';
 import { ReactComponent as Documents } from '../asserts/documents.svg';
+import { ReactComponent as Logo } from '../asserts/logo-big-normal.svg';
 
 import RegularButton from "./ui-kit/RegularButton";
 import '../styles/Header.css';
@@ -42,7 +43,7 @@ const Header = (props) => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" className='me-3' onClick={handleSelect} />
       <Navbar.Collapse id="basic-navbar-nav " className={expanded ? "ms-5" : "me-5"}>
         <Navbar.Brand href="#home" className='ms-auto me-auto'>
-          <span className='d-inline-block align-middle header-logo' onClick={() => navigate('/')}>LOGO</span>
+          <Logo className='img align-middle header-logo' onClick={() => navigate('/')} />
         </Navbar.Brand>
         <Nav onSelect={handleSelect} >
           <div className='header-control-block'>
