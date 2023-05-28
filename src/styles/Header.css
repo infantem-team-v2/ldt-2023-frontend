@@ -30,6 +30,6 @@
 
 
   .header-logo {
-    font-size: calc(var(--index)*0);
+    font-size: calc(var(--index)*1.8);
   }
 }

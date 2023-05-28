@@ -10,7 +10,7 @@ import RegularButton from './ui-kit/RegularButton';
 
 
 
-const Report = ({ isLogedIn }) => {
+const Report = ({ isLogedIn, reportId }) => {
 
   const [report, setReport] = useState();
   const [totalExpenses, setTotalExpenses] = useState(0);
@@ -21,7 +21,7 @@ const Report = ({ isLogedIn }) => {
   const [step, setStep] = useState(1);
 
 
-  const reportId = window.location.href.split('/')[4];
+
 
 
   useEffect(() => {
