@@ -59,10 +59,11 @@ const ReportPage = ({ isLogedIn }) => {
           {isLogedIn && insights ?
             <div className="insights">
               {Object.values(insights).map((element) => {
+                console.log(element);
                 return (
                   <div className="insight d-flex">
                     <img className='img img-thumbnail' src='https://placehold.co/150' alt="" />
-                    <p className='fs-6 fw-light'>{element["insight"]}</p>
+                    <p className='fs-6 fw-light'>{Object.values(element)[0]}</p>
                   </div>
                 )
               })}
