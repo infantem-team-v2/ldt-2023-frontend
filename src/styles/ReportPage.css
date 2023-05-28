@@ -61,6 +61,9 @@
   }
 
 
+  .card-insight {
+    flex-direction: column;
+  }
 
   .report-page-container {
     flex-direction: column;
