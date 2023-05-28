@@ -50,7 +50,8 @@
 }
 
 .plot-header {
-  font-size: calc(var(--index)*1.2);
+  font-size: calc(var(--index)*1);
+  text-align: center;
 }
 
 @media screen and (max-width: 768px) {
