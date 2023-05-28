@@ -27,13 +27,6 @@ const ReportPage = ({ isLogedIn, pdfLink }) => {
   const [insights, setInsights] = useState();
   const [plots, setPlots] = useState();
 
-  const insightsImagesSrc = {
-    "best_tax_system_insight": () => { <MoneyIcon className='insight-icon img' /> },
-    "usual_county_insight": () => { <MapIcon className='insight-icon img' /> },
-    "usual_expenses_insight": () => { <NotebookIcon className='insight-icon img' /> },
-    "workers_quantity_insight": () => { <WorkerIcon className='insight-icon img' /> },
-  }
-
 
   useEffect(() => {
     const link = window.location.href;
@@ -98,8 +91,18 @@ const ReportPage = ({ isLogedIn, pdfLink }) => {
                 {Object.entries(insights).map((element) => {
                   const insightName = String(element[0]);
                   return (
-                    <div class="card-insight" hidden={isIncludeEmpty(element[1]["insight"])}>
-                      {insightsImagesSrc[insightName]()}
+                    <div className="card-insight" hidden={isIncludeEmpty(element[1]["insight"])}>
+                      {
+                        insightName === "best_tax_system_insight" ?
+                          <MoneyIcon className='insight-icon img' />
+                          : insightName === "usual_county_insight" ?
+                            <MapIcon className='insight-icon img' />
+                            : insightName === "usual_expenses_insight" ?
+                              <NotebookIcon className='insight-icon img' />
+                              : insightName === "workers_quantity_insight" ?
+                                <WorkerIcon className='insight-icon img' />
+                                : <></>
+                      }
                       <p className='small'>{addSpansToPercentages(element[1]["insight"])}</p>
                     </div>
                   )
