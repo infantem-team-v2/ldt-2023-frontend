@@ -51,14 +51,14 @@ const Report = ({ isLogedIn }) => {
   const convertText = (text) => {
     const newText = String(text);
     if (newText.includes('_')) {
-      const words = newText.split('_');
+      const words = newText.split('_').join(" ");
       const capitalizedWords = words.charAt(0).toUpperCase() + words.slice(1)
-      return capitalizedWords.join(' ');
+      return capitalizedWords
     } else {
       return newText.charAt(0).toUpperCase() + newText.slice(1);
     }
-
   }
+
   function convertString(str) {
     const newString = String(str);
     const formattedStr = newString.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
