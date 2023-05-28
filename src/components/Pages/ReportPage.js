@@ -53,14 +53,17 @@ const ReportPage = ({ isLogedIn }) => {
     const regex = /(\d+)%/g;
     const parts = inputString.split(regex);
 
-    return parts.map((part, index) => {
-      if (part.match(regex)) {
-        const percentage = part.match(/\d+/)[0];
-        return <span className='insight-span' key={index}>{percentage}%</span>;
-      } else {
-        return part;
-      }
-    });
+    return (<>
+      {parts.map((part, index) => {
+        if (part.match(regex)) {
+          const percentage = part.match(/\d+/)[0];
+          return <span className='insight-span' key={index}>{percentage}%</span>;
+        } else {
+          return part;
+        }
+      })}
+    </>
+    )
   }
 
 
