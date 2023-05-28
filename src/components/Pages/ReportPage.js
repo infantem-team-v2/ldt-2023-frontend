@@ -96,6 +96,7 @@ const ReportPage = ({ isLogedIn, pdfLink }) => {
             <>
               <div className="insights">
                 {Object.entries(insights).map((element) => {
+                  console.log("ELEMENT", element)
                   return (
                     <div class="card-insight" hidden={isIncludeEmpty(element[1]["insight"])}>
                       {insightsImagesSrc[String(element[0])]}
