@@ -42,13 +42,4 @@
     text-align: start;
   }
 
-  .card-container {
-    display: flex !important;
-    flex-direction: column;
-  }
-
-  .user-block-form {
-    display: flex;
-  }
-
 }

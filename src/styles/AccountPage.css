@@ -116,6 +116,14 @@
   }
 
   .card-container {
-    flex-direction: column;
+    display: flex !important;
+    flex-direction: column !important;
   }
+
+  .user-block-form {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+
 }
