@@ -296,6 +296,10 @@ const BasicCalculator = ({ isLogedIn }) => {
 
               <div className='calc-control'>
                 <RegularButton
+                  text={"Назад"}
+                  onClick={() => setCurrentStep(currentStep - 1)}
+                />
+                <RegularButton
                   text={"Рассчитать инвестиции"}
                   onClick={handleNextStep}
                 />

@@ -5,19 +5,21 @@
   margin: calc(var(--index)*1.2);
 }
 
-.calculator-next-button {
-  height: 6.5vh;
-  border-radius: 12px;
-  align-self: center;
-  margin-top: calc(var(--index)*1);
-}
+
 
 .calc-control {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
   margin: calc(var(--index)*1.2);
+}
+
+.calc-control button {
+  height: 6.5vh;
+  border-radius: 12px;
+  align-self: center;
+  margin: calc(var(--index)*0.3);
+  width: 100%;
 }
 
 
