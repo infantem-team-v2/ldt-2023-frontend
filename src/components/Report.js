@@ -16,7 +16,7 @@ const Report = ({ isLogedIn }) => {
   const [totalExpenses, setTotalExpenses] = useState(0);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
   const [error, setError] = useState(false);
-  const [inputHidden, setInputHidden] = useState(true);
+  const [inputHidden, setInputHidden] = useState(false);
 
   const [step, setStep] = useState(1);
 
