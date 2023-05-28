@@ -50,23 +50,21 @@ const ReportPage = ({ isLogedIn }) => {
 
   function addSpansToPercentages(str) {
     const inputString = String(str);
-    const regex = /(\d+)%/g;
+    const regex = /(\d+%)/g;
     const parts = inputString.split(regex);
-    console.log(parts);
 
-    return (<p className='small'>
+    return (<>
       {parts.map((part, index) => {
         if (part.match(regex)) {
-          const percentage = part.match(/\d+/)[0];
-          return <span className='insight-span' key={index}>{percentage}%</span>;
+          const percentage = part.match(/\d+%/)[0];
+          return <span className='insight-span' key={index}>{percentage}</span>
         } else {
           return part;
         }
       })}
-    </p>
+    </>
     )
   }
-
 
 
 
