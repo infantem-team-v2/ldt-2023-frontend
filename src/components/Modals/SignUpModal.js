@@ -38,7 +38,7 @@ const SignUpModal = ({ show, onHide, setIsLogedIn }) => {
 
   useEffect(() => {
     fetchInnerData();
-  }, [organizationList]);
+  }, []);
 
 
   const fetchInnerData = async () => {
