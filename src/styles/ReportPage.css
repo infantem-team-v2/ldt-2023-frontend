@@ -38,4 +38,8 @@
     text-align: center !important;
   }
 
+  .report-container {
+    text-align: start;
+  }
+
 }
