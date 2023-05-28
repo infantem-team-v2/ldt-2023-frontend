@@ -52,14 +52,18 @@ const Report = ({ isLogedIn }) => {
     const newText = String(text);
     if (newText.includes('_')) {
       const words = newText.split('_');
-      const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+      const capitalizedWords = words.charAt(0).toUpperCase() + words.slice(1)
       return capitalizedWords.join(' ');
     } else {
       return newText.charAt(0).toUpperCase() + newText.slice(1);
     }
 
   }
-
+  function convertString(str) {
+    const newString = String(str);
+    const formattedStr = newString.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    return formattedStr;
+  }
 
 
 
@@ -70,8 +74,19 @@ const Report = ({ isLogedIn }) => {
       </div> :
         isDataLoaded ?
           <>
-            <h1 className='report-h'>Общий размер инвестиций</h1>
-            <h2 className='report-h'>{totalExpenses}₽</h2>
+            <h2 className='report-h mb-1'>Общая информация</h2>
+            {
+              Object.entries(report.input).map((item) => {
+                return (
+                  <div key={nanoid()} className='d-flex justify-content-between'>
+                    <p>{convertText(item[0])}</p>
+                    <p>{convertText(item[1])}₽</p>
+                  </div>
+                )
+              })
+            }
+            <h2 className='report-h mb-1'>Общий размер инвестиций</h2>
+            <h2 className='report-h'>{convertString(totalExpenses)}₽</h2>
             <hr />
             {
               Object.keys(report.output).map((category, index) => {
