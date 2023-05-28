@@ -102,7 +102,7 @@ const Report = ({ isLogedIn }) => {
         isDataLoaded ?
           <>
             <h2 className='report-h mb-1'>Общая информация</h2>
-            <div onClick={handleHide} className='report-hide'>{inputHidden ? "Развернуть" : "Свернуть"}</div>
+            <div onClick={handleHide} className='report-hide'>{inputHidden ? "Свернуть" : "Развернуть"}</div>
             <Collapse in={inputHidden}>
               <div>
                 {
