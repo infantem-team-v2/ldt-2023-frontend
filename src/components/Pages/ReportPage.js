@@ -85,7 +85,7 @@ const ReportPage = ({ isLogedIn }) => {
           <>
             <div className="plot">
               <h2>Выбор налоговой системы в вашей отрасли</h2>
-              <PieChart data={plots.taxes_destribution} />
+              <PieChart data={plots.taxes_distribution} />
             </div>
             <div className="plot">
               <h2>Динамика популярности по отраслям</h2>
