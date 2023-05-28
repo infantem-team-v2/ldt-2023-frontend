@@ -12,6 +12,12 @@ import PieChart from '../PieChart';
 
 import api from '../../services/api';
 
+import { ReactComponent as MoneyIcon } from '../../asserts/money.svg';
+import { ReactComponent as MapIcon } from '../../asserts/map.svg';
+import { ReactComponent as NotebookIcon } from '../../asserts/notebook.svg';
+import { ReactComponent as WorkerIcon } from '../../asserts/worker.svg';
+
+
 
 const ReportPage = ({ isLogedIn, pdfLink }) => {
 
@@ -22,10 +28,10 @@ const ReportPage = ({ isLogedIn, pdfLink }) => {
   const [plots, setPlots] = useState();
 
   const insightsImagesSrc = {
-    "best_tax_system_insight": '../../asserts/money.png',
-    "usual_county_insight": '../../asserts/map.png',
-    "usual_expenses_insight": '../../asserts/notebook.png',
-    "workers_quantity_insight": '../../asserts/workers.png',
+    "best_tax_system_insight": <MoneyIcon className='insight-icon img' />,
+    "usual_county_insight": <MapIcon className='insight-icon img' />,
+    "usual_expenses_insight": <NotebookIcon className='insight-icon img' />,
+    "workers_quantity_insight": <WorkerIcon className='insight-icon img' />,
   }
 
 
@@ -92,7 +98,7 @@ const ReportPage = ({ isLogedIn, pdfLink }) => {
                 {Object.entries(insights).map((element) => {
                   return (
                     <div class="card-insight" hidden={isIncludeEmpty(element[1]["insight"])}>
-                      <img src={insightsImagesSrc[String(element[0])]} class="img" alt="..." />
+                      {insightsImagesSrc[String(element[0])]}
                       <p className='small'>{addSpansToPercentages(element[1]["insight"])}</p>
                     </div>
                   )
