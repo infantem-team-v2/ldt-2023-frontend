@@ -12,7 +12,7 @@ const RegularModalDropdown = ({ onChange, value, controlId, overlay, innerData, 
   overlayPosition = "top", formLabel = undefined }) => {
   return (
     <>
-      <Form.Group controlId={controlId} className="regular-modal-dropdown-form-group" key={nanoid()}>
+      <Form.Group controlId={controlId} className="regular-modal-dropdown-form-group">
         {formLabel ? <Form.Label className="regular-modal-form-label">{formLabel}</Form.Label> : <></>}
         <Form.Select
           value={value}
