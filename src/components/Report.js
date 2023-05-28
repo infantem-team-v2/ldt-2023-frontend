@@ -118,9 +118,9 @@ const Report = ({ isLogedIn, reportId, pdfLink }) => {
               </div>
             </Collapse>
             <h2 className='report-h mb-1'>Общий размер инвестиций</h2>
-            <h2 className='report-h d-flex justify-content-between'><span>~{convertString(totalExpenses)}₽</span> {isLogedIn && pdfLink ?
+            <h2 className='report-h d-flex justify-content-between'><span>~{convertString(totalExpenses)}₽</span> {isLogedIn ?
               <span>
-                <a href={pdfLink} className='report-pdf-link'>Скачать PDF отчёт</a>
+                <a href={`https://cdn.ldt2023.infantem.tech/${reportId}.pdf`} className='report-pdf-link'>Скачать PDF отчёт</a>
               </span>
               : ""}</h2>
             <hr />
