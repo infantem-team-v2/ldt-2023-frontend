@@ -45,9 +45,8 @@
 
 .report-plots-container {
   display: grid;
-  grid-template-areas: 'b a' 'c c';
+  grid-template-columns: 3fr 3fr 3fr;
   gap: calc(var(--index)*1.2);
-  max-height: 65vh;
 }
 
 .plot-header {

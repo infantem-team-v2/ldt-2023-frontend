@@ -6,19 +6,20 @@ import { nanoid } from 'nanoid';
 
 const DistrictsMap = ({ choosenDistrict, setChoosenDistrict }) => {
 
+
   const districtsColors = {
-    'Центральный': '#B5DEFF',
-    'Северный': '#D8B9FF',
-    'Северо-Восточный': '#FBBCFF',
-    'Восточный': '#FFC6E5',
-    'Юго-Восточный': '#FFC1C4',
-    'Южный': '#FFE0C7',
-    'Юго-Западный': '#FFFCC1',
-    'Западный': '#DBFFB0',
-    'Северо-Западный': '#D1FFCF',
-    'Зеленоградский': '#D1FFE6',
-    'Троицкий': '#DFFFFF',
-    'Новомосковский': '#B7BAFF',
+    'ЦАО': '#B5DEFF',
+    'САО': '#D8B9FF',
+    'СВАО': '#FBBCFF',
+    'ВАО': '#FFC6E5',
+    'ЮВАО': '#FFC1C4',
+    'ЮАО': '#FFE0C7',
+    'ЮЗАО': '#FFFCC1',
+    'ЗАО': '#DBFFB0',
+    'СЗАО': '#D1FFCF',
+    'ЗелАО': '#D1FFE6',
+    'ТАО': '#DFFFFF',
+    'НАО': '#B7BAFF',
   }
 
   const [districtsColorsState, setDistrictsColorsState] = useState(districtsColors);
@@ -119,7 +120,6 @@ const DistrictsMap = ({ choosenDistrict, setChoosenDistrict }) => {
           defaultState={{ center: [55.8, 37.7], zoom: 9 }}
           width="100%"
           height="500px"
-
         >
 
 
