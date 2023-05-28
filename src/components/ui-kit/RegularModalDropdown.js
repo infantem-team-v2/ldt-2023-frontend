@@ -19,15 +19,15 @@ const RegularModalDropdown = ({ onChange, value, controlId, overlay, innerData, 
           onChange={onChange}
           className="regular-dropdown-form-control "
         >
-          <option key={nanoid()} value={undefined} >{label}</option>
-          {innerData.map((option) => {
+          <option value={undefined} >{label}</option>
+          {innerData ? innerData.map((option) => {
             return (
               <option
                 key={nanoid()}
                 value={option}
               >{option}</option>
             )
-          })}
+          }) : <></>}
         </Form.Select>
       </Form.Group>
     </>

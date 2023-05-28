@@ -5,6 +5,7 @@ import api from "../services/api";
 import RegularModalFormControl from "./ui-kit/RegularModalFormControl";
 import RegularButton from "./ui-kit/RegularButton";
 import Swal from "sweetalert2";
+import RegularModalDropdown from "./ui-kit/RegularModalDropdown";
 
 
 const UserDataBlock = () => {
@@ -13,6 +14,8 @@ const UserDataBlock = () => {
   const [error, setError] = useState(false);
   const [isChanges, setIsChanges] = useState(false);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
+
+  const [organizationList, setOrganizationList] = useState([]);
 
 
   const [economic_activity, setEconomic_activity] = useState('');
@@ -24,6 +27,17 @@ const UserDataBlock = () => {
   const [geography, setGeography] = useState('');
   const [jobPosition, setJobPosition] = useState('');
 
+
+  const fetchInnerData = async () => {
+    try {
+      const response = await api.get("/calc/fields");
+      const dataJson = await response.data.data.industries;
+      setOrganizationList(dataJson);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   useEffect(() => {
     api.get('/account/info', {
       params: {
@@ -33,6 +47,7 @@ const UserDataBlock = () => {
     }).catch(err => { setError(true); console.log(err) }).then((res) => {
       if (res && res.status >= 200 && res.status < 300) {
         setUserData(res.data);
+        fetchInnerData();
       }
 
     });
@@ -43,7 +58,7 @@ const UserDataBlock = () => {
       handleData(userData);
       setIsDataLoaded(true);
     }
-  }, [userData]);
+  }, [userData, organizationList]);
 
   const handleData = (data) => {
     try {
@@ -169,12 +184,13 @@ const UserDataBlock = () => {
           <div className="user-block-div">
             <h2 className="user-block-head">Данные о предприятии</h2>
             <form className="form user-block-form">
-              <RegularModalFormControl
+              <RegularModalDropdown
                 label="Вид деятельности"
                 type="text"
-                placeholder="Введите вид деятельности"
+                placeholder="Выберите вид деятельности"
                 value={economic_activity}
                 onChange={(e) => { setIsChanges(true); setEconomic_activity(e.target.value) }}
+                options={organizationList ? organizationList : ["Загрузка..."]}
               />
               <RegularModalFormControl
                 label="ИНН"
