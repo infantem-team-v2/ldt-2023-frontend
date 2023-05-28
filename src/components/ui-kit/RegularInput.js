@@ -6,11 +6,11 @@ import { nanoid } from 'nanoid';
 import '../../styles/RegularModalForm.css'
 
 const RegularInput = ({ controlId, label, type, placeholder, value, onChange, errorHandler,
-  size, renderInputError, className, overlay, overlayPosition = 'top' }) => {
+  size, renderInputError, className, overlay, overlayPosition = 'top', hidden = false }) => {
 
   return (<>
-    <OverlayTrigger placement={overlayPosition} overlay={overlay}>
-      <Form.Group controlId={controlId} className={"regular-input-form-group " + (className ? className : "")} >
+    <OverlayTrigger placement={overlayPosition} overlay={overlay} hidden={hidden}>
+      <Form.Group controlId={controlId} className={"regular-input-form-group " + (className ? className : "")} hidden={hidden}>
         <Form.Label className="regular-modal-form-label">{label}</Form.Label>
         <Form.Control
           className="regular-input-form-control"

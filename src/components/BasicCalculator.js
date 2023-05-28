@@ -139,7 +139,7 @@ const BasicCalculator = ({ isLogedIn }) => {
                 value={fields.organization_type}
                 onChange={(e) => { setFields({ ...fields, organization_type: e.target.value }) }}
                 innerData={["ООО", "ИП"]}
-                overlay={renderTooltip('Тип организации')}
+                overlay={renderTooltip('Укажите тип деятельности организации')}
                 formLabel={"Тип организации"}
               />
               <RegularDropdown
@@ -148,7 +148,7 @@ const BasicCalculator = ({ isLogedIn }) => {
                 value={fields.industry}
                 onChange={(e) => { setFields({ ...fields, industry: e.target.value }) }}
                 innerData={innerData["industries"]}
-                overlay={renderTooltip('Отрасль')}
+                overlay={renderTooltip('Укажите отрасль деятельности организации')}
                 formLabel={"Отрасль"}
               />
               <RegularInput
@@ -157,7 +157,7 @@ const BasicCalculator = ({ isLogedIn }) => {
                 value={fields.workers_quantity ? fields.workers_quantity : ""}
                 placeholder={"Введите количество сотрудников (чел)"}
                 onChange={(e) => { setFields({ ...fields, workers_quantity: e.target.value }) }}
-                overlay={renderTooltip('Количество сотрудников')}
+                overlay={renderTooltip('Укажите количество человек, занятых в организации')}
                 formLabel={"Количество сотрудников"}
                 className={"calculator-input"}
               />
@@ -166,7 +166,6 @@ const BasicCalculator = ({ isLogedIn }) => {
                   text={"Далее"}
                   onClick={handleNextStep}
                   className="calculator-next-button"
-
                 />
               </div>
             </div>
@@ -187,10 +186,16 @@ const BasicCalculator = ({ isLogedIn }) => {
                 formLabel={"Административный округ"}
               />
               <DistrictsMap choosenDistrict={fields.county} setChoosenDistrict={(value) => setFields({ ...fields, county: value })} />
-              <RegularButton
-                text={"Далее"}
-                onClick={handleNextStep}
-              />
+              <div className='calc-control'>
+                <RegularButton
+                  text={"Назад"}
+                  onClick={() => setCurrentStep(currentStep - 1)}
+                />
+                <RegularButton
+                  text={"Далее"}
+                  onClick={handleNextStep}
+                />
+              </div>
             </div>
           </div>
           <div className='calculator-category-container' hidden={!(currentStep === 3)}>
@@ -202,7 +207,7 @@ const BasicCalculator = ({ isLogedIn }) => {
                 value={fields.land_area ? fields.land_area : ""}
                 placeholder={"Введите площадь земли (м2)"}
                 onChange={(e) => { setFields({ ...fields, land_area: e.target.value }) }}
-                overlay={renderTooltip('')}
+                overlay={renderTooltip('Введите площадь земли, на которой будет расположено предприятие')}
                 formLabel={"Площадь земли"}
                 className={"calculator-input"}
                 type={"number"}
@@ -213,7 +218,7 @@ const BasicCalculator = ({ isLogedIn }) => {
                 value={fields.building_area ? fields.building_area : ""}
                 placeholder={"Введите площадь застройки (м2)"}
                 onChange={(e) => { setFields({ ...fields, building_area: e.target.value }) }}
-                overlay={renderTooltip('')}
+                overlay={renderTooltip('Введите площадь застройки, на которой будет расположено предприятие')}
                 formLabel={"Площадь застройки"}
                 className={"calculator-input"}
                 type={"number"}
@@ -238,10 +243,16 @@ const BasicCalculator = ({ isLogedIn }) => {
                 overlay={renderTooltip('вы можете выбрать несколько дополнительных потребностей')}
                 formLabel={"Иные потребности"}
               />
-              <RegularButton
-                text={"Далее"}
-                onClick={handleNextStep}
-              />
+              <div className='calc-control'>
+                <RegularButton
+                  text={"Назад"}
+                  onClick={() => setCurrentStep(currentStep - 1)}
+                />
+                <RegularButton
+                  text={"Далее"}
+                  onClick={handleNextStep}
+                />
+              </div>
             </div>
           </div>
           <div className='calculator-category-container' hidden={!(currentStep === 4)}>
@@ -253,7 +264,7 @@ const BasicCalculator = ({ isLogedIn }) => {
                 value={fields.tax_system}
                 onChange={(e) => { setFields({ ...fields, tax_system: e.target.value }) }}
                 innerData={['ОСН', 'УСН6%', 'УСН15%', 'ЕСНХ']}
-                overlay={renderTooltip('Налоговая система')}
+                overlay={renderTooltip('Выберите налоговую систему по которой будет вестись учет')}
                 formLabel={"Налоговая система"}
               />
               <RegularCheckbox
@@ -264,7 +275,7 @@ const BasicCalculator = ({ isLogedIn }) => {
                 overlay={renderTooltip('Нужна ли вам бухгалтерия (да/нет)')}
                 formLabel={"Бухгалтерия"}
               />
-              <RegularSlider
+              <RegularInput
                 controlId='accounting-operations'
                 label='Количество бухгалтерских операций'
                 value={fields.operations}
@@ -283,13 +294,12 @@ const BasicCalculator = ({ isLogedIn }) => {
                 formLabel={"Тип патента"}
               />
 
-
-              <RegularButton
-                text={"Рассчитать инвестиции"}
-                onClick={handleNextStep}
-              />
-
-
+              <div className='calc-control'>
+                <RegularButton
+                  text={"Рассчитать инвестиции"}
+                  onClick={handleNextStep}
+                />
+              </div>
             </div>
           </div>
 

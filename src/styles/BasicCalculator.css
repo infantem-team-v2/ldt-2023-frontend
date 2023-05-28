@@ -12,9 +12,14 @@
   margin-top: calc(var(--index)*1);
 }
 
-.calculator-category-content:nth-child(2n + 1) {
-  justify-self: end !important;
+.calc-control {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: calc(var(--index)*1.2);
 }
+
 
 .calculator-input {
   align-self: center;

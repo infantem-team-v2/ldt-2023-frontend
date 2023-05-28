@@ -190,7 +190,7 @@ const UserDataBlock = () => {
                 placeholder="Выберите вид деятельности"
                 value={economic_activity}
                 onChange={(e) => { setIsChanges(true); setEconomic_activity(e.target.value) }}
-                options={organizationList ? organizationList : ["Загрузка..."]}
+                innerData={organizationList ? organizationList : ["Загрузка..."]}
               />
               <RegularModalFormControl
                 label="ИНН"

@@ -11,3 +11,32 @@
   background-size: 65% !important;
   box-shadow: none !important;
 }
+
+.regular-slider-check {
+  color: var(--main-acsent) !important;
+}
+
+
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border-radius: 3px;
+  background: var(--main-acsent);
+  cursor: pointer;
+}
+
+/* Тоже самое для Firefox */
+input[type=range]::-moz-range-thumb {
+  -webkit-appearance: none;
+  border-radius: 3px;
+  background: var(--main-acsent);
+  cursor: pointer;
+}
+
+/* Тоже самое для IE */
+input[type=range]::-ms-thumb {
+  -webkit-appearance: none;
+  border-radius: 3px;
+  background: var(--main-acsent);
+  cursor: pointer;
+}
