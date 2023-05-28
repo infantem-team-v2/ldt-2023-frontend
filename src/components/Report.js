@@ -118,7 +118,7 @@ const Report = ({ isLogedIn, reportId }) => {
               </div>
             </Collapse>
             <h2 className='report-h mb-1'>Общий размер инвестиций</h2>
-            <h2 className='report-h'>{convertString(totalExpenses)}₽</h2>
+            <h2 className='report-h'>~{convertString(totalExpenses)}₽</h2>
             <hr />
             {
               Object.keys(report.output).map((category, index) => {
@@ -131,7 +131,7 @@ const Report = ({ isLogedIn, reportId }) => {
                         return (
                           <div key={nanoid()} className='d-flex justify-content-between'>
                             <p>{convertText(item[0])}</p>
-                            <p>{convertText(item[1])}₽</p>
+                            <p>~{convertText(item[1])}₽</p>
                           </div>
                         )
                       })}
