@@ -45,7 +45,7 @@
 
 .report-plots-container {
   display: grid;
-  grid-template-columns: 3fr 3fr 3fr;
+  grid-template-columns: 1fr 1fr 3fr;
   gap: calc(var(--index)*1.2);
 }
 

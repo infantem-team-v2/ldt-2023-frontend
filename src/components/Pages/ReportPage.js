@@ -52,8 +52,9 @@ const ReportPage = ({ isLogedIn }) => {
     const inputString = String(str);
     const regex = /(\d+)%/g;
     const parts = inputString.split(regex);
+    console.log(parts);
 
-    return (<>
+    return (<p className='small'>
       {parts.map((part, index) => {
         if (part.match(regex)) {
           const percentage = part.match(/\d+/)[0];
@@ -62,7 +63,7 @@ const ReportPage = ({ isLogedIn }) => {
           return part;
         }
       })}
-    </>
+    </p>
     )
   }
 
