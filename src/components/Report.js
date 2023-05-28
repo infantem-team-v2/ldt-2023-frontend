@@ -10,7 +10,7 @@ import RegularButton from './ui-kit/RegularButton';
 
 
 
-const Report = ({ isLogedIn, reportId }) => {
+const Report = ({ isLogedIn, reportId, pdfLink }) => {
 
   const [report, setReport] = useState();
   const [totalExpenses, setTotalExpenses] = useState(0);
@@ -118,7 +118,11 @@ const Report = ({ isLogedIn, reportId }) => {
               </div>
             </Collapse>
             <h2 className='report-h mb-1'>Общий размер инвестиций</h2>
-            <h2 className='report-h'>~{convertString(totalExpenses)}₽</h2>
+            <h2 className='report-h d-flex justify-content-between'><span>~{convertString(totalExpenses)}₽</span> {isLogedIn && pdfLink ?
+              <span>
+                <a href={pdfLink} className='report-pdf-link'>Скачать PDF отчёт</a>
+              </span>
+              : ""}</h2>
             <hr />
             {
               Object.keys(report.output).map((category, index) => {

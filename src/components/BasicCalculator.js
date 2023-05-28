@@ -17,7 +17,7 @@ import RegularSlider from './ui-kit/RegularSlider';
 import RegularInput from './ui-kit/RegularInput';
 
 
-const BasicCalculator = ({ isLogedIn }) => {
+const BasicCalculator = ({ isLogedIn, setPdfLink }) => {
 
   const [fields, setFields] = useState({
     organization_type: undefined,
@@ -38,6 +38,8 @@ const BasicCalculator = ({ isLogedIn }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
   const [innerData, setInnerData] = useState();
+
+
 
 
   const navigate = useNavigate();
@@ -92,6 +94,7 @@ const BasicCalculator = ({ isLogedIn }) => {
       api.post(getUrl, newFields).then((response) => {
         if (response.status >= 200 && response.status < 300) {
           const id = response.data.tracker_id;
+          setPdfLink(response.data.link)
           navigate(`/report/${id}`);
         }
       }).catch((err) => {

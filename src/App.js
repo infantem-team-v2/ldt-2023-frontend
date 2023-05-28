@@ -31,6 +31,8 @@ function App() {
   const [showPostEmailCodeModal, setShowPostEmailCodeModal] = useState(false);
   const [showEnterEmailToResetModal, setShowEnterEmailToResetModal] = useState(false);
 
+  const [pdfLink, setPdfLink] = useState();
+
   const [isLogedIn, setIsLogedIn] = useState(false);
 
   const navigate = useNavigate();
@@ -97,10 +99,10 @@ function App() {
 
       <Header showSignInModal={showModal['signInModal']} isLogedIn={isLogedIn} logOut={logOut} showSignUpModal={showModal['signUpModal']} />
       <Routes>
-        <Route path='/' element={<MainPage isLogedIn={isLogedIn} />} />
+        <Route path='/' element={<MainPage isLogedIn={isLogedIn} setPdfLink={setPdfLink} />} />
         <Route path='/account' element={<AccountPage />} />
         <Route path='/documents' element={<DocumentsPage />} />
-        <Route path='/report/:id' element={<ReportPage isLogedIn={isLogedIn} />} />
+        <Route path='/report/:id' element={<ReportPage isLogedIn={isLogedIn} pdfLink={pdfLink} />} />
         <Route path='*' element={<F404Page />} />
       </Routes>
       <Footer />

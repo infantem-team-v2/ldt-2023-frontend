@@ -46,3 +46,9 @@
 .report-p-data {
   text-align: end;
 }
+
+.report-pdf-link {
+  color: var(--main-acsent) !important;
+  text-decoration: none;
+  cursor: pointer;
+}

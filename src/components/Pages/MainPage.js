@@ -6,7 +6,7 @@ import { ReactComponent as HeaderThing } from '../../asserts/header_thing.svg';
 import '../../styles/MainPage.css';
 
 
-const MainPage = ({ isLogedIn }) => {
+const MainPage = ({ isLogedIn, setPdfLink }) => {
 
   const currentScreen = window.screen.width;
 
@@ -19,7 +19,7 @@ const MainPage = ({ isLogedIn }) => {
         </div>
         <h1 className="h1-main">Рассчитай вложения <HeaderThing /></h1>
         {currentScreen <= 768 ? < div className="p-logo secondary-head-sign">Быстрый и удобный инструмент для московских предпринимателей, расчитайте инвестиции в два клика!</div> : <></>}
-        < BasicCalculator isLogedIn={isLogedIn} />
+        < BasicCalculator isLogedIn={isLogedIn} setPdfLink={setPdfLink} />
 
       </div >
 

@@ -13,13 +13,14 @@ import PieChart from '../PieChart';
 import api from '../../services/api';
 
 
-const ReportPage = ({ isLogedIn }) => {
+const ReportPage = ({ isLogedIn, pdfLink }) => {
 
   const reportId = window.location.href.split('/')[4];
 
   const [link, setLink] = useState('');
   const [insights, setInsights] = useState();
   const [plots, setPlots] = useState();
+
 
   useEffect(() => {
     const link = window.location.href;
@@ -96,7 +97,7 @@ const ReportPage = ({ isLogedIn }) => {
             : <></>}
         </aside>
         <div className="main-section">
-          <Report isLogedIn={isLogedIn} reportId={reportId} />
+          <Report isLogedIn={isLogedIn} reportId={reportId} pdfLink={pdfLink} />
         </div>
       </div>
 
