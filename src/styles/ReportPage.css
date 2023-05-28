@@ -21,6 +21,23 @@
   margin: calc(var(--index)*1.2) 0;
 }
 
+.card-insight {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: calc(var(--index)*1.2);
+  margin: calc(var(--index)*1.2) 0;
+  margin-right: calc(var(--index)*2.5);
+}
+
+.card-insight p {
+  margin-bottom: 0 !important;
+}
+
+.card-insight img {
+  width: 8%;
+}
+
 @media screen and (max-width: 768px) {
   .report-page-container {
     flex-direction: column;

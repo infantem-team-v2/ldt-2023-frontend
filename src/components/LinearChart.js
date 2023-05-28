@@ -32,7 +32,7 @@ const LinearChart = ({ data }) => {
     return {
       label: fieldName,
       data: dataset[fieldName],
-      fill: false,
+      fill: true,
       borderColor: getRandomColor(),
     };
   });

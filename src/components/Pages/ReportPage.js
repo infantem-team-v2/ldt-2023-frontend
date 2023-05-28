@@ -60,23 +60,26 @@ const ReportPage = ({ isLogedIn }) => {
             <div className="insights">
               {Object.values(insights).map((element) => {
                 return (
-                  <div className="insight d-flex">
-                    <img className='img img-thumbnail' src='https://placehold.co/150' alt="" />
-                    <p className='fs-6 fw-light'>{element["insight"]}</p>
+                  <div class="card-insight" >
+                    <img src="https://cdn.onlinewebfonts.com/svg/download_506219.png" class="img" alt="..." />
+                    <p className='small'>{element["insight"]}</p>
                   </div>
                 )
               })}
-            </div>
-            : <></>}
-          {isLogedIn && plots ?
-            <div className="plots">
-              <LinearChart data={plots.popularity_chart} />
             </div>
             : <></>}
         </aside>
         <div className="main-section">
           <Report isLogedIn={isLogedIn} reportId={reportId} />
         </div>
+      </div>
+      <div className='report-plots-container'>
+        {isLogedIn && plots ?
+          <div className="plots">
+            <LinearChart data={plots.popularity_chart} />
+          </div>
+
+          : <></>}
       </div>
       <div className='report-page-additional'>
         <aside className="aside-main">
