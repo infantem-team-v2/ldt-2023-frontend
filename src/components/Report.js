@@ -5,6 +5,7 @@ import { nanoid } from 'nanoid';
 
 import '../styles/Report.css';
 import RegularButton from './ui-kit/RegularButton';
+import { Collapse } from 'react-bootstrap';
 
 const Report = ({ isLogedIn }) => {
 
@@ -12,6 +13,7 @@ const Report = ({ isLogedIn }) => {
   const [totalExpenses, setTotalExpenses] = useState(0);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
   const [error, setError] = useState(false);
+  const [inputHidden, setInputHidden] = useState(true);
 
   const [step, setStep] = useState(1);
 
@@ -62,7 +64,7 @@ const Report = ({ isLogedIn }) => {
   const convertInputText = (text) => {
     const isArray = Array.isArray(text);
     if (isArray) {
-      return text.map((item) => { <span>{item}<br /></span> });
+      return text.map((item) => { return <span>{item}<br /></span> });
     } else {
       const newText = String(text);
       if (newText === "true") return 'Да';
@@ -95,16 +97,19 @@ const Report = ({ isLogedIn }) => {
         isDataLoaded ?
           <>
             <h2 className='report-h mb-1'>Общая информация</h2>
-            {
-              Object.entries(report.input).map((item) => {
-                return (
-                  <div key={nanoid()} className='d-flex justify-content-between'>
-                    <p>{convertText(item[0])}</p>
-                    <p>{convertInputText(item[1])}</p>
-                  </div>
-                )
-              })
-            }
+            <div onClick={() => { setInputHidden(!inputHidden) }} className='report-hide'>{inputHidden ? "Развернуть" : "Свернуть"}</div>
+            <Collapse in={inputHidden}>
+              {
+                Object.entries(report.input).map((item) => {
+                  return (
+                    <div key={nanoid()} className='d-flex justify-content-between'>
+                      <p>{convertText(item[0])}</p>
+                      <p>{convertInputText(item[1])}</p>
+                    </div>
+                  )
+                })
+              }
+            </Collapse>
             <h2 className='report-h mb-1'>Общий размер инвестиций</h2>
             <h2 className='report-h'>{convertString(totalExpenses)}₽</h2>
             <hr />
