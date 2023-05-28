@@ -48,6 +48,12 @@ const ReportPage = ({ isLogedIn }) => {
     }
   };
 
+  function addSpansToPercentages(str) {
+    const inputString = String(str);
+    const regex = /(\d+)%/g;
+    return inputString.replace(regex, '<span className="insight-span">$1%</span>');
+  }
+
 
 
 
@@ -63,7 +69,7 @@ const ReportPage = ({ isLogedIn }) => {
                   return (
                     <div class="card-insight" >
                       <img src="https://cdn.onlinewebfonts.com/svg/download_506219.png" class="img" alt="..." />
-                      <p className='small'>{element["insight"]}</p>
+                      <p className='small'>{addSpansToPercentages(element["insight"])}</p>
                     </div>
                   )
                 })}
@@ -80,17 +86,18 @@ const ReportPage = ({ isLogedIn }) => {
 
       {isLogedIn && plots ?
         <>
+          <br />
           <div className='report-plots-container'>
             <div className="plot">
-              <h2>Распределение ваших инвестиций</h2>
+              <h2 className='plot-header'>Распределение ваших инвестиций</h2>
               <PieChart data={plots.expenses_distribution} />
             </div>
             <div className="plot">
-              <h2>Распределение налоговых систем в вашей отрасли</h2>
+              <h2 className='plot-header'>Распределение налоговых систем в вашей отрасли</h2>
               <PieChart data={plots.taxes_distribution} />
             </div>
-            <div className="plot h-50">
-              <h2>Динамика популярности по отраслям</h2>
+            <div className="plot">
+              <h2 className='plot-header'>Динамика популярности по отраслям</h2>
               <LinearChart data={plots.popularity_chart} />
             </div>
           </div>
