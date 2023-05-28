@@ -54,7 +54,7 @@ const UserDataBlock = () => {
   }, []);
 
   useEffect(() => {
-    if (userData) {
+    if (userData && organizationList.length > 0) {
       handleData(userData);
       setIsDataLoaded(true);
     }
