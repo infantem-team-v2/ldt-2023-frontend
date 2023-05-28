@@ -4,6 +4,7 @@
   border-color: var(--main-acsent) !important;
   box-shadow: none !important;
   width: 100% !important;
+  align-self: end;
 }
 
 .regular-modal-dropdown-form-group .btn-group {
