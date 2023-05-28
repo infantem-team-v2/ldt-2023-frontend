@@ -32,7 +32,7 @@ const ReportPage = ({ isLogedIn }) => {
     try {
       const res = await api.get(`calc/insights/${reportId}`);
       console.log(res.data);
-      setInsights(res.data.insights);
+      setInsights(res.data);
     } catch (err) {
       return;
     }
@@ -59,11 +59,10 @@ const ReportPage = ({ isLogedIn }) => {
           {isLogedIn && insights ?
             <div className="insights">
               {Object.values(insights).map((element) => {
-                console.log(element);
                 return (
                   <div className="insight d-flex">
                     <img className='img img-thumbnail' src='https://placehold.co/150' alt="" />
-                    <p className='fs-6 fw-light'>{Object.values(element)[0]}</p>
+                    <p className='fs-6 fw-light'>{element["insight"]}</p>
                   </div>
                 )
               })}
