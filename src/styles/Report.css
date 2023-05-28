@@ -10,8 +10,8 @@
 
 .report-h3 {
   color: var(--main-white) !important;
-  margin: calc(var(--index)*1.4) 0;
-  font-size: calc(var(--index)*1.7);
+  margin: calc(var(--index)*1.2) 0;
+  font-size: calc(var(--index)*1.4);
 }
 
 .report-h {
@@ -29,5 +29,5 @@
 }
 
 .report-control-block button.disabled {
-  background-color: #2219A3 !important;
+  background-color: #433C9F !important;
 }

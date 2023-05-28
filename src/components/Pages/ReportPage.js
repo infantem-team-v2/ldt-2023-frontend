@@ -29,9 +29,10 @@ const ReportPage = ({ isLogedIn }) => {
       </div>
       <div className='d-flex justify-content-between mt-4 mb-4'>
         <aside className="aside-main w-50">
-          <div className="d-flex">
-            <p>Сохраните ссылку: <a href={link}>{link}</a></p>
-            <CopyToClipboardButton text={link} />
+          <div className="">
+            <p className='mb-0'>Сохраните ссылку:</p>
+            <a href={link} className='d-flex fs-6 fw-light m-0 p-0 text-decoration-none'>{link.slice(7)} <CopyToClipboardButton text={link} /></a>
+
           </div>
 
         </aside>

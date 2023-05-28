@@ -44,7 +44,7 @@ const Report = ({ isLogedIn }) => {
 
   const handleData = () => {
     if (report && report.total_expenses) {
-      setTotalExpenses(report.output.total_expenses);
+      setTotalExpenses(report.total_expenses);
     }
   }
 
