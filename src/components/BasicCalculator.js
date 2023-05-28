@@ -172,7 +172,7 @@ const BasicCalculator = ({ isLogedIn }) => {
           </div>
           <div className='calculator-category-container' hidden={!(currentStep === 2)}>
             <h1 className='calculator-category-title'>Территория</h1>
-            <div className='calculator-category-content'>
+            <div >
               <RegularDropdown
                 controlId='district'
                 value={fields.county}

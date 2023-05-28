@@ -25,10 +25,7 @@
 
 @media screen and (max-width: 768px) {
   .header-control-block {
-    flex-direction: column;
-    justify-content: end;
-    align-items: end;
-    gap: calc(var(--index)*1.5);
+    display: block !important;
   }
 
 

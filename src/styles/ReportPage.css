@@ -8,3 +8,34 @@
   width: 20%;
   text-align: right !important;
 }
+
+.report-page-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: calc(var(--index)*1);
+}
+
+.report-page-additional {
+  display: flex;
+  justify-content: space-between;
+  margin: calc(var(--index)*1.2) 0;
+}
+
+@media screen and (max-width: 768px) {
+  .report-page-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .report-page-additional {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .main-footer-section {
+    width: 100%;
+    text-align: center !important;
+  }
+
+}

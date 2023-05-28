@@ -19,16 +19,16 @@ const ReportPage = ({ isLogedIn }) => {
 
   return (
     <div className='container'>
-      <div className='d-flex justify-content-between mt-4'>
-        <aside className="aside-main w-50">
+      <div className='report-page-container'>
+        <aside className="aside-main">
           <h1 className='h1-report'>Результат расчёта</h1>
         </aside>
         <div className="main-section">
           <Report isLogedIn={isLogedIn} />
         </div>
       </div>
-      <div className='d-flex justify-content-between mt-4 mb-4'>
-        <aside className="aside-main w-50">
+      <div className='report-page-additional'>
+        <aside className="aside-main">
           <div className="">
             <p className='mb-0'>Сохраните ссылку:</p>
             <div className='d-flex'>

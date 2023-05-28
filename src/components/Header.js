@@ -40,7 +40,7 @@ const Header = (props) => {
     <Navbar bg="white" expand="lg" className='sticky-top mt-0 header-navbar-el' expanded={expanded}>
       <a href="/documents" className='nav-link'><Documents className='me-1 ms-5' />Документы</a>
       <Navbar.Toggle aria-controls="basic-navbar-nav" className='me-3' onClick={handleSelect} />
-      <Navbar.Collapse id="basic-navbar-nav " className='text-center me-5'>
+      <Navbar.Collapse id="basic-navbar-nav " className={expanded ? "ms-5" : "me-5"}>
         <Navbar.Brand href="#home" className='ms-auto me-auto'>
           <span className='d-inline-block align-middle header-logo' onClick={() => navigate('/')}>LOGO</span>
         </Navbar.Brand>
