@@ -22,10 +22,10 @@ const ReportPage = ({ isLogedIn, pdfLink }) => {
   const [plots, setPlots] = useState();
 
   const insightsImagesSrc = {
-    "best_tax_system_insight": '../../asserts/money.svg',
-    "usual_county_insight": '../../asserts/map.svg',
-    "usual_expenses_insight": '../../asserts/notebook.svg',
-    "workers_quantity_insight": '../../asserts/worker.svg',
+    "best_tax_system_insight": '../../asserts/money.png',
+    "usual_county_insight": '../../asserts/map.png',
+    "usual_expenses_insight": '../../asserts/notebook.png',
+    "workers_quantity_insight": '../../asserts/workers.png',
   }
 
 
