@@ -58,11 +58,11 @@ const ReportPage = ({ isLogedIn }) => {
           <h1 className='h1-report'>Результат расчёта</h1>
           {isLogedIn && insights ?
             <div className="insights">
-              {Object.values(insights).map((insight) => {
+              {Object.values(insights).map((element) => {
                 return (
                   <div className="insight d-flex">
                     <img className='img img-thumbnail' src='https://placehold.co/150' alt="" />
-                    <p className='fs-6 fw-light'>{insight.insight}</p>
+                    <p className='fs-6 fw-light'>{element["insight"]}</p>
                   </div>
                 )
               })}
@@ -71,7 +71,6 @@ const ReportPage = ({ isLogedIn }) => {
           {isLogedIn && plots ?
             <div className="plots">
               <LinearChart data={plots.popularity_chart} />
-              {/* <LinearChart data={plots} /> */}
             </div>
             : <></>}
         </aside>
