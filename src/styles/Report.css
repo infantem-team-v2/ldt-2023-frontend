@@ -35,9 +35,10 @@
 
 .report-hide {
   width: 100%;
-  border-radius: 12px !important;
-  border-color: var(--main-white) !important;
+  border: 1px solid var(--main-white) !important;
+  border-radius: 3px !important;
   color: var(--main-white) !important;
   margin: calc(var(--index)*1.2);
   cursor: pointer;
+  padding: calc(var(--index)*0.5);
 }

@@ -84,13 +84,15 @@ const Report = ({ isLogedIn }) => {
     }
   }
 
-  function convertString(str) {
+  const convertString = (str) => {
     const newString = String(str);
     const formattedStr = newString.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     return formattedStr;
-  }
+  };
 
-
+  const handleHide = () => {
+    setInputHidden(!inputHidden);
+  };
 
   return (<>
     <div className='report-container'>
@@ -100,9 +102,9 @@ const Report = ({ isLogedIn }) => {
         isDataLoaded ?
           <>
             <h2 className='report-h mb-1'>Общая информация</h2>
-            <div onClick={() => { setInputHidden(!inputHidden) }} className='report-hide'>{inputHidden ? "Развернуть" : "Свернуть"}</div>
+            <div onClick={handleHide} className='report-hide'>{inputHidden ? "Развернуть" : "Свернуть"}</div>
             <Collapse in={inputHidden}>
-              <>
+              <div>
                 {
                   Object.entries(report.input).map((item) => {
                     return (
@@ -113,7 +115,7 @@ const Report = ({ isLogedIn }) => {
                     )
                   })
                 }
-              </>
+              </div>
             </Collapse>
             <h2 className='report-h mb-1'>Общий размер инвестиций</h2>
             <h2 className='report-h'>{convertString(totalExpenses)}₽</h2>
