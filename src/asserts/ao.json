@@ -10,9 +10,9 @@
     {
       "type": "Feature",
       "properties": {
-        "NAME": "Троицкий",
+        "NAME": "ТАО",
         "OKATO": "45298000",
-        "ABBREV": "Троицкий"
+        "ABBREV": "ТАО"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -21286,7 +21286,7 @@
     {
       "type": "Feature",
       "properties": {
-        "NAME": "Зеленоградский",
+        "NAME": "ЗАО",
         "OKATO": "45272000",
         "ABBREV": "ЗелАО"
       },
@@ -40069,7 +40069,7 @@
     {
       "type": "Feature",
       "properties": {
-        "NAME": "Центральный",
+        "NAME": "ЦАО",
         "OKATO": "45286000",
         "ABBREV": "ЦАО"
       },

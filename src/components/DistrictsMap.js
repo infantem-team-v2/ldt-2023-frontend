@@ -30,7 +30,7 @@ const DistrictsMap = ({ choosenDistrict, setChoosenDistrict }) => {
 
     if (jsonData && jsonData.features) {
       jsonData.features.forEach((feature) => {
-        const { NAME } = feature.properties;
+        const { ABBREV } = feature.properties;
         const { geometry } = feature;
         const { coordinates } = geometry;
 
@@ -43,7 +43,7 @@ const DistrictsMap = ({ choosenDistrict, setChoosenDistrict }) => {
         } else if (geometry.type === 'Polygon') {
           polygons = [coordinates[0].map((coord) => [coord[1], coord[0]])];
         }
-        result.push({ name: NAME, polygons });
+        result.push({ name: ABBREV, polygons });
       });
     }
 
