@@ -4,7 +4,6 @@ import { Pie } from 'react-chartjs-2';
 
 const PieChart = ({ data }) => {
   ChartJS.register(ArcElement, Tooltip, Legend);
-  console.log("DAAAAATA", data)
 
   const labels = data.labels || [];
   const datasets = [
