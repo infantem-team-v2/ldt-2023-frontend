@@ -93,13 +93,13 @@ const ReportPage = ({ isLogedIn, pdfLink }) => {
                   return (
                     <div className="card-insight" hidden={isIncludeEmpty(element[1]["insight"])}>
                       {
-                        insightName === "best_tax_system_insight" ?
+                        insightName == "best_tax_system_insight" ?
                           <MoneyIcon className='insight-icon img' />
-                          : insightName === "usual_county_insight" ?
+                          : insightName == "usual_county_insight" ?
                             <MapIcon className='insight-icon img' />
-                            : insightName === "usual_expenses_insight" ?
+                            : insightName == "usual_expenses_insight" ?
                               <NotebookIcon className='insight-icon img' />
-                              : insightName === "workers_quantity_insight" ?
+                              : insightName == "workers_quantity_insight" ?
                                 <WorkerIcon className='insight-icon img' />
                                 : <></>
                       }
