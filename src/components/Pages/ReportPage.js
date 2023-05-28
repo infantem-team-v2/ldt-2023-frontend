@@ -56,17 +56,24 @@ const ReportPage = ({ isLogedIn }) => {
       <div className='report-page-container'>
         <aside className="aside-main">
           <h1 className='h1-report'>Результат расчёта</h1>
-          {isLogedIn && insights ?
-            <div className="insights">
-              {Object.values(insights).map((element) => {
-                return (
-                  <div class="card-insight" >
-                    <img src="https://cdn.onlinewebfonts.com/svg/download_506219.png" class="img" alt="..." />
-                    <p className='small'>{element["insight"]}</p>
-                  </div>
-                )
-              })}
-            </div>
+          {isLogedIn && insights && plots ?
+            <>
+              <div className="insights">
+                {Object.values(insights).map((element) => {
+                  return (
+                    <div class="card-insight" >
+                      <img src="https://cdn.onlinewebfonts.com/svg/download_506219.png" class="img" alt="..." />
+                      <p className='small'>{element["insight"]}</p>
+                    </div>
+                  )
+                })}
+              </div>
+              <div className="plot">
+                <h2>Распределение расходов по выбранной области</h2>
+                <PieChart data={plots.expenses_distribution} />
+              </div>
+            </>
+
             : <></>}
         </aside>
         <div className="main-section">
@@ -77,12 +84,11 @@ const ReportPage = ({ isLogedIn }) => {
         {isLogedIn && plots ?
           <>
             <div className="plot">
-              <PieChart data={plots.taxes_distribution} />
+              <h2>Выбор налоговой системы в вашей отрасли</h2>
+              <PieChart data={plots.taxes_destribution} />
             </div>
             <div className="plot">
-              <PieChart data={plots.expenses_distribution} />
-            </div>
-            <div className="plot">
+              <h2>Динамика популярности по отраслям</h2>
               <LinearChart data={plots.popularity_chart} />
             </div>
           </>
