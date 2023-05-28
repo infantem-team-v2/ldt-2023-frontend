@@ -42,3 +42,7 @@
   cursor: pointer;
   padding: calc(var(--index)*0.5);
 }
+
+.report-p-data {
+  text-align: end;
+}

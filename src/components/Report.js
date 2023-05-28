@@ -110,7 +110,7 @@ const Report = ({ isLogedIn }) => {
                     return (
                       <div key={nanoid()} className='d-flex justify-content-between'>
                         <p>{convertText(item[0])}</p>
-                        <p>{convertInputText(item[1])}</p>
+                        <p className='report-p-data'>{convertInputText(item[1])}</p>
                       </div>
                     )
                   })
