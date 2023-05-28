@@ -25,7 +25,7 @@ const ResultsBlock = (props) => {
   }, []);
 
   useEffect(() => {
-    if (results && results.length > 0) {
+    if (results) {
       setIsDataLoaded(true);
     }
   }, [results]);

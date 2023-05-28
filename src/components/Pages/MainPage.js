@@ -4,11 +4,14 @@ import BasicCalculator from "../BasicCalculator";
 import { ReactComponent as HeaderThing } from '../../asserts/header_thing.svg';
 
 import '../../styles/MainPage.css';
+import RegularDropdown from "../ui-kit/RegularDropdown";
 
 
 const MainPage = ({ isLogedIn }) => {
 
   const currentScreen = window.screen.width;
+
+  const [currentBlock, setCurrentBlock] = React.useState("");
 
 
 
@@ -25,6 +28,14 @@ const MainPage = ({ isLogedIn }) => {
         < BasicCalculator isLogedIn={isLogedIn} />
 
       </div >
+      <div className="container">
+        <RegularDropdown
+          value={currentBlock}
+          onChange={(e) => { setCurrentBlock(e.target.value) }}
+          innerData={["1", "2", "3", "4"]}
+          overlay={<div>123</div>}
+        /></div>
+
 
     </>
   )

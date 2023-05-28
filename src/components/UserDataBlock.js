@@ -54,11 +54,11 @@ const UserDataBlock = () => {
   }, []);
 
   useEffect(() => {
-    if (userData && organizationList.length > 0) {
+    if (userData) {
       handleData(userData);
       setIsDataLoaded(true);
     }
-  }, [userData, organizationList]);
+  }, [userData]);
 
   const handleData = (data) => {
     try {

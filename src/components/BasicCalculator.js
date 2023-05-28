@@ -282,7 +282,6 @@ const BasicCalculator = ({ isLogedIn }) => {
                 onChange={(e) => { setFields({ ...fields, operations: e.target.value }) }}
                 overlay={renderTooltip('Количество бухгалтерских операций в месяц')}
                 formLabel={"Количество бухгалтерских операций: "}
-                hidden={(!fields.bookkeeping)}
               />
               <RegularDropdown
                 controlId='patent_type'

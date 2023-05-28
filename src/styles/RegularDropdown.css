@@ -7,7 +7,6 @@
 .regular-dropdown-form-group .btn-group .dropdown-menu {
   overflow-x: scroll;
   max-width: 90vw !important;
-
 }
 
 .regular-dropdown-form-group .form-select {
@@ -21,6 +20,8 @@
   border-color: var(--main-acsent) !important;
   box-shadow: none !important;
 }
+
+/*  */
 
 @media screen and (max-width: 768px) {
   .regular-dropdown-form-group .btn-group .dropdown-menu {
