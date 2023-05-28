@@ -89,11 +89,11 @@ const ReportPage = ({ isLogedIn, pdfLink }) => {
           {isLogedIn && insights ?
             <>
               <div className="insights">
-                {Object.entries(insights).map((key, value) => {
+                {Object.entries(insights).map((element) => {
                   return (
-                    <div class="card-insight" hidden={isIncludeEmpty(value["insight"])}>
-                      <img src={insightsImagesSrc[String(key)]} class="img" alt="..." />
-                      <p className='small'>{addSpansToPercentages(value["insight"])}</p>
+                    <div class="card-insight" hidden={isIncludeEmpty(element[1]["insight"])}>
+                      <img src={insightsImagesSrc[String(element[0])]} class="img" alt="..." />
+                      <p className='small'>{addSpansToPercentages(element[1]["insight"])}</p>
                     </div>
                   )
                 })}
