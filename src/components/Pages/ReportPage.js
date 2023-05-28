@@ -66,6 +66,11 @@ const ReportPage = ({ isLogedIn }) => {
     )
   }
 
+  const isIncludeEmpty = (str) => {
+    const toFind = "EMPTY";
+    return str.includes(toFind);
+  }
+
 
 
   return (
@@ -78,7 +83,7 @@ const ReportPage = ({ isLogedIn }) => {
               <div className="insights">
                 {Object.values(insights).map((element) => {
                   return (
-                    <div class="card-insight" >
+                    <div class="card-insight" hidden={isIncludeEmpty(element["insight"])}>
                       <img src="https://cdn.onlinewebfonts.com/svg/download_506219.png" class="img" alt="..." />
                       <p className='small'>{addSpansToPercentages(element["insight"])}</p>
                     </div>
