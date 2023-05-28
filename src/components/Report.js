@@ -59,6 +59,26 @@ const Report = ({ isLogedIn }) => {
     }
   }
 
+  const convertInputText = (text) => {
+    const isArray = Array.isArray(text);
+    if (isArray) {
+      return text.map((item) => { <span>{item}<br /></span> });
+    } else {
+      const newText = String(text);
+      if (newText === "true") return 'Да';
+      if (newText === "false") return 'Нет';
+      if (newText === 'null') return 'Не указано';
+      if (newText.includes('_')) {
+        const words = newText.split('_').join(" ");
+        const capitalizedWords = words.charAt(0).toUpperCase() + words.slice(1)
+        return capitalizedWords
+      } else {
+        return newText.charAt(0).toUpperCase() + newText.slice(1);
+      }
+
+    }
+  }
+
   function convertString(str) {
     const newString = String(str);
     const formattedStr = newString.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
@@ -80,7 +100,7 @@ const Report = ({ isLogedIn }) => {
                 return (
                   <div key={nanoid()} className='d-flex justify-content-between'>
                     <p>{convertText(item[0])}</p>
-                    <p>{convertText(item[1])}</p>
+                    <p>{convertInputText(item[1])}</p>
                   </div>
                 )
               })
