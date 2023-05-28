@@ -43,10 +43,11 @@
   }
 
   .card-container {
-    display: flex;
+    display: flex !important;
+    flex-direction: column;
   }
 
-  .user-form-block {
+  .user-block-form {
     display: flex;
   }
 
