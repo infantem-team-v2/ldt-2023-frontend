@@ -62,7 +62,7 @@ const ReportPage = ({ isLogedIn }) => {
                 return (
                   <div className="insight d-flex">
                     <img className='img img-thumbnail' src='https://placehold.co/150' alt="" />
-                    <p className='fs-6 fw-light'>{insights}</p>
+                    <p className='fs-6 fw-light'>{insight.insight}</p>
                   </div>
                 )
               })}
@@ -70,6 +70,7 @@ const ReportPage = ({ isLogedIn }) => {
             : <></>}
           {isLogedIn && plots ?
             <div className="plots">
+              <LinearChart data={plots.popularity_chart} />
               {/* <LinearChart data={plots} /> */}
             </div>
             : <></>}
