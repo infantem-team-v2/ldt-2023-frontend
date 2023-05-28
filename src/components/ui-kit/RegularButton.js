@@ -10,7 +10,7 @@ const RegularButton = ({ text, onClick, className, onBlur, disabled = false, hid
       onClick={disabled ? () => { } : onClick}
       onBlur={onBlur}
       hidden={hidden}
-    ><p className={"m-1 p-0 " + (disabled ? "muted" : "")}>
+    ><p className={"m-1 p-0 " + (disabled ? "text-muted" : " ")}>
         {text}
       </p>
     </button>

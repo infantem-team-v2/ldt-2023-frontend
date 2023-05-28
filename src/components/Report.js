@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import api from '../services/api';
+import { Collapse } from 'react-bootstrap';
 
 import { nanoid } from 'nanoid';
 
 import '../styles/Report.css';
+import api from '../services/api';
+
 import RegularButton from './ui-kit/RegularButton';
-import { Collapse } from 'react-bootstrap';
+
+
 
 const Report = ({ isLogedIn }) => {
 
@@ -99,16 +102,18 @@ const Report = ({ isLogedIn }) => {
             <h2 className='report-h mb-1'>Общая информация</h2>
             <div onClick={() => { setInputHidden(!inputHidden) }} className='report-hide'>{inputHidden ? "Развернуть" : "Свернуть"}</div>
             <Collapse in={inputHidden}>
-              {
-                Object.entries(report.input).map((item) => {
-                  return (
-                    <div key={nanoid()} className='d-flex justify-content-between'>
-                      <p>{convertText(item[0])}</p>
-                      <p>{convertInputText(item[1])}</p>
-                    </div>
-                  )
-                })
-              }
+              <>
+                {
+                  Object.entries(report.input).map((item) => {
+                    return (
+                      <div key={nanoid()} className='d-flex justify-content-between'>
+                        <p>{convertText(item[0])}</p>
+                        <p>{convertInputText(item[1])}</p>
+                      </div>
+                    )
+                  })
+                }
+              </>
             </Collapse>
             <h2 className='report-h mb-1'>Общий размер инвестиций</h2>
             <h2 className='report-h'>{convertString(totalExpenses)}₽</h2>
