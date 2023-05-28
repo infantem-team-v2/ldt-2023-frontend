@@ -4,13 +4,13 @@ import BasicCalculator from "../BasicCalculator";
 import { ReactComponent as HeaderThing } from '../../asserts/header_thing.svg';
 
 import '../../styles/MainPage.css';
-import RegularSlider from "../ui-kit/RegularSlider";
+
 
 const MainPage = ({ isLogedIn }) => {
 
   const currentScreen = window.screen.width;
 
-  const [fields, setFields] = React.useState();
+
 
 
   return (
@@ -25,14 +25,7 @@ const MainPage = ({ isLogedIn }) => {
         < BasicCalculator isLogedIn={isLogedIn} />
 
       </div >
-      <RegularSlider
-        controlId='accounting-operations'
-        label='Количество бухгалтерских операций'
-        value={fields}
-        onChange={(e) => { setFields(e.target.value) }}
-        overlay={<p>Количество бухгалтерских операций в месяц'</p>}
-        formLabel={"Количество бухгалтерских операций: "}
-      />
+
     </>
   )
 };
