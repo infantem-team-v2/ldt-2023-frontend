@@ -34,7 +34,6 @@
 }
 
 .report-hide {
-  width: 100%;
   border: 1px solid var(--main-white) !important;
   border-radius: 3px !important;
   color: var(--main-white) !important;
