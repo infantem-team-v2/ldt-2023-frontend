@@ -38,7 +38,22 @@
   width: 8%;
 }
 
+.report-plots-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--index)*1.2);
+}
+
 @media screen and (max-width: 768px) {
+  .report-plots-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pot {
+    max-height: 20vh;
+  }
+
   .report-page-container {
     flex-direction: column;
     text-align: center;

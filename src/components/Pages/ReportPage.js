@@ -75,10 +75,18 @@ const ReportPage = ({ isLogedIn }) => {
       </div>
       <div className='report-plots-container'>
         {isLogedIn && plots ?
-          <div className="plots">
-            <LinearChart data={plots.popularity_chart} />
-          </div>
+          <>
+            <div className="plot">
+              <PieChart data={plots.taxed_distripution} />
+            </div>
+            <div className="plot">
+              <PieChart data={plots.expenses_distribution} />
+            </div>
+            <div className="plot">
+              <LinearChart data={plots.popularity_chart} />
+            </div>
 
+          </>
           : <></>}
       </div>
       <div className='report-page-additional'>
@@ -89,8 +97,6 @@ const ReportPage = ({ isLogedIn }) => {
               <a href={link} className='fs-6 fw-light m-0 p-0 text-decoration-none'>{link.slice(8)}</a>
               <CopyToClipboardButton text={link} />
             </div>
-
-
           </div>
 
         </aside>
